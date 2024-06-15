@@ -1,0 +1,75 @@
+modLoader="javafml" #mandatory
+loaderVersion="${loader_version_range}" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="${mod_license}"
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+
+[[mods]] #mandatory
+modId="nwrcorelib"
+version="0.1.0-alpha"
+displayName="NWR Core Library"
+authors="NotWhiteRice"
+description='''The core library for mods created by NotWhiteRice'''
+
+[[mods]] #mandatory
+modId="circuitsmod"
+version="0.1.0-alpha"
+displayName="Circuits"
+authors="NotWhiteRice"
+description='''A redstone expansion mod for Minecraft 1.21'''
+
+[[mods]] #mandatory
+modId="bountifulharvest"
+version="0.1.0-alpha"
+displayName="Bountiful Harvest"
+authors="NotWhiteRice"
+description='''A food mod made for Minecraft 1.21'''
+
+[[dependencies.nwrcorelib]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.nwrcorelib]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.circuitsmod]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.circuitsmod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.circuitsmod]]
+    modId="nwrcorelib"
+    mandatory=true
+    versionRange="0.1.0-alpha"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.bountifulharvest]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.bountifulharvest]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.bountifulharvest]]
+    modId="nwrcorelib"
+    mandatory=true
+    versionRange="0.1.0-alpha"
+    ordering="BEFORE"
+    side="BOTH"
+
