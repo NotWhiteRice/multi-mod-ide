@@ -14,9 +14,10 @@ public class TabInit {
 
     public static void initTabs() {
         tabCircuitsMod = ModRegistry.registerTab(Circuits.modID, Circuits.modID, () -> CreativeModeTab.builder()
-                .icon(() -> new ItemStack(ItemInit.itemTest.get()))
+                .icon(() -> new ItemStack(ItemInit.itemBasicCircuitBoard.get()))
                 .title(Component.translatable("creativetab.circuitsmod"))
                 .displayItems((param, out) ->{
+                    out.accept(ItemInit.itemBasicCircuitBoard.get());
                     out.accept(ItemInit.itemTest.get());
                     out.accept(BlockInit.blockTest.get());
                 }).build());

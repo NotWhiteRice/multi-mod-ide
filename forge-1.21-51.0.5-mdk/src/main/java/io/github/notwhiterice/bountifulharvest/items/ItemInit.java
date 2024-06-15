@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ItemInit {
+    //Materials
     public static RegistryObject<Item> itemCinnamon;
 
     public static void initItems() {

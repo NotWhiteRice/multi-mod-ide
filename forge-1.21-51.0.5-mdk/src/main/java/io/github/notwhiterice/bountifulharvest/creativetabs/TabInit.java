@@ -15,7 +15,7 @@ public class TabInit {
 
     public static void initTabs() {
         tabBountifulHarvest = ModRegistry.registerTab(BountifulHarvest.modID, BountifulHarvest.modID, () -> CreativeModeTab.builder()
-                .icon(() -> new ItemStack(Items.BREAD))
+                .icon(() -> new ItemStack(ItemInit.itemCinnamon.get()))
                 .title(Component.translatable("creativetab.bountifulharvest"))
                 .displayItems((param, out) ->{
                     out.accept(ItemInit.itemCinnamon.get());

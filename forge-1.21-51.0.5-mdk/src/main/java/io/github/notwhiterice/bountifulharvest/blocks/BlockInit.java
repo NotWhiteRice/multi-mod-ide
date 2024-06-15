@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
 public class BlockInit {
+    //Materials
     public static RegistryObject<Block> blockCinnamon;
 
     public static void initBlocks() {

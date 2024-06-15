@@ -15,20 +15,5 @@ public class NWRCore {
     public static final String modID = "nwrcorelib";
     public static final Logger logger = LogUtils.getLogger();
 
-    public NWRCore() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        bus.addListener(this::onCommonSetup);
-
-        MinecraftForge.EVENT_BUS.register(this);
-        bus.addListener(this::onBuildCreativeTabContents);
-    }
-
-    private void onCommonSetup(final FMLCommonSetupEvent event) {
-
-    }
-
-    private void onBuildCreativeTabContents(BuildCreativeModeTabContentsEvent event) {
-
-    }
+    public NWRCore() {}
 }

@@ -25,7 +25,5 @@ public class Circuits {
         TabInit.initTabs();
 
         ModRegistry.registerEventBus(bus, modID);
-
-        MinecraftForge.EVENT_BUS.register(this);
     }
 }
