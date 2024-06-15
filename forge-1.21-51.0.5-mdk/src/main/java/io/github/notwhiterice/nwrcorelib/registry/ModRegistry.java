@@ -10,35 +10,39 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.function.Supplier;
 
 public class ModRegistry {
-    private static Map<String, RegisterBundle> modRegisters = new TreeMap<>();
+    private static Map<String, RegisterBundle> modRegisters = new HashMap<>();
 
     public static void registerMod(String modID) {
-        NWRCore.logger.info("[NWRCore--at ModRegistry]: registerMod() called for modID: " + modID);
+        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in registerMod(modID)]: func called for modID: " + modID);
         modRegisters.put(modID, new RegisterBundle(modID));
+        if(modRegisters.get(modID) == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerMod(modID)]: RegisterBundle is null for modID: " + modID);
     }
 
     public static void registerEventBus(IEventBus bus, String modID) {
+        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in registerEventBus(bus, modID)]: func called for modID: " + modID);
         RegisterBundle rBundle = modRegisters.get(modID);
         rBundle.blocks.register(bus);
         rBundle.items.register(bus);
         rBundle.tabs.register(bus);
     }
 
-    public static RegistryObject<Item> registerItem(String modID, String name, Supplier<? extends Item> supplier) {
-        return modRegisters.get(modID).items.register(name, supplier);
+    public static RegistryObject<Item> registerItem(String modID, String itemID, Supplier<? extends Item> supplier) {
+        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in registerItem(modID, itemID, supplier)]: func called for modID: " + modID + ", itemID: " + itemID);
+        return modRegisters.get(modID).items.register(itemID, supplier);
     }
 
-    public static RegistryObject<Block> registerBlock(String modID, String name, Supplier<? extends Block> supplier) {
-        RegistryObject<Block> out = modRegisters.get(modID).blocks.register(name, supplier);
-        modRegisters.get(modID).items.register(name, () -> new BlockItem(out.get(), new Item.Properties()));
+    public static RegistryObject<Block> registerBlock(String modID, String blockID, Supplier<? extends Block> supplier) {
+        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: func called for modID: " + modID + ", blockID: " + blockID);
+        RegistryObject<Block> out = modRegisters.get(modID).blocks.register(blockID, supplier);
+        modRegisters.get(modID).items.register(blockID, () -> new BlockItem(out.get(), new Item.Properties()));
         return out;
     }
 
-    public static RegistryObject<CreativeModeTab> registerTab(String modID, String name, Supplier<? extends CreativeModeTab> supplier) {
-        return modRegisters.get(modID).tabs.register(name, supplier);
+    public static RegistryObject<CreativeModeTab> registerTab(String modID, String tabID, Supplier<? extends CreativeModeTab> supplier) {
+        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in registerTab(modID, tabID, supplier)]: registerTab() called for modID: " + modID + ", tabID: " + tabID);
+        return modRegisters.get(modID).tabs.register(tabID, supplier);
     }
 }

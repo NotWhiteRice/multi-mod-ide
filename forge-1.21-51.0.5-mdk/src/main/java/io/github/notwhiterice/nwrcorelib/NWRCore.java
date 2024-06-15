@@ -20,8 +20,6 @@ public class NWRCore {
 
         bus.addListener(this::onCommonSetup);
 
-        //ModRegistry.registerEventBus(bus);
-
         MinecraftForge.EVENT_BUS.register(this);
         bus.addListener(this::onBuildCreativeTabContents);
     }

@@ -15,7 +15,7 @@ public class TabInit {
     public static void initTabs() {
         tabCircuitsMod = ModRegistry.registerTab(Circuits.modID, Circuits.modID, () -> CreativeModeTab.builder()
                 .icon(() -> new ItemStack(ItemInit.itemTest.get()))
-                .title(Component.translatable("creativetabs.circuitsmod"))
+                .title(Component.translatable("creativetab.circuitsmod"))
                 .displayItems((param, out) ->{
                     out.accept(ItemInit.itemTest.get());
                     out.accept(BlockInit.blockTest.get());
