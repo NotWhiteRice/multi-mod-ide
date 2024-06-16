@@ -9,10 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
 public class BlockInit {
-    //Materials
-    public static RegistryObject<Block> blockCinnamon;
-
     public static void initBlocks() {
-        blockCinnamon = ModRegistry.registerBlock(BountifulHarvest.modID, "cinnamon_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRAY_WOOL)));
+
     }
 }

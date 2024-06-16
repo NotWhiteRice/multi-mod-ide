@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "circuitsmod:block/test_block"
+    "all": "nwrcorelib:block/test_block"
   }
 }

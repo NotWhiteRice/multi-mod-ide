@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "circuitsmod:item/test_item"
+    "layer0": "nwrcorelib:item/test_item"
   }
 }

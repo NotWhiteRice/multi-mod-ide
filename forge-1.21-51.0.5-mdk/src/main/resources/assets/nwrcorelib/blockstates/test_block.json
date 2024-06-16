@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "nwrcorelib:block/test_block"
+    }
+  }
+}

@@ -18,8 +18,6 @@ public class TabInit {
                 .title(Component.translatable("creativetab.circuitsmod"))
                 .displayItems((param, out) ->{
                     out.accept(ItemInit.itemBasicCircuitBoard.get());
-                    out.accept(ItemInit.itemTest.get());
-                    out.accept(BlockInit.blockTest.get());
                 }).build());
     }
 }

@@ -10,10 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 public class BlockInit {
-    //Dev blocks
-    public static RegistryObject<Block> blockTest;
-
     public static void initBlocks() {
-        blockTest = ModRegistry.registerBlock(Circuits.modID, "test_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)));
+
     }
 }
