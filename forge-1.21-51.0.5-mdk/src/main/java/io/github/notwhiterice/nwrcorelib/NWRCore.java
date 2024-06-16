@@ -17,12 +17,14 @@ import org.slf4j.Logger;
 @Mod(NWRCore.modID)
 public class NWRCore {
     public static final String modID = "nwrcorelib";
-    public static final RegisterBundle rBundle = new RegisterBundle(modID);
+    public static RegisterBundle rBundle;
     public static final Logger logger = LogUtils.getLogger();
 
     public NWRCore() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         //ModRegistry.registerMod(modID);
+
+        rBundle = new RegisterBundle(modID);
 
         BlockInit.initBlocks();
         ItemInit.initItems();

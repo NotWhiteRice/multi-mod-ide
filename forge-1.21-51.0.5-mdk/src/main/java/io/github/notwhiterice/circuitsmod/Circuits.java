@@ -15,11 +15,13 @@ import org.slf4j.Logger;
 @Mod(Circuits.modID)
 public class Circuits {
     public static final String modID = "circuitsmod";
-    public static final RegisterBundle rBundle = new RegisterBundle(modID);
+    public static RegisterBundle rBundle;
 
     public Circuits() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         //ModRegistry.registerMod(modID);
+
+        rBundle = new RegisterBundle(modID);
 
         BlockInit.initBlocks();
         ItemInit.initItems();
