@@ -27,6 +27,6 @@ public class NWRCore {
         ItemInit.initItems();
         TabInit.initTabs();
 
-        ModRegistry.registerEventBus(bus, modID);
+        ModRegistry.registerEventBus(bus);
     }
 }

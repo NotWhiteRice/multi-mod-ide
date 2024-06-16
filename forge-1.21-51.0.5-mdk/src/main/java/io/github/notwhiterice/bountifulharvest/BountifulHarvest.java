@@ -16,13 +16,10 @@ public class BountifulHarvest {
     public static final String modID = "bountifulharvest";
 
     public BountifulHarvest() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModRegistry.registerMod(modID);
 
         BlockInit.initBlocks();
         ItemInit.initItems();
         TabInit.initTabs();
-
-        ModRegistry.registerEventBus(bus, modID);
     }
 }

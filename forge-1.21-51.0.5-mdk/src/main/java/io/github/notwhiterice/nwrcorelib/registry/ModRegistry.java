@@ -28,18 +28,21 @@ public class ModRegistry {
             else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerMod(modID)]: Successfully retrieved RegisterBundle for modID: " + modID);
         }
 
-    public static void registerEventBus(IEventBus bus, String modID) {
-        NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus, modID)]: func called for modID: " + modID);
-        RegisterBundle rBundle = modRegisters.get(modID);
-        if(rBundle == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerEventBus(bus, modID)]: Error retrieving RegisterBundle for modID: " + modID);
-        else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus, modID)]: Successfully retrieved RegisterBundle for modID: " + modID);
-        assert rBundle != null;
-        rBundle.blocks.register(bus);
-        NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus, modID)]: Registered event bus in the block register for modID: " + modID);
-        rBundle.items.register(bus);
-        NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus, modID)]: Registered event bus in the item register for modID: " + modID);
-        rBundle.tabs.register(bus);
-        NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus, modID)]: Registered event bus in the creative tab register for modID: " + modID);
+    public static void registerEventBus(IEventBus bus) {
+        NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus)]: func called");
+        for(Map.Entry<String, RegisterBundle> entry : modRegisters.entrySet()) {
+            String modID = entry.getKey();
+            RegisterBundle rBundle = entry.getValue();
+            if(rBundle == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerEventBus(bus)]: Error retrieving RegisterBundle for modID: " + modID);
+            else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus)]: Successfully retrieved RegisterBundle for modID: " + modID);
+            assert rBundle != null;
+            rBundle.blocks.register(bus);
+            NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus)]: Registered event bus in the block register for modID: " + modID);
+            rBundle.items.register(bus);
+            NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus)]: Registered event bus in the item register for modID: " + modID);
+            rBundle.tabs.register(bus);
+            NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus)]: Registered event bus in the creative tab register for modID: " + modID);
+        }
     }
 
     public static RegistryObject<Item> registerItem(String modID, String itemID, Supplier<? extends Item> supplier) {
@@ -48,11 +51,7 @@ public class ModRegistry {
         if(rBundle == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerItem(modID, itemID, supplier)]: Error retrieving RegisterBundle for modID: " + modID);
         else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerItem(modID, itemID, supplier)]: Successfully retrieved RegisterBundle for modID: " + modID);
         assert rBundle != null;
-        DeferredRegister<Item> dRegister = rBundle.items;
-        if(dRegister == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerItem(modID, itemID, supplier)]: Error retrieving item register for modID: " + modID);
-        else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerItem(modID, itemID, supplier)]: Successfully retrieved item register for modID: " + modID);
-        assert dRegister != null;
-        RegistryObject<Item> out = dRegister.register(itemID, supplier);
+        RegistryObject<Item> out = rBundle.items.register(itemID, supplier);
         if(out == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerItem(modID, itemID, supplier)]: Error registering itemID: " + itemID + ", modID: " + modID);
         else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerItem(modID, itemID, supplier)]: Successfully registered itemID: " + itemID + ", modID: " + modID);
         return out;
@@ -64,18 +63,10 @@ public class ModRegistry {
         if(rBundle == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Error retrieving RegisterBundle for modID: " + modID);
         else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Successfully retrieved RegisterBundle for modID: " + modID);
         assert rBundle != null;
-        DeferredRegister<Block> dRegister0 = rBundle.blocks;
-        if(dRegister0 == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Error retrieving block register for modID: " + modID);
-        else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Successfully retrieved block register for modID: " + modID);
-        assert dRegister0 != null;
-        RegistryObject<Block> out = dRegister0.register(blockID, supplier);
+        RegistryObject<Block> out = rBundle.blocks.register(blockID, supplier);
         if(out == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Error registering block for blockID: " + blockID + ", modID: " + modID);
         else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Successfully registered block for blockID: " + blockID + ", modID: " + modID);
-        DeferredRegister<Item> dRegister1 = rBundle.items;
-        if(dRegister1 == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Error retrieving item register for modID: " + modID);
-        else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Successfully retrieved item register for modID: " + modID);
-        assert dRegister1 != null;
-        RegistryObject<Item> rObject1 = dRegister1.register(blockID, () -> new BlockItem(out.get(), new Item.Properties()));
+        RegistryObject<Item> rObject1 = rBundle.items.register(blockID, () -> new BlockItem(out.get(), new Item.Properties()));
         if(rObject1 == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Error registering item for blockID: " + blockID + ", modID: " + modID);
         else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: Successfully registered item for blockID: " + blockID + ", modID: " + modID);
         return out;
@@ -87,11 +78,7 @@ public class ModRegistry {
         if(rBundle == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerTab(modID, tabID, supplier)]: Error retrieving RegisterBundle for modID: " + modID);
         else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerTab(modID, tabID, supplier)]: Successfully retrieved RegisterBundle for modID: " + modID);
         assert rBundle != null;
-        DeferredRegister<CreativeModeTab> dRegister = rBundle.tabs;
-        if(dRegister == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerTab(modID, tabID, supplier)]: Error retrieving creative tab register for modID: " + modID);
-        else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerTab(modID, tabID, supplier)]: Successfully retrieved creative tab register for modID: " + modID);
-        assert dRegister != null;
-        RegistryObject<CreativeModeTab> out = dRegister.register(tabID, supplier);
+        RegistryObject<CreativeModeTab> out = rBundle.tabs.register(tabID, supplier);
         if(out == null) NWRCore.logger.info("[ERROR: NWRCore--at ModRegistry in registerTab(modID, tabID, supplier)]: Error registering tabID: " + tabID + ", modID: " + modID);
         else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerTab(modID, tabID, supplier)]: Successfully registered tabID: " + tabID + ", modID: " + modID);
         return out;

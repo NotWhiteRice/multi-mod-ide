@@ -23,7 +23,5 @@ public class Circuits {
         BlockInit.initBlocks();
         ItemInit.initItems();
         TabInit.initTabs();
-
-        ModRegistry.registerEventBus(bus, modID);
     }
 }
