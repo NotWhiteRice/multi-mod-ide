@@ -14,21 +14,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class BountifulHarvest {
 
     public static final String modID = "bountifulharvest";
-    public static RegisterBundle rBundle;
 
     public BountifulHarvest() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        //ModRegistry.registerMod(modID);
-
-        rBundle = new RegisterBundle(modID);
+        ModRegistry.registerMod(modID);
 
         BlockInit.initBlocks();
         ItemInit.initItems();
         TabInit.initTabs();
 
-        //ModRegistry.registerEventBus(bus, modID);
-        rBundle.tabs.register(bus);
-
-        MinecraftForge.EVENT_BUS.register(this);
+        ModRegistry.registerEventBus(bus, modID);
     }
 }

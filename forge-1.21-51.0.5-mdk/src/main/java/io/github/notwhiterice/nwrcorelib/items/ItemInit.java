@@ -9,6 +9,6 @@ public class ItemInit {
     public static RegistryObject<Item> itemTest;
 
     public static void initItems() {
-        itemTest = ModRegistry._registerItem(NWRCore.rBundle, "test_item", () -> new Item(new Item.Properties()));
+        itemTest = ModRegistry.registerItem(NWRCore.modID, "test_item", () -> new Item(new Item.Properties()));
     }
 }

@@ -13,7 +13,7 @@ public class TabInit {
     public static RegistryObject<CreativeModeTab> tabCircuitsMod;
 
     public static void initTabs() {
-        tabCircuitsMod = ModRegistry._registerTab(Circuits.rBundle, Circuits.modID, () -> CreativeModeTab.builder()
+        tabCircuitsMod = ModRegistry.registerTab(Circuits.modID, Circuits.modID, () -> CreativeModeTab.builder()
                 .icon(() -> new ItemStack(ItemInit.itemBasicCircuitBoard.get()))
                 .title(Component.translatable("creativetab.circuitsmod"))
                 .displayItems((param, out) ->{

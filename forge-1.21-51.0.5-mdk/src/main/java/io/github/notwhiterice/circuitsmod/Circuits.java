@@ -15,20 +15,15 @@ import org.slf4j.Logger;
 @Mod(Circuits.modID)
 public class Circuits {
     public static final String modID = "circuitsmod";
-    public static RegisterBundle rBundle;
 
     public Circuits() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        //ModRegistry.registerMod(modID);
-
-        rBundle = new RegisterBundle(modID);
+        ModRegistry.registerMod(modID);
 
         BlockInit.initBlocks();
         ItemInit.initItems();
         TabInit.initTabs();
 
-        //ModRegistry.registerEventBus(bus, modID);
-        rBundle.items.register(bus);
-        rBundle.tabs.register(bus);
+        ModRegistry.registerEventBus(bus, modID);
     }
 }

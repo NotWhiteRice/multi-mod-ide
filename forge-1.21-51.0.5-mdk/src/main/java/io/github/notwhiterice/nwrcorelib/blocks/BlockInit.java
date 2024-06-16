@@ -11,6 +11,6 @@ public class BlockInit {
     public static RegistryObject<Block> blockTest;
 
     public static void initBlocks() {
-        blockTest = ModRegistry._registerBlock(NWRCore.rBundle, "test_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)));
+        blockTest = ModRegistry.registerBlock(NWRCore.modID, "test_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)));
     }
 }
