@@ -13,6 +13,6 @@ public class ItemInit {
     public static RegistryObject<Item> itemBasicCircuitBoard;
 
     public static void initItems() {
-        itemBasicCircuitBoard = ModRegistry.registerItem(Circuits.modID, "basic_circuit_board", () -> new Item(new Item.Properties()));
+        itemBasicCircuitBoard = ModRegistry._registerItem(Circuits.rBundle, "basic_circuit_board", () -> new Item(new Item.Properties()));
     }
 }

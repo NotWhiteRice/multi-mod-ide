@@ -34,6 +34,11 @@ public class ModRegistry {
         return modRegisters.get(modID).items.register(itemID, supplier);
     }
 
+    public static RegistryObject<Item> _registerItem(RegisterBundle rBundle, String itemID, Supplier<? extends Item> supplier) {
+        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in _registerItem(rBundle, itemID, supplier)]: func called for itemID: " + itemID);
+        return rBundle.items.register(itemID, supplier);
+    }
+
     public static RegistryObject<Block> registerBlock(String modID, String blockID, Supplier<? extends Block> supplier) {
         NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in registerBlock(modID, blockID, supplier)]: func called for modID: " + modID + ", blockID: " + blockID);
         RegistryObject<Block> out = modRegisters.get(modID).blocks.register(blockID, supplier);
@@ -41,8 +46,20 @@ public class ModRegistry {
         return out;
     }
 
+    public static RegistryObject<Block> _registerBlock(RegisterBundle rBundle, String blockID, Supplier<? extends Block> supplier) {
+        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in _registerBlock(rBundle, blockID, supplier)]: func called for blockID: " + blockID);
+        RegistryObject<Block> out = rBundle.blocks.register(blockID, supplier);
+        rBundle.items.register(blockID, () -> new BlockItem(out.get(), new Item.Properties()));
+        return out;
+    }
+
     public static RegistryObject<CreativeModeTab> registerTab(String modID, String tabID, Supplier<? extends CreativeModeTab> supplier) {
-        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in registerTab(modID, tabID, supplier)]: registerTab() called for modID: " + modID + ", tabID: " + tabID);
+        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in registerTab(modID, tabID, supplier)]: func called for modID: " + modID + ", tabID: " + tabID);
         return modRegisters.get(modID).tabs.register(tabID, supplier);
+    }
+
+    public static RegistryObject<CreativeModeTab> _registerTab(RegisterBundle rBundle, String tabID, Supplier<? extends CreativeModeTab> supplier) {
+        NWRCore.logger.info("[INFO: NWRCore--at ModRegistry in _registerTab(rBundle, tabID, supplier)]: func called for tabID: " + tabID);
+        return rBundle.tabs.register(tabID, supplier);
     }
 }

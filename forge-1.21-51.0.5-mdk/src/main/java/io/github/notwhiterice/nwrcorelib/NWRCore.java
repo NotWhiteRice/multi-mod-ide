@@ -5,6 +5,7 @@ import io.github.notwhiterice.nwrcorelib.blocks.BlockInit;
 import io.github.notwhiterice.nwrcorelib.creativetabs.TabInit;
 import io.github.notwhiterice.nwrcorelib.items.ItemInit;
 import io.github.notwhiterice.nwrcorelib.registry.ModRegistry;
+import io.github.notwhiterice.nwrcorelib.registry.RegisterBundle;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,16 +17,20 @@ import org.slf4j.Logger;
 @Mod(NWRCore.modID)
 public class NWRCore {
     public static final String modID = "nwrcorelib";
+    public static final RegisterBundle rBundle = new RegisterBundle(modID);
     public static final Logger logger = LogUtils.getLogger();
 
     public NWRCore() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModRegistry.registerMod(modID);
+        //ModRegistry.registerMod(modID);
 
         BlockInit.initBlocks();
         ItemInit.initItems();
         TabInit.initTabs();
 
-        ModRegistry.registerEventBus(bus, modID);
+        //ModRegistry.registerEventBus(bus, modID);
+        rBundle.blocks.register(bus);
+        rBundle.items.register(bus);
+        rBundle.tabs.register(bus);
     }
 }

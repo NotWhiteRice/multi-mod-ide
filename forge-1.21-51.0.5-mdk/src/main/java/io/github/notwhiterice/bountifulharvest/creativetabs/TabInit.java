@@ -14,7 +14,7 @@ public class TabInit {
     public static RegistryObject<CreativeModeTab> tabBountifulHarvest;
 
     public static void initTabs() {
-        tabBountifulHarvest = ModRegistry.registerTab(BountifulHarvest.modID, BountifulHarvest.modID, () -> CreativeModeTab.builder()
+        tabBountifulHarvest = ModRegistry._registerTab(BountifulHarvest.rBundle, BountifulHarvest.modID, () -> CreativeModeTab.builder()
                 .icon(() -> new ItemStack(Items.WHEAT_SEEDS))
                 .title(Component.translatable("creativetab.bountifulharvest"))
                 .displayItems((param, out) ->{
