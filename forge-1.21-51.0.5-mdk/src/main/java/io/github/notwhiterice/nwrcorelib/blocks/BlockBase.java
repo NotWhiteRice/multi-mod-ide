@@ -6,6 +6,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class BlockBase extends Block {
 
-    public BlockBase() { super(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)); }
+    public BlockBase() { this(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)); }
     public BlockBase(Properties prop) { super(prop); }
 }

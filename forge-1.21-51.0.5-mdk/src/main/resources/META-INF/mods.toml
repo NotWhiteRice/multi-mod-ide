@@ -12,7 +12,7 @@ description='''The core library for mods created by NotWhiteRice'''
 
 [[mods]] #mandatory
 modId="circuitsmod"
-version="0.1.0-alpha"
+version="0.2.0-alpha"
 displayName="Circuits"
 authors="${authors}"
 description='''A redstone expansion mod for Minecraft 1.21'''
