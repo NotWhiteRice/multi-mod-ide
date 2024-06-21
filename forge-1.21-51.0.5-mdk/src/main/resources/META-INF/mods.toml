@@ -17,13 +17,6 @@ displayName="Circuits"
 authors="${authors}"
 description='''A redstone expansion mod for Minecraft 1.21'''
 
-[[mods]] #mandatory
-modId="bountifulharvest"
-version="0.1.0-alpha"
-displayName="Bountiful Harvest"
-authors="${authors}"
-description='''A food mod made for Minecraft 1.21'''
-
 [[dependencies.nwrcorelib]]
     modId="forge"
     mandatory=true
@@ -54,22 +47,3 @@ description='''A food mod made for Minecraft 1.21'''
     versionRange="[0.1.0-alpha,)"
     ordering="BEFORE"
     side="BOTH"
-[[dependencies.bountifulharvest]]
-    modId="forge"
-    mandatory=true
-    versionRange="${forgeVersionRange}"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.bountifulharvest]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="${mcVersionRange}"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.bountifulharvest]]
-    modId="${libID}"
-    mandatory=true
-    versionRange="[0.1.0-alpha,)"
-    ordering="BEFORE"
-    side="BOTH"
-
