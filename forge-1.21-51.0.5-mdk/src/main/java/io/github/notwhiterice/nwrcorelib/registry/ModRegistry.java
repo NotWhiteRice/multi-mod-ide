@@ -6,6 +6,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.rmi.registry.Registry;
@@ -27,8 +28,9 @@ public class ModRegistry {
             else NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerMod(modID)]: Successfully retrieved RegisterBundle for modID: " + modID);
         }
 
-    public static void registerEventBus(IEventBus bus) {
-        NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus(bus)]: func called");
+    public static void registerEventBus() {
+        NWRCore.logger.info("[DEBUG: NWRCore--at ModRegistry in registerEventBus()]: func called");
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         for(Map.Entry<String, RegisterBundle> entry : modRegisters.entrySet()) {
             String modID = entry.getKey();
             RegisterBundle rBundle = entry.getValue();

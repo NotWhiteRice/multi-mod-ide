@@ -8,6 +8,7 @@
 - NWR Core v0.2.1-alpha
     - Minor changes to the default constructors for BlockBase and ItemBase
     - Implemented use of blocks for creative tab icons
+    - Removed the bus parameter in ModRegistry.registerEventBus(bus)
 - Circuits v0.2.0-alpha
     - Added FaceBlock and DirectionalFaceBlock classes
     - Added a temporary DirectionalPanel block

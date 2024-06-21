@@ -16,13 +16,12 @@ public class NWRCore {
     public static final Logger logger = LogUtils.getLogger();
 
     public NWRCore() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModRegistry.registerMod(modID);
 
         BlockInit.initBlocks();
         ItemInit.initItems();
         TabInit.initTabs();
 
-        ModRegistry.registerEventBus(bus);
+        ModRegistry.registerEventBus();
     }
 }
