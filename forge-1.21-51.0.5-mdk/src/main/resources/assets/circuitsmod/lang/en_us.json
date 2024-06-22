@@ -1,8 +1,5 @@
 {
   "creativetab.circuitsmod": "Circuits",
 
-  "item.circuitsmod.test_item": "Test Item",
   "item.circuitsmod.basic_circuit_board": "Basic Circuit Board",
-
-  "block.circuitsmod.test_block": "Test Block"
 }

@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "face=up": {
+      "model": "nwrcorelib:block/stone_panel",
+      "x": 180,
+      "y": 180
+    },
+    "face=down": {
+      "model": "nwrcorelib:block/stone_panel"
+    },
+    "face=north": {
+      "model": "nwrcorelib:block/stone_panel",
+      "x": 270
+    },
+    "face=west": {
+      "model": "nwrcorelib:block/stone_panel",
+      "x": 270,
+      "y": 270
+    },
+    "face=south": {
+      "model": "nwrcorelib:block/stone_panel",
+      "x": 270,
+      "y": 180
+    },
+    "face=east": {
+      "model": "nwrcorelib:block/stone_panel",
+      "x": 270,
+      "y": 90
+    }
+  }
+}

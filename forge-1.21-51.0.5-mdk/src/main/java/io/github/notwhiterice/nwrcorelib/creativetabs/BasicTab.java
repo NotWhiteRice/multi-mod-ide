@@ -8,8 +8,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
-public class TabBase extends CreativeModeTab {
-    public TabBase(String tabID, RegistryObject<? extends ItemLike> icon, List<RegistryObject<? extends ItemLike>> tabContents) {
+public class BasicTab extends CreativeModeTab {
+    public BasicTab(String tabID, RegistryObject<? extends ItemLike> icon, List<RegistryObject<? extends ItemLike>> tabContents) {
         super(CreativeModeTab.builder()
                 .icon(() -> new ItemStack(icon.get()))
                 .title(Component.translatable("creativetab." + tabID))

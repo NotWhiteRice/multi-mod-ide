@@ -6,10 +6,12 @@ import io.github.notwhiterice.nwrcorelib.items.ItemInit;
 
 import java.util.List;
 
-public class TabNWRCore extends TabBase {
-    public TabNWRCore() {
-        super(NWRCore.modID, ItemInit.itemTest, List.of(
+public class NWRCoreModTab extends BasicTab {
+    public NWRCoreModTab() {
+        super(NWRCore.modID, BlockInit.blockTest, List.of(
                 ItemInit.itemTest,
+                BlockInit.blockStonePanel,
+                BlockInit.blockArrowPanel,
                 BlockInit.blockTest
         ));
     }

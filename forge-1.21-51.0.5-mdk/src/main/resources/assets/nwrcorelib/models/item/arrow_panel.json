@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nwrcorelib:item/arrow_panel"
+  }
+}

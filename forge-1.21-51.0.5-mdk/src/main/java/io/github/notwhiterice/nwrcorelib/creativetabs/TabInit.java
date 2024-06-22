@@ -9,6 +9,6 @@ public class TabInit {
     public static RegistryObject<CreativeModeTab> tabNWRCore;
 
     public static void initTabs() {
-        tabNWRCore = ModRegistry.registerTab(NWRCore.modID, NWRCore.modID, TabNWRCore::new);
+        tabNWRCore = ModRegistry.registerTab(NWRCore.modID, NWRCore.modID, NWRCoreModTab::new);
     }
 }

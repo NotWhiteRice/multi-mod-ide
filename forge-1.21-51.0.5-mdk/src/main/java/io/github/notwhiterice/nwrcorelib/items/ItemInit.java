@@ -9,6 +9,6 @@ public class ItemInit {
     public static RegistryObject<Item> itemTest;
 
     public static void initItems() {
-        itemTest = ModRegistry.registerItem(NWRCore.modID, "test_item", ItemTest::new);
+        itemTest = ModRegistry.registerItem(NWRCore.modID, "test_item", TestItem::new);
     }
 }

@@ -5,20 +5,15 @@
 - Circuits v0.2.0-alpha
 
 ## Mod Changelog (mostly complete)
-- NWR Core v0.2.1-alpha
-    - Minor changes to the default constructors for BlockBase and ItemBase
-    - Implemented use of blocks for creative tab icons
-    - Removed the bus parameter in ModRegistry.registerEventBus(bus)
-- Circuits v0.2.0-alpha
-    - Added FaceBlock and DirectionalFaceBlock classes
-    - Added a temporary DirectionalPanel block
-    - Added textures for not gate and and gate items and the top for not gates placed in the world
-- NWR Core v0.2.0-alpha
-  - Implemented adding the event bus to DeferredRegisters automatically in NWR Core Library
-  - Implemented methods to register blocks, items, and creative tabs through ModRegistry
-- Circuits v0.1.0-alpha
-  - Added a basic circuit board item
-  - Added a creative tab
-- NWR Core v0.1.0-alpha
-  - Implemented ModRegistry and RegisterBundles
-  - Implemented base classes for blocks, items, and creative tabs  - Added a dev item and block
+- Circuits v0.2.1-alpha (in development)
+  - Renamed classes to mimic vanilla classes
+  - Moved FaceBlock and DirectionalFaceBlock to NWR Core Library
+  - Moved DirectionalPanelBlock to NWR Core Library
+- NWR Core Library v0.3.0-alpha (in development)
+  - Removed the bus parameter in ModRegistry.registerEventBus(bus)
+  - Renamed classes to mimic vanilla classes
+  - Implemented FaceBlock and DirectionalFaceBlock from Circuits v0.2.0-alpha as PanelBlock and AimedPanelBlock
+  - Implemented DirectionalPanelBlock from Circuits v0.2.0-alpha as ArrowPanelBlock
+  - Added a normal panel block 
+  - Arrow Panels and Stone Panels now change faces when right clicked
+  - Arrow Panels now rotate when shift-right clicked with an empty hand

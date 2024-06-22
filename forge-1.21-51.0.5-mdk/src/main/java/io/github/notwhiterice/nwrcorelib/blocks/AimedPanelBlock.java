@@ -1,4 +1,4 @@
-package io.github.notwhiterice.circuitsmod.blocks;
+package io.github.notwhiterice.nwrcorelib.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
@@ -8,12 +8,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-public abstract class DirectionalFaceBlock extends FaceBlock{
-    public static final DirectionProperty FACING;
+public abstract class AimedPanelBlock extends PanelBlock{
+    public static final DirectionProperty FACING =
+            DirectionProperty.create("facing", new Direction[]
+                    {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST});
 
-    public DirectionalFaceBlock(Properties prop) { super(prop); }
+    public AimedPanelBlock(Properties prop) { super(prop); }
 
-    protected abstract MapCodec<? extends DirectionalFaceBlock> codec();
+    @Override
+    public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
+        stateBuilder.add(FACE, FACING);
+    }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext placementContext) {
@@ -48,13 +53,5 @@ public abstract class DirectionalFaceBlock extends FaceBlock{
         return this.defaultBlockState().setValue(FACE, face).setValue(FACING, facing);
     }
 
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(FACE, FACING);
-    }
-
-    static {
-        FACING = DirectionProperty.create("facing", new Direction[]{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST});
-    }
+    public abstract MapCodec<? extends AimedPanelBlock> codec();
 }

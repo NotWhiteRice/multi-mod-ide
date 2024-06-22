@@ -4,8 +4,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-public class BlockBase extends Block {
+public class BasicBlock extends Block {
 
-    public BlockBase() { this(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)); }
-    public BlockBase(Properties prop) { super(prop); }
+    public BasicBlock() { this(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)); }
+    public BasicBlock(Properties prop) { super(prop); }
 }

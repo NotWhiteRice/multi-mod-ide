@@ -3,5 +3,8 @@
 
   "item.nwrcorelib.test_item": "Test Item",
 
+  "block.nwrcorelib.stone_panel": "Stone Panel",
+  "block.nwrcorelib.arrow_panel": "Arrow Panel",
+
   "block.nwrcorelib.test_block": "Test Block"
 }

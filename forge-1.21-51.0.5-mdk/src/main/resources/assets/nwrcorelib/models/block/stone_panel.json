@@ -1,9 +1,9 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "circuitsmod:block/directional_panel_top",
-    "top": "circuitsmod:block/directional_panel_top",
-    "side": "circuitsmod:block/panel_side",
+    "particle": "block/smooth_stone",
+    "top": "block/smooth_stone",
+    "side": "nwrcorelib:block/panel_side",
     "bottom": "block/smooth_stone"
   },
   "elements": [

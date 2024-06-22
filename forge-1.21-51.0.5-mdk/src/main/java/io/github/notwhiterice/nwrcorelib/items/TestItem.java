@@ -1,7 +1,7 @@
 package io.github.notwhiterice.nwrcorelib.items;
 
-public class ItemTest extends ItemBase {
-    public ItemTest() {
+public class TestItem extends BasicItem {
+    public TestItem() {
         super();
     }
 }
