@@ -1,0 +1,22 @@
+Endless Skies
+Alpha ---
+  vX.0.0:
+    - Increases each public update
+  v0.X.0:
+    - Increases if a function is renamed
+    - Increases if new features are added
+    - Returns to zero if superior versions are released
+  v0.0.X:
+    - Increases if no function is renamed
+    - Increases if no new features are added
+    - Increases for mod restructuring and bug fixes
+    - Returns to zero if superior versions are released
+
+Circuits
+Alpha ---
+  vX.0.0:
+    - Increases each public update
+  v0.X.0:
+    - Increases if item/blocks are added
+  v0.0.X:
+    - Increases if no function is renamed

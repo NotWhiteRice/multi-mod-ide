@@ -3,27 +3,27 @@ loaderVersion="${loaderVersionRange}" #mandatory This is typically bumped every 
 license="${license}"
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
 
-[[mods]] #mandatory
+[[mods]]
 modId="${libID}"
 version="${libVersion}"
 displayName="${libName}"
 authors="${authors}"
-description='''The core library for mods created by NotWhiteRice'''
+description="${libDesc}"
 
-[[mods]] #mandatory
+[[mods]]
 modId="circuitsmod"
 version="0.2.0-alpha"
 displayName="Circuits"
 authors="${authors}"
 description='''A redstone expansion mod for Minecraft 1.21'''
 
-[[dependencies.nwrcorelib]]
+[[dependencies.${libID}]]
     modId="forge"
     mandatory=true
     versionRange="${forgeVersionRange}"
     ordering="NONE"
     side="BOTH"
-[[dependencies.nwrcorelib]]
+[[dependencies.${libID}]]
     modId="minecraft"
     mandatory=true
     versionRange="${mcVersionRange}"
@@ -44,6 +44,6 @@ description='''A redstone expansion mod for Minecraft 1.21'''
 [[dependencies.circuitsmod]]
     modId="${libID}"
     mandatory=true
-    versionRange="[0.1.0-alpha,)"
+    versionRange="[0.1.0-alpha,0.2.0-alpha)"
     ordering="BEFORE"
     side="BOTH"
