@@ -18,7 +18,7 @@ public class ModLogger {
      * @param msg The message being logged
      */
     public void fatal(String caller, String src, String msg) {
-
+        logger.info("[FATAL ("+modID+"): at "+caller+" in "+src+": "+msg);
     }
 
     /**
@@ -27,6 +27,7 @@ public class ModLogger {
      * @param msg The message being logged
      */
     public void error(String caller, String src, String msg) {
+        logger.info("[ERROR ("+modID+"): at "+caller+" in "+src+": "+msg);
 
     }
 
@@ -36,6 +37,7 @@ public class ModLogger {
      * @param msg The message being logged
      */
     public void debug(String caller, String src, String msg) {
+        logger.info("[DEBUG ("+modID+"): at "+caller+" in "+src+": "+msg);
 
     }
 
@@ -45,6 +47,11 @@ public class ModLogger {
      * @param msg The message being logged
      */
     public void info(String caller, String src, String msg) {
-
+        logger.info("[INFO ("+modID+"): at "+caller+" in "+src+": "+msg);
     }
+
+    public void trace(String caller, String src, String msg) {
+        logger.info("[TRACE ("+modID+"): at "+caller+" in "+src+": "+msg);
+    }
+
 }

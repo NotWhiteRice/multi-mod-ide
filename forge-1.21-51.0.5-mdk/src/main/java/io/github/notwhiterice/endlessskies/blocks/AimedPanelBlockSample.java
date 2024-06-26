@@ -6,17 +6,17 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ArrowPanelBlock extends AimedPanelBlock {
-    public static final MapCodec<ArrowPanelBlock> CODEC = simpleCodec(ArrowPanelBlock::new);
+public class AimedPanelBlockSample extends AimedPanelBlock {
+    public static final MapCodec<AimedPanelBlockSample> CODEC = simpleCodec(AimedPanelBlockSample::new);
 
-    public ArrowPanelBlock(Properties prop) {
+    public AimedPanelBlockSample(Properties prop) {
         this();
     }
 
-    public ArrowPanelBlock() {
+    public AimedPanelBlockSample() {
         super(BlockBehaviour.Properties.ofFullCopy(Blocks.REPEATER));
         this.registerDefaultState(((BlockState) this.stateDefinition.any()).setValue(FACE, Direction.DOWN).setValue(FACING, Direction.NORTH));
     }
 
-    public MapCodec<ArrowPanelBlock> codec() { return CODEC; }
+    public MapCodec<AimedPanelBlockSample> codec() { return CODEC; }
 }

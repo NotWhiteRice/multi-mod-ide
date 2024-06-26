@@ -10,8 +10,8 @@ public class NWRCoreModTab extends BasicTab {
     public NWRCoreModTab() {
         super(EndlessSkies.modID, BlockInit.blockTest, List.of(
                 ItemInit.itemTest,
-                BlockInit.blockStonePanel,
-                BlockInit.blockArrowPanel,
+                BlockInit.blockPanelSample,
+                BlockInit.blockAimedPanelSample,
                 BlockInit.blockTest
         ));
     }

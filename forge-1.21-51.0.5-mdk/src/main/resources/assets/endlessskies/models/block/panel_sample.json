@@ -1,9 +1,9 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "endlessskies:block/arrow_panel_top",
-    "top": "endlessskies:block/arrow_panel_top",
-    "side": "endlessskies:block/panel_side",
+    "particle": "block/smooth_stone",
+    "top": "block/smooth_stone",
+    "side": "endlessskies:block/stone_panel_side",
     "bottom": "block/smooth_stone"
   },
   "elements": [

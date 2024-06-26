@@ -3,8 +3,8 @@
 
   "item.endlessskies.test_item": "Test Item",
 
-  "block.endlessskies.stone_panel": "Stone Panel",
-  "block.endlessskies.arrow_panel": "Arrow Panel",
+  "block.endlessskies.panel_sample": "Stone Panel",
+  "block.endlessskies.aimedpanel_sample": "Stone Panel w/ Arrow",
 
   "block.endlessskies.test_block": "Test Block"
 }
