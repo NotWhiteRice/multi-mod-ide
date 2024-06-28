@@ -1,0 +1,436 @@
+{
+  "variants": {
+    "face=up,facing=north,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 180,
+      "y": 180
+    },
+    "face=up,facing=west,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 180,
+      "y": 180
+    },
+    "face=up,facing=south,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 180
+    },
+    "face=up,facing=east,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 180
+    },
+    "face=down,facing=north,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0"
+    },
+    "face=down,facing=west,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "y": 180
+    },
+    "face=down,facing=south,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "y": 180
+    },
+    "face=down,facing=east,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1"
+    },
+    "face=north,facing=north,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 270
+    },
+    "face=north,facing=west,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 90,
+      "y": 180
+    },
+    "face=north,facing=south,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 90,
+      "y": 180
+    },
+    "face=north,facing=east,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 270
+    },
+    "face=west,facing=north,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 270,
+      "y": 270
+    },
+    "face=west,facing=west,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 90,
+      "y": 90
+    },
+    "face=west,facing=south,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 90,
+      "y": 90
+    },
+    "face=west,facing=east,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 270,
+      "y": 270
+    },
+    "face=south,facing=north,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 270,
+      "y": 180
+    },
+    "face=south,facing=west,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 90
+    },
+    "face=south,facing=south,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 90
+    },
+    "face=south,facing=east,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 270,
+      "y": 180
+    },
+    "face=east,facing=north,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 270,
+      "y": 90
+    },
+    "face=east,facing=west,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 90,
+      "y": 270
+    },
+    "face=east,facing=south,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_0",
+      "x": 90,
+      "y": 270
+    },
+    "face=east,facing=east,left=false,right=false": {
+      "model": "circuitsmod:block/circuit_nnn_1",
+      "x": 270,
+      "y": 90
+    },
+    "face=up,facing=north,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 180,
+      "y": 180
+    },
+    "face=up,facing=west,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 180,
+      "y": 180
+    },
+    "face=up,facing=south,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 180
+    },
+    "face=up,facing=east,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 180
+    },
+    "face=down,facing=north,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0"
+    },
+    "face=down,facing=west,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "y": 180
+    },
+    "face=down,facing=south,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "y": 180
+    },
+    "face=down,facing=east,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1"
+    },
+    "face=north,facing=north,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 270
+    },
+    "face=north,facing=west,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 90,
+      "y": 180
+    },
+    "face=north,facing=south,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 90,
+      "y": 180
+    },
+    "face=north,facing=east,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 270
+    },
+    "face=west,facing=north,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 270,
+      "y": 270
+    },
+    "face=west,facing=west,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 90,
+      "y": 90
+    },
+    "face=west,facing=south,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 90,
+      "y": 90
+    },
+    "face=west,facing=east,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 270,
+      "y": 270
+    },
+    "face=south,facing=north,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 270,
+      "y": 180
+    },
+    "face=south,facing=west,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 90
+    },
+    "face=south,facing=south,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 90
+    },
+    "face=south,facing=east,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 270,
+      "y": 180
+    },
+    "face=east,facing=north,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 270,
+      "y": 90
+    },
+    "face=east,facing=west,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 90,
+      "y": 270
+    },
+    "face=east,facing=south,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_0",
+      "x": 90,
+      "y": 270
+    },
+    "face=east,facing=east,left=true,right=false": {
+      "model": "circuitsmod:block/circuit_yny_1",
+      "x": 270,
+      "y": 90
+    },
+    "face=up,facing=north,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 180,
+      "y": 180
+    },
+    "face=up,facing=west,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 180,
+      "y": 180
+    },
+    "face=up,facing=south,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 180
+    },
+    "face=up,facing=east,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 180
+    },
+    "face=down,facing=north,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0"
+    },
+    "face=down,facing=west,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "y": 180
+    },
+    "face=down,facing=south,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "y": 180
+    },
+    "face=down,facing=east,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1"
+    },
+    "face=north,facing=north,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 270
+    },
+    "face=north,facing=west,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 90,
+      "y": 180
+    },
+    "face=north,facing=south,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 90,
+      "y": 180
+    },
+    "face=north,facing=east,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 270
+    },
+    "face=west,facing=north,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 270,
+      "y": 270
+    },
+    "face=west,facing=west,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 90,
+      "y": 90
+    },
+    "face=west,facing=south,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 90,
+      "y": 90
+    },
+    "face=west,facing=east,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 270,
+      "y": 270
+    },
+    "face=south,facing=north,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 270,
+      "y": 180
+    },
+    "face=south,facing=west,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 90
+    },
+    "face=south,facing=south,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 90
+    },
+    "face=south,facing=east,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 270,
+      "y": 180
+    },
+    "face=east,facing=north,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 270,
+      "y": 90
+    },
+    "face=east,facing=west,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 90,
+      "y": 270
+    },
+    "face=east,facing=south,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_0",
+      "x": 90,
+      "y": 270
+    },
+    "face=east,facing=east,left=false,right=true": {
+      "model": "circuitsmod:block/circuit_nyy_1",
+      "x": 270,
+      "y": 90
+    },
+    "face=up,facing=north,left=true, right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 180,
+      "y": 180
+    },
+    "face=up,facing=west,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 180,
+      "y": 180
+    },
+    "face=up,facing=south,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 180
+    },
+    "face=up,facing=east,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 180
+    },
+    "face=down,facing=north,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0"
+    },
+    "face=down,facing=west,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "y": 180
+    },
+    "face=down,facing=south,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "y": 180
+    },
+    "face=down,facing=east,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1"
+    },
+    "face=north,facing=north,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 270
+    },
+    "face=north,facing=west,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 90,
+      "y": 180
+    },
+    "face=north,facing=south,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 90,
+      "y": 180
+    },
+    "face=north,facing=east,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 270
+    },
+    "face=west,facing=north,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 270,
+      "y": 270
+    },
+    "face=west,facing=west,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 90,
+      "y": 90
+    },
+    "face=west,facing=south,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 90,
+      "y": 90
+    },
+    "face=west,facing=east,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 270,
+      "y": 270
+    },
+    "face=south,facing=north,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 270,
+      "y": 180
+    },
+    "face=south,facing=west,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 90
+    },
+    "face=south,facing=south,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 90
+    },
+    "face=south,facing=east,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 270,
+      "y": 180
+    },
+    "face=east,facing=north,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 270,
+      "y": 90
+    },
+    "face=east,facing=west,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 90,
+      "y": 270
+    },
+    "face=east,facing=south,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_0",
+      "x": 90,
+      "y": 270
+    },
+    "face=east,facing=east,left=true,right=true": {
+      "model": "circuitsmod:block/circuit_yyn_1",
+      "x": 270,
+      "y": 90
+    }
+  }
+}

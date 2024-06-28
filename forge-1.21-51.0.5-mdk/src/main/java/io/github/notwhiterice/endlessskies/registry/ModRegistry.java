@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModRegistry {
-        private static Map<String, ModAssets> mAssetsTable = new HashMap<>();
+        public static Map<String, ModAssets> mAssetsTable = new HashMap<>();
 
         public static void registerMod(String modID) {
             EndlessSkies.logger.info("[DEBUG: Endless Skies--at ModRegistry in registerMod(modID)]: func called for modID: " + modID);

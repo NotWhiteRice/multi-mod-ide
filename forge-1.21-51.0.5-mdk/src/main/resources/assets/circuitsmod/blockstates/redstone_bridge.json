@@ -1,0 +1,112 @@
+{
+  "variants": {
+    "face=up,x_powered=false,y_powered=false": {
+      "model": "circuitsmod:block/bridge_nn",
+      "x": 180,
+      "y": 180
+    },
+    "face=down,x_powered=false,y_powered=false": {
+      "model": "circuitsmod:block/bridge_nn"
+    },
+    "face=north,x_powered=false,y_powered=false": {
+      "model": "circuitsmod:block/bridge_nn",
+      "x": 270
+    },
+    "face=west,x_powered=false,y_powered=false": {
+      "model": "circuitsmod:block/bridge_nn",
+      "x": 270,
+      "y": 270
+    },
+    "face=south,x_powered=false,y_powered=false": {
+      "model": "circuitsmod:block/bridge_nn",
+      "x": 270,
+      "y": 180
+    },
+    "face=east,x_powered=false,y_powered=false": {
+      "model": "circuitsmod:block/bridge_nn",
+      "x": 270,
+      "y": 90
+    },
+    "face=up,x_powered=true,y_powered=false": {
+      "model": "circuitsmod:block/bridge_yn",
+      "x": 180,
+      "y": 180
+    },
+    "face=down,x_powered=true,y_powered=false": {
+      "model": "circuitsmod:block/bridge_yn"
+    },
+    "face=north,x_powered=true,y_powered=false": {
+      "model": "circuitsmod:block/bridge_yn",
+      "x": 270
+    },
+    "face=west,x_powered=true,y_powered=false": {
+      "model": "circuitsmod:block/bridge_yn",
+      "x": 270,
+      "y": 270
+    },
+    "face=south,x_powered=true,y_powered=false": {
+      "model": "circuitsmod:block/bridge_yn",
+      "x": 270,
+      "y": 180
+    },
+    "face=east,x_powered=true,y_powered=false": {
+      "model": "circuitsmod:block/bridge_yn",
+      "x": 270,
+      "y": 90
+    },
+    "face=up,x_powered=false,y_powered=true": {
+      "model": "circuitsmod:block/bridge_ny",
+      "x": 180,
+      "y": 180
+    },
+    "face=down,x_powered=false,y_powered=true": {
+      "model": "circuitsmod:block/bridge_ny"
+    },
+    "face=north,x_powered=false,y_powered=true": {
+      "model": "circuitsmod:block/bridge_ny",
+      "x": 270
+    },
+    "face=west,x_powered=false,y_powered=true": {
+      "model": "circuitsmod:block/bridge_ny",
+      "x": 270,
+      "y": 270
+    },
+    "face=south,x_powered=false,y_powered=true": {
+      "model": "circuitsmod:block/bridge_ny",
+      "x": 270,
+      "y": 180
+    },
+    "face=east,x_powered=false,y_powered=true": {
+      "model": "circuitsmod:block/bridge_ny",
+      "x": 270,
+      "y": 90
+    },
+    "face=up,x_powered=true, y_powered=true": {
+      "model": "circuitsmod:block/bridge_yy",
+      "x": 180,
+      "y": 180
+    },
+    "face=down,x_powered=true,y_powered=true": {
+      "model": "circuitsmod:block/bridge_yy"
+    },
+    "face=north,x_powered=true,y_powered=true": {
+      "model": "circuitsmod:block/bridge_yy",
+      "x": 270
+    },
+    "face=west,x_powered=true,y_powered=true": {
+      "model": "circuitsmod:block/bridge_yy",
+      "x": 270,
+      "y": 270
+    },
+    "face=south,x_powered=true,y_powered=true": {
+      "model": "circuitsmod:block/bridge_yy",
+      "x": 270,
+      "y": 180
+    },
+    "face=east,x_powered=true,y_powered=true": {
+      "model": "circuitsmod:block/bridge_yy",
+      "x": 270,
+      "y": 90
+    }
+  }
+}

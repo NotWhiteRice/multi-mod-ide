@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "minecraft:redstone_torch"
+    },
+    {
+      "item": "circuitsmod:basic_circuit_board"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "circuitsmod:not_gate"
+  }
+}

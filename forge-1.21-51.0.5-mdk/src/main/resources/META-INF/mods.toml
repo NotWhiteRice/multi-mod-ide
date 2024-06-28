@@ -12,7 +12,7 @@ description="${libDesc}"
 
 [[mods]]
 modId="circuitsmod"
-version="0.2.2-alpha"
+version="0.3.0-alpha"
 displayName="Circuits"
 authors="${authors}"
 description='''A redstone expansion mod for Minecraft 1.21'''

@@ -1,8 +1,8 @@
 # Multi-mod IDE
 
 ## Included mods
-- Endless Skies v0.1.0-alpha
-- Circuits v0.2.0-alpha
+- Endless Skies v0.1.1-alpha
+- Circuits v0.2.2-alpha
 
 ## Versioning
 ### Alpha/Beta versions
@@ -20,6 +20,25 @@
   - Changes to items/blocks in Endless Skies will increment PATCH should they only serve as examples before and after
 
 ## Mod Changelog 
+- Circuits v0.3.0-alpha
+  - Implemented working not, and, or, xor, nand, nor, and xnor gates
+  - Implemented redstone bridges
+  - Added crafting recipes for every item/block in v0.3.0-alpha
+  - Made compatible with Endless Skies v0.2.0-alpha
+- Endless Skies v0.2.0-alpha
+  - Updated to Forge version 51.0.18
+  - Updated to ParchmentMC mappings
+  - Made mAssetsTable public
+  - Fixed the 'in' and 'at' being in the incorrect locations in the logger messages
+  - CreativeTabBase uses an array instead of a List
+  - Implemented DirectionUtils and multiple helper functions
+  - Renamed BasicBlock, PanelBlock, and AimedPanelBlock to IBlock, IPanel, and IDiPanel
+  - Renamed BasicItem to IItem
+  - Renamed CreativeTabBase to ICreativeTab
+  - Relocated IBlock, IPanel, IDiPanel, IItem, and ICreativeTab to new packages
+  - Implemented a new BasicBlock and BasicItem class with one fewer constructor
+  - Changed item ids for Stone Panel and Stone Panel w/ Arrow to panel and dipanel
+  - Fixed a bug in IDiPanel which made directional panels place in an improper orientation
 - Endless skies v0.1.1-alpha
   - Updated the mod description
   - Updated textures for Test Item/Block

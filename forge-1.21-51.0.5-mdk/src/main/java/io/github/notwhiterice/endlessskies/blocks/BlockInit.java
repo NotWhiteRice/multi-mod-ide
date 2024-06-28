@@ -8,15 +8,15 @@ import net.minecraftforge.registries.RegistryObject;
 public class BlockInit {
 
     //Custom block type examples
-    public static RegistryObject<Block> blockPanelSample;
-    public static RegistryObject<Block> blockAimedPanelSample;
+    public static RegistryObject<Block> blockPanel;
+    public static RegistryObject<Block> blockDiPanel;
 
     //Dev blocks
     public static RegistryObject<Block> blockTest;
 
     public static void initBlocks() {
-        blockPanelSample = ModRegistry.registerBlock(EndlessSkies.modID, "panel_sample", PanelBlockSample::new);
-        blockAimedPanelSample = ModRegistry.registerBlock(EndlessSkies.modID, "aimedpanel_sample", AimedPanelBlockSample::new);
+        blockPanel = ModRegistry.registerBlock(EndlessSkies.modID, "panel", PanelSample::new);
+        blockDiPanel = ModRegistry.registerBlock(EndlessSkies.modID, "dipanel", DiPanelSample::new);
 
         blockTest = ModRegistry.registerBlock(EndlessSkies.modID, "test_block", TestBlock::new);
     }
