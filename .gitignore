@@ -2,12 +2,15 @@
 .idea
 
 # Forge MDK
-forge-1.21-51.0.5-mdk/.gradle
-forge-1.21-51.0.5-mdk/build
-forge-1.21-51.0.5-mdk/.idea
-forge-1.21-51.0.5-mdk/run
-forge-1.21-51.0.5-mdk/src/main/java/com
-forge-1.21-51.0.5-mdk/src/main/resources/assets/minecraft
-forge-1.21-51.0.5-mdk/src/main/resources/data/minecraft
-forge-1.21-51.0.5-mdk/changelog.txt
-forge-1.21-51.0.5-mdk/libs
+.gradle
+build
+gradle
+run
+run-data
+src/generated
+src/main/java/com
+src/main/resources/Default Resource Pack
+
+# Deprecated
+libs
+old
