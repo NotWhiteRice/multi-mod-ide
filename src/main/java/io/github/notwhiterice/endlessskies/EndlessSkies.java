@@ -5,4 +5,10 @@ import net.minecraftforge.fml.common.Mod;
 @Mod(EndlessSkies.modID)
 public class EndlessSkies {
     public static final String modID = "endlessskies";
+
+    public EndlessSkies() {
+        IEventBus bus;
+
+        BlockInit.register(bus);
+    }
 }
