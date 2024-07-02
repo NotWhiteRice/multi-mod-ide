@@ -1,10 +1,8 @@
-package io.github.notwhiterice.circuitsmod.datagen;
+package io.github.notwhiterice.endlessskies.datagen;
 
-import io.github.notwhiterice.circuitsmod.Circuits;
-import io.github.notwhiterice.circuitsmod.init.BlockInit;
+import io.github.notwhiterice.endlessskies.EndlessSkies;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -15,7 +13,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 
     public ModBlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, Circuits.modID, existingFileHelper);
+        super(output, lookupProvider, EndlessSkies.modID, existingFileHelper);
     }
 
     @Override

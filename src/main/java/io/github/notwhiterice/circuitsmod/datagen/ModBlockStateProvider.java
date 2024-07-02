@@ -1,7 +1,6 @@
 package io.github.notwhiterice.circuitsmod.datagen;
 
 import io.github.notwhiterice.circuitsmod.Circuits;
-import io.github.notwhiterice.circuitsmod.init.BlockInit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -15,7 +14,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     public void registerStatesAndModels() {
-        blockWithItem(BlockInit.blockClearGlass);
+
     }
 
     private void blockWithItem(RegistryObject<Block> rObj) {

@@ -5,7 +5,6 @@ import io.github.notwhiterice.circuitsmod.init.CreativeModeTabInit;
 import io.github.notwhiterice.circuitsmod.init.ItemInit;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -29,14 +28,10 @@ public class Circuits {
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.blockClearGlass.get(), RenderType.cutout());
+
     }
 
     private void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(ItemInit.itemHandWrench);
-        } else if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(BlockInit.blockClearGlass);
-        }
+
     }
 }

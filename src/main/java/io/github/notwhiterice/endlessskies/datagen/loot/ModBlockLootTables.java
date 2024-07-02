@@ -1,6 +1,6 @@
-package io.github.notwhiterice.circuitsmod.datagen.loot;
+package io.github.notwhiterice.endlessskies.datagen.loot;
 
-import io.github.notwhiterice.circuitsmod.init.BlockInit;
+import io.github.notwhiterice.endlessskies.init.BlockInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -16,7 +16,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-
+        this.dropSelf(BlockInit.blockMineralInfuser.get());
+        //this.dropSelf(BlockInit.blockFaceComposite.get());
+        //this.dropWhenSilkTouch(BlockInit.blockClearGlass.get());
     }
 
     @Override

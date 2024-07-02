@@ -1,6 +1,6 @@
-package io.github.notwhiterice.circuitsmod.datagen;
+package io.github.notwhiterice.endlessskies.datagen;
 
-import io.github.notwhiterice.circuitsmod.Circuits;
+import io.github.notwhiterice.endlessskies.EndlessSkies;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -22,7 +22,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
-
+        //oreSmelting(recipeOutput, List.of(Blocks.GLASS), RecipeCategory.BUILDING_BLOCKS, BlockInit.blockClearGlass.get(), 0.25f, 200, "clear_glass");
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup) {
@@ -38,7 +38,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         while(var10.hasNext()) {
             ItemLike itemlike = (ItemLike)var10.next();
-            SimpleCookingRecipeBuilder.generic(Ingredient.of(new ItemLike[]{itemlike}), pCategory, pResult, pExperience, pCookingTime, pSerializer, pRecipeFactory).group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike)).save(pRecipeOutput, Circuits.modID + ":" + getItemName(pResult) + pSuffix + "_" + getItemName(itemlike));
+            SimpleCookingRecipeBuilder.generic(Ingredient.of(new ItemLike[]{itemlike}), pCategory, pResult, pExperience, pCookingTime, pSerializer, pRecipeFactory).group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike)).save(pRecipeOutput, EndlessSkies.modID + ":" + getItemName(pResult) + pSuffix + "_" + getItemName(itemlike));
         }
 
     }

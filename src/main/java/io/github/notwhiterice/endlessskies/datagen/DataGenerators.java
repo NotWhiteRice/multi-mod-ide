@@ -1,4 +1,4 @@
-package io.github.notwhiterice.circuitsmod.datagen;
+package io.github.notwhiterice.endlessskies.datagen;
 
 
 import io.github.notwhiterice.endlessskies.EndlessSkies;
@@ -17,20 +17,20 @@ public class DataGenerators {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
-        PackOutput pack = generator.getPackOutput();
+        DataGenerator gen = event.getGenerator();
+        PackOutput pack = gen.getPackOutput();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        //generator.addProvider(event.includeServer(), new ModRecipeProvider(pack, lookupProvider));
-        //generator.addProvider(event.includeServer(), ModLootTableProvider.create(pack, lookupProvider));
+        gen.addProvider(event.includeServer(), new ModRecipeProvider(pack, lookupProvider));
+        gen.addProvider(event.includeServer(), ModLootTableProvider.create(pack, lookupProvider));
 
-        generator.addProvider(event.includeClient(), new ModBlockStateProvider(pack, fileHelper));
-        generator.addProvider(event.includeClient(), new ModItemModelProvider(pack, fileHelper));
+        gen.addProvider(event.includeClient(), new ModBlockStateProvider(pack, fileHelper));
+        gen.addProvider(event.includeClient(), new ModItemModelProvider(pack, fileHelper));
 
-        ModBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
+        ModBlockTagGenerator blockTagGenerator = gen.addProvider(event.includeServer(),
                 new ModBlockTagGenerator(pack, lookupProvider, fileHelper));
-        generator.addProvider(event.includeServer(), new ModItemTagGenerator(pack, lookupProvider, blockTagGenerator.contentsGetter(), fileHelper));
+        gen.addProvider(event.includeServer(), new ModItemTagGenerator(pack, lookupProvider, blockTagGenerator.contentsGetter(), fileHelper));
 
     }
 

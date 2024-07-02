@@ -1,5 +1,6 @@
 package io.github.notwhiterice.endlessskies.util;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 
 import java.util.EnumSet;
@@ -19,16 +20,16 @@ public enum DirUtil {
             (UP, DOWN, NORTH, WEST, SOUTH, EAST);
     public static final EnumSet<DirUtil> CARDINALS = EnumSet.of
             (NORTH, WEST, SOUTH, EAST);
-    public static final EnumSet<DirUtil> POSITIVE = EnumSet.of
-            (SOUTH, UP, EAST);
-    public static final EnumSet<DirUtil> NEGATIVE = EnumSet.of
-            (NORTH, DOWN, WEST);
     public static final EnumSet<DirUtil> X_AXIS = EnumSet.of
             (WEST, EAST);
     public static final EnumSet<DirUtil> Y_AXIS = EnumSet.of
             (UP, DOWN);
     public static final EnumSet<DirUtil> Z_AXIS = EnumSet.of
             (NORTH, SOUTH);
+    public static final EnumSet<DirUtil> POSITIVES = EnumSet.of
+            (SOUTH, UP, EAST);
+    public static final EnumSet<DirUtil> NEGATIVES = EnumSet.of
+            (NORTH, DOWN, WEST);
 
     private static final Map<Direction, DirUtil> reverseLookup = new IdentityHashMap<>();
     static {
@@ -41,6 +42,7 @@ public enum DirUtil {
 
     public Direction get() { return direction; }
     public static Direction getDirFromValue(DirUtil obj) { return obj.get(); }
+    public static DirUtil fromDir(Direction dir) { return reverseLookup.get(dir); }
 
     public DirUtil cycle(DirUtil obj) {
         if(this == UP) return DOWN;
@@ -51,7 +53,7 @@ public enum DirUtil {
         return UP;
     }
 
-    public DirUtil getOpposite() {
+    public DirUtil flip() {
         if(this == UP) return DOWN;
         if(this == DOWN) return UP;
         if(this == NORTH) return SOUTH;
@@ -94,7 +96,44 @@ public enum DirUtil {
         return clockwise ? UP : DOWN;
     }
 
-    public static boolean isEqual(DirUtil... objs) {
+    public boolean isCardinal() { return CARDINALS.contains(this); }
+    public boolean isOnXAxis() { return X_AXIS.contains(this); }
+    public boolean isOnYAxis() { return Y_AXIS.contains(this); }
+    public boolean isOnZAxis() { return Z_AXIS.contains(this); }
+    public boolean isPositive() { return POSITIVES.contains(this); }
+    public boolean isNegative() { return NEGATIVES.contains(this); }
+
+    public static boolean areCardinal(DirUtil... objs) {
+        for(DirUtil dir : objs) if(!dir.isCardinal()) return false;
+        return true;
+    }
+
+    public static boolean areOnXAxis(DirUtil... objs) {
+        for(DirUtil dir : objs) if(!dir.isOnXAxis()) return false;
+        return true;
+    }
+
+    public static boolean areOnYAxis(DirUtil... objs) {
+        for(DirUtil dir : objs) if(!dir.isOnYAxis()) return false;
+        return true;
+    }
+
+    public static boolean areOnZAxis(DirUtil... objs) {
+        for(DirUtil dir : objs) if(!dir.isOnZAxis()) return false;
+        return true;
+    }
+
+    public static boolean arePositive(DirUtil... objs) {
+        for(DirUtil dir : objs) if(!dir.isPositive()) return false;
+        return true;
+    }
+
+    public static boolean areNegative(DirUtil... objs) {
+        for(DirUtil dir : objs) if(!dir.isNegative()) return false;
+        return true;
+    }
+
+    public static boolean areEqual(DirUtil... objs) {
         DirUtil temp = objs[0];
         for(DirUtil dir : objs) if(dir != temp) return false;
         return true;
@@ -105,5 +144,28 @@ public enum DirUtil {
         DirUtil temp1 = reverseLookup.get(temp0.get().getOpposite());
         for(DirUtil dir : objs) if(dir != temp0 && dir != temp1) return false;
         return true;
+    }
+
+    public static DirUtil findRelativeCardinal(DirUtil facing, DirUtil relative) {
+        if(relative == null) return NORTH;
+        if(facing == NORTH) return relative;
+        if(facing == WEST) return relative.rotateY(false);
+        if(facing == SOUTH) return relative.flip();
+        if(facing == EAST) return relative.rotateY(true);
+        return NORTH;
+    }
+
+    public static DirUtil undoRelativeCardinal(DirUtil facing, DirUtil absolute) {
+        if(absolute == null) return NORTH;
+        if(facing == NORTH) return absolute;
+        if(facing == WEST) return absolute.rotateY(true);
+        if(facing == SOUTH) return absolute.flip();
+        if(facing == EAST) return absolute.rotateY(false);
+        return NORTH;
+    }
+
+    public static DirUtil getDirFromNeighbors(BlockPos pos, BlockPos neighbor) {
+        for(Direction dir : Direction.values()) if(neighbor.equals(pos.relative(dir))) return reverseLookup.get(dir);
+        return null;
     }
 }

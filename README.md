@@ -5,22 +5,22 @@
 - Circuits v0.2.2-alpha
 
 ## Versioning
-### Alpha/Beta versions
-- vMAJOR.MINOR.PATCH-BUILD
-  - MAJOR:
-    - Increments each public release
-  - MINOR:
-    - Increments when significant changes happen
-  - PATCH:
-    - Increments for minor changes and bug fixes
-    - Changes to Endless Skies will increment PATCH should they only affect the low-level workings of the mod and not the higher level interactions
-### Public versions
-- vMCVERSION-MAJORMOD.MAJORAPI.MINOR.PATCH
-  - https://docs.minecraftforge.net/en/1.20.x/gettingstarted/versioning/
-  - Changes to items/blocks in Endless Skies will increment PATCH should they only serve as examples before and after
+- <MAJOR>.<major>.<minor>.<patch>-<build>
+  - MAJOR: Increments when updating to a new version of Minecraft
+  - major: Increments with api-breaking changes
+  - minor: Increments with minor changes
+  - patch: Bug fixes
+  - build: For alpha and beta versions of the mod
 
 ## Mod Changelog 
-- Endless Skies v0.1.0-alpha
-  - Did a history reset and reverted the version number to v0.1.0-alpha
-- Circuits v0.1.0-alpha
-  - Did a history reset and reverted the version number to v0.1.0-alpha
+- Endless Skies v1.0.0.0-alpha
+  - Did a history reset and reverted the version number to v1.0.0.0-alpha
+  - Added crude datagen
+  - Added capabilities for planned future updates far in advance
+  - Added a unimplemented hand wrench item
+  - Added a Mineral Enricher with a menu and hardcoded gilded blackstone recipe
+  - Added preparations for JEI compatibility
+  - Implemented unused base classes for tile entities w/ and w/o menus
+- Circuits v1.0.0.0-alpha (in hiatus)
+  - Did a history reset and reverted the version number to v1.0.0.0-alpha
+  - Added crude datagen

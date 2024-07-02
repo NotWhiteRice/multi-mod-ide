@@ -1,6 +1,6 @@
-package io.github.notwhiterice.circuitsmod.datagen;
+package io.github.notwhiterice.endlessskies.datagen;
 
-import io.github.notwhiterice.circuitsmod.datagen.loot.ModBlockLootTables;
+import io.github.notwhiterice.endlessskies.datagen.loot.ModBlockLootTables;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
