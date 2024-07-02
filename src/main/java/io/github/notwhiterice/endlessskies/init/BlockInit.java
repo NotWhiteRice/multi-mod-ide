@@ -19,7 +19,7 @@ public class BlockInit {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, EndlessSkies.modID);
 
-    public static final RegistryObject<Block> blockMineralInfuser = registerBlockWithModel("mineral_infuser",
+    public static final RegistryObject<Block> blockMineralInfuser = registerSimpleBlock("mineral_infuser",
             () -> new MineralInfuserBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
 
     private static <T extends Block> RegistryObject<T> registerSimpleBlock(String name, Supplier<T> bSupplier) {

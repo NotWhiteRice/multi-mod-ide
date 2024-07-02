@@ -88,7 +88,7 @@ public class MineralInfuserBlockEntity extends BlockEntity implements MenuProvid
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.circuitsmod.mineral_mineral_infuser");
+        return Component.translatable("block.endlessskies.mineral_infuser");
     }
 
     public void dropInventory() {

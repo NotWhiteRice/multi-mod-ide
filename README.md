@@ -13,6 +13,12 @@
   - build: For alpha and beta versions of the mod
 
 ## Mod Changelog 
+- Endless Skies v1.0.1.0-alpha
+  - The progress arrow in the Mineral Infuser menu now moves in the correct direction
+  - Fixed the display name for the Mineral Infuser using the wrong modID
+  - Added unimplemented ModRegistry and ModContext classes
+  - Added lang/en_us.json
+  - Added a default model to the Mineral Infuser
 - Endless Skies v1.0.0.0-alpha
   - Did a history reset and reverted the version number to v1.0.0.0-alpha
   - Added crude datagen

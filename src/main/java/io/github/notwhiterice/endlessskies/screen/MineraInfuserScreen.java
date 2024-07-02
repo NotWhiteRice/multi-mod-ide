@@ -37,7 +37,9 @@ public class MineraInfuserScreen extends AbstractContainerScreen<MineralInfuserM
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting()) {
-            guiGraphics.blit(texture, x + 57, y + 36, 176, 0, 14, menu.getScaledProgress());
+            int yOff = menu.getScaledProgress();
+
+            guiGraphics.blit(texture, x + 57, y + 14-yOff + 36, 176, 14-yOff, 14, yOff+1);
         }
     }
 

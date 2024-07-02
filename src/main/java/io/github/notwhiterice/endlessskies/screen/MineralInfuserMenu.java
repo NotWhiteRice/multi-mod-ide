@@ -113,6 +113,6 @@ public class MineralInfuserMenu extends AbstractContainerMenu {
         int maxProgress = data.get(1);
         int progressIndicSize = 15;
 
-        return maxProgress != 0 && progress != 0 ? progress * progressIndicSize / maxProgress : 0;
+        return (maxProgress != 0 && progress != 0) ? progress * progressIndicSize / maxProgress : 0;
     }
 }
