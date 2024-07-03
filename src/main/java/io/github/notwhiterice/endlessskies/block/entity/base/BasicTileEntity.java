@@ -1,4 +1,4 @@
-package io.github.notwhiterice.endlessskies.block.entity;
+package io.github.notwhiterice.endlessskies.block.entity.base;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -17,10 +17,10 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class BasicTileEntity extends BlockEntity {
-    private ItemStackHandler itemHandler = null;
+    protected ItemStackHandler itemHandler = null;
     protected LazyOptional<IItemHandler> lazyItemHandler = null;
 
-    ContainerData data = null;
+    public ContainerData data = null;
 
     public BasicTileEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);

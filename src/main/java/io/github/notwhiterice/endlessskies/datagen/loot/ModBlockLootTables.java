@@ -1,6 +1,8 @@
 package io.github.notwhiterice.endlessskies.datagen.loot;
 
+import io.github.notwhiterice.endlessskies.EndlessSkies;
 import io.github.notwhiterice.endlessskies.init.BlockInit;
+import io.github.notwhiterice.endlessskies.init.HiddenInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -16,13 +18,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        this.dropSelf(BlockInit.blockMineralInfuser.get());
+        this.dropSelf(BlockInit.blockMineralInfuser.asBlock());
+        this.dropSelf(BlockInit.blockRockCrusher.asBlock());
+        this.dropSelf(HiddenInit.blockTest.asBlock());
         //this.dropSelf(BlockInit.blockFaceComposite.get());
         //this.dropWhenSilkTouch(BlockInit.blockClearGlass.get());
     }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return EndlessSkies.context.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
     }
 }

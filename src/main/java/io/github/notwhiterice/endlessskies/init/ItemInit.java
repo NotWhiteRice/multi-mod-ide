@@ -1,18 +1,21 @@
 package io.github.notwhiterice.endlessskies.init;
 
 import io.github.notwhiterice.endlessskies.EndlessSkies;
+import io.github.notwhiterice.endlessskies.core.exception.DualRegistryException;
+import io.github.notwhiterice.endlessskies.datagen.tag.ItemModelProviderTag;
+import io.github.notwhiterice.endlessskies.registries.object.ItemContext;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ItemInit {
-    public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, EndlessSkies.modID);
+    public static ItemContext itemHandWrench;
 
-    public static final RegistryObject<Item> itemHandWrench = ITEMS.register("hand_wrench",
-            () -> new Item(new Item.Properties()));
+    public static void registerItems() throws DualRegistryException {
+        itemHandWrench = EndlessSkies.context.registerItem("hand_wrench", new Item.Properties())
+                .setModelProviderTag(ItemModelProviderTag.SIMPLE_ITEM)
+                .setCreativeTab(CreativeModeTabs.TOOLS_AND_UTILITIES);
+    }
 
-    public static void register(IEventBus bus) { ITEMS.register(bus); }
+    public static void register(IEventBus bus) { EndlessSkies.context.ITEMS.register(bus); }
 }

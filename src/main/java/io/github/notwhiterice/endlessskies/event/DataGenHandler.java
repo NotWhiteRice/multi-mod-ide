@@ -1,7 +1,7 @@
-package io.github.notwhiterice.endlessskies.datagen;
-
+package io.github.notwhiterice.endlessskies.event;
 
 import io.github.notwhiterice.endlessskies.EndlessSkies;
+import io.github.notwhiterice.endlessskies.datagen.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -13,10 +13,9 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = EndlessSkies.modID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class DataGenerators {
-
+public class DataGenHandler {
     @SubscribeEvent
-    public static void gatherData(GatherDataEvent event) {
+    public static void onGatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
         PackOutput pack = gen.getPackOutput();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
@@ -28,12 +27,9 @@ public class DataGenerators {
         gen.addProvider(event.includeClient(), new ModBlockStateProvider(pack, fileHelper));
         gen.addProvider(event.includeClient(), new ModItemModelProvider(pack, fileHelper));
 
-        ModBlockTagGenerator blockTagGenerator = gen.addProvider(event.includeServer(),
-                new ModBlockTagGenerator(pack, lookupProvider, fileHelper));
-        gen.addProvider(event.includeServer(), new ModItemTagGenerator(pack, lookupProvider, blockTagGenerator.contentsGetter(), fileHelper));
+        ModBlockTagsProvider blockTagGenerator = gen.addProvider(event.includeServer(),
+                new ModBlockTagsProvider(pack, lookupProvider, fileHelper));
+        gen.addProvider(event.includeServer(), new ModItemTagsProvider(pack, lookupProvider, blockTagGenerator.contentsGetter(), fileHelper));
 
     }
-
-
-
 }

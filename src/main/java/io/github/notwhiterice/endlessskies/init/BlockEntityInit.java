@@ -2,6 +2,7 @@ package io.github.notwhiterice.endlessskies.init;
 
 import io.github.notwhiterice.endlessskies.EndlessSkies;
 import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
+import io.github.notwhiterice.endlessskies.block.entity.RockCrusherBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -14,7 +15,10 @@ public class BlockEntityInit {
 
     public static final RegistryObject<BlockEntityType<MineralInfuserBlockEntity>> tileEntityMineralInfuser =
             BLOCK_ENTITY_TYPES.register("mineral_infuser_tile", () -> BlockEntityType.Builder.of(
-                    MineralInfuserBlockEntity::new, BlockInit.blockMineralInfuser.get()).build(null));
+                    MineralInfuserBlockEntity::new, BlockInit.blockMineralInfuser.asBlock()).build(null));
+    public static final RegistryObject<BlockEntityType<RockCrusherBlockEntity>> tileEntityRockCrusher =
+            BLOCK_ENTITY_TYPES.register("rock_crusher_tile", () -> BlockEntityType.Builder.of(
+                    RockCrusherBlockEntity::new, BlockInit.blockRockCrusher.asBlock()).build(null));
 
     public static void register(IEventBus bus) { BLOCK_ENTITY_TYPES.register(bus); }
 }

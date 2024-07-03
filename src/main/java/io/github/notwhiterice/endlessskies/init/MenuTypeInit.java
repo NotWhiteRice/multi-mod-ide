@@ -2,6 +2,7 @@ package io.github.notwhiterice.endlessskies.init;
 
 import io.github.notwhiterice.endlessskies.EndlessSkies;
 import io.github.notwhiterice.endlessskies.screen.MineralInfuserMenu;
+import io.github.notwhiterice.endlessskies.screen.RockCrusherMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,6 +15,8 @@ public class MenuTypeInit {
 
     public static final RegistryObject<MenuType<MineralInfuserMenu>> menuMineralInfuser =
             MENU_TYPES.register("mineral_infuser_menu", () -> IForgeMenuType.create(MineralInfuserMenu::new));
+    public static final RegistryObject<MenuType<RockCrusherMenu>> menuRockCrusher =
+            MENU_TYPES.register("rock_crusher_menu", () -> IForgeMenuType.create(RockCrusherMenu::new));
 
     public static void register(IEventBus bus) { MENU_TYPES.register(bus); }
 }

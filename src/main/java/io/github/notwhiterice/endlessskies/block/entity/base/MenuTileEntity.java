@@ -1,4 +1,4 @@
-package io.github.notwhiterice.endlessskies.block.entity;
+package io.github.notwhiterice.endlessskies.block.entity.base;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -23,6 +23,7 @@ public abstract class MenuTileEntity extends BasicTileEntity implements MenuProv
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+        if(data == null) throw new IllegalStateException("'data' must not be a null value");
         try {
             Constructor<? extends AbstractContainerMenu> constructor = menuClass.getConstructor(int.class, Inventory.class, BlockEntity.class, ContainerData.class);
 

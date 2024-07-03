@@ -1,6 +1,6 @@
 package io.github.notwhiterice.endlessskies.screen;
 
-import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
+import io.github.notwhiterice.endlessskies.block.entity.RockCrusherBlockEntity;
 import io.github.notwhiterice.endlessskies.init.BlockInit;
 import io.github.notwhiterice.endlessskies.init.MenuTypeInit;
 import net.minecraft.network.FriendlyByteBuf;
@@ -13,21 +13,21 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class MineralInfuserMenu extends AbstractContainerMenu {
-    public final MineralInfuserBlockEntity bEntity;
+public class RockCrusherMenu extends AbstractContainerMenu {
+    public final RockCrusherBlockEntity bEntity;
     private final Level level;
     private final ContainerData data;
 
 
-    public MineralInfuserMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public RockCrusherMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public MineralInfuserMenu(int containerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(MenuTypeInit.menuMineralInfuser.get(), containerId);
-        checkContainerSize(inv, 3);
+    public RockCrusherMenu(int containerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(MenuTypeInit.menuRockCrusher.get(), containerId);
+        checkContainerSize(inv, 2);
 
-        bEntity = (MineralInfuserBlockEntity) entity;
+        bEntity = (RockCrusherBlockEntity) entity;
         level = inv.player.level();
         this.data = data;
 
@@ -35,9 +35,8 @@ public class MineralInfuserMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.bEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
-            this.addSlot(new SlotItemHandler(itemHandler, 0, 56, 17));
-            this.addSlot(new SlotItemHandler(itemHandler, 1, 56, 53));
-            this.addSlot(new SlotItemHandler(itemHandler, 2, 116, 35));
+            this.addSlot(new SlotItemHandler(itemHandler, 0, 49, 36));
+            this.addSlot(new SlotItemHandler(itemHandler, 1, 115, 36));
         });
 
         addDataSlots(data);
@@ -56,7 +55,7 @@ public class MineralInfuserMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -91,7 +90,7 @@ public class MineralInfuserMenu extends AbstractContainerMenu {
     }
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, bEntity.getBlockPos()), player, BlockInit.blockMineralInfuser.asBlock());
+        return stillValid(ContainerLevelAccess.create(level, bEntity.getBlockPos()), player, BlockInit.blockRockCrusher.asBlock());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -108,10 +107,14 @@ public class MineralInfuserMenu extends AbstractContainerMenu {
         }
     }
 
+    public int getProgress() {
+        return data.get(0);
+    }
+
     public int getScaledProgress() {
         int progress = data.get(0);
         int maxProgress = data.get(1);
-        int progressIndicSize = 15;
+        int progressIndicSize = 38;
 
         return (maxProgress != 0 && progress != 0) ? progress * progressIndicSize / maxProgress : 0;
     }

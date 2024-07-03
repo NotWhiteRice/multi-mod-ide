@@ -12,9 +12,73 @@
   - patch: Bug fixes
   - build: For alpha and beta versions of the mod
 
+## TODO
+- [ ] Implement contexts for forge registries
+  - [X] BlockContext
+    - [X] Usable for block creation
+      - [X] Constructable from block properties and classes 
+      - [ ] Constructable from suppliers
+      - [X] Capable of making itemless blocks
+      - [ ] Simplifies blocks with block entities
+        - [ ] w/ a gui 
+    - [X] Simplifies creation of blockstates and block/item models
+    - [ ] Simplifies addition of block tags
+    - [ ] Simplifies addition of item tags
+    - [ ] Simplifies creation of loot tables
+    - [ ] Can be added to any vanilla creative tab or CreativeModeTabContext
+  - [X] ItemContext
+    - [ ] Usable for item creation
+      - [X] Constructable from item properties and classes
+      - [ ] Constructable from suppliers
+    - [X] Simplifies creation of item models
+    - [ ] Simplifies addition of item tags
+    - [ ] Can be added to any vanilla creative tab or CreativeModeTabContext
+  - [X] CreativeModeTabContext
+    - [X] Usable for tab registration
+      - [X] Constructable from strings
+      - [ ] Constructable from builder
+    - [X] Supports mod-specific tabs
+    - [X] Facilitates adding custom items/blocks to a vanilla creative tab
+  - [ ] MenuTypeContext
+    - [ ] ScreenContext (might end up as a part of MenuTypeContext)
+  - [ ] BlockEntityContext
+- [ ] Integrate data generators with ModContext
+- [ ] Implement data gen tags in the associated context
+  - [X] BlockStateProviderTag
+    - [ ] Implement "smart" data generation
+  - [ ] BlockTagsProviderTag
+  - [X] ItemModelProviderTag
+    - [ ] Implement "smart" data generation
+  - [ ] ItemTagsProviderTag
+  - [ ] LootTableProviderTag
+- [ ] Implement classes facilitating the easy generation of recipe jsons
+  - [ ] Crafting recipes
+  - [ ] Smelting recipes
+  - [ ] Blasting recipes
+  - [ ] Modded recipe types
+    - [ ] Mineral Infuser
+    - [ ] Rock Crusher
+    - [ ] Implement classes making it simple to hardcode new recipes
+      - [ ] Mineral Infuser
+      - [ ] Rock Crusher
 ## Mod Changelog 
+- Endless Skies v1.1.0.0-alpha
+  - Implemented ModContext, BlockContext, ItemContext, and CreativeModeTabContext
+  - Implemented ModRegistry and functions to create blocks, items, and creative mode tabs from the ModContext returned by ModRegistry.registerMod(modID)
+  - Implemented functions to customize custom creative mode tabs along with adding custom items to vanilla creative mode tabs
+  - Implemented functions to create a mod-specific tab, which automatically inserts all blocks and items registered by the mod prior to that point
+  - Implemented capacity to expedite block state and item model generation
+    - Allows for blocks without items
+    - Allows for blocks and items with a pre-existing custom model
+    - Allows for handheld items
+    - Allows for blocks and items to have a default, provided model and texture, used if datagen is not specified
+    - Allows for skipping data generation entirely
+  - Transitioned the init classes to using contexts instead of registry objects
+  - Added a test block and item with a custom texture
+  - Added a new creative mode tab for all "dev" items in the Endless SKies mod
+  - Added the Rock Crusher with a menu with an animated progress bar and hardcoded gravel recipe
 - Endless Skies v1.0.1.0-alpha
-  - The progress arrow in the Mineral Infuser menu now moves in the correct direction
+  - The progress arrow in the Mineral Infuser menu now has the proper animation
   - Fixed the display name for the Mineral Infuser using the wrong modID
   - Added unimplemented ModRegistry and ModContext classes
   - Added lang/en_us.json
