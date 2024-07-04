@@ -11,6 +11,5 @@ src/generated
 src/main/java/com
 src/main/resources/Default Resource Pack
 
-# Deprecated
+# Hidden files
 libs
-old

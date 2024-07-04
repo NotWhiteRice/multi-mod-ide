@@ -4,46 +4,21 @@ license="${license}"
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
 
 [[mods]]
-modId="${libID}"
-version="${libVersion}"
-displayName="${libName}"
+modId="${modID}"
+version="${modVersion}"
+displayName="${modName}"
 authors="${authors}"
-description="${libDesc}"
+description="${modDesc}"
 
-[[mods]]
-modId="circuitsmod"
-version="0.1.0-alpha"
-displayName="Circuits"
-authors="${authors}"
-description='''A redstone expansion mod for Minecraft 1.21'''
-
-[[dependencies.${libID}]]
+[[dependencies.${modID}]]
     modId="forge"
     mandatory=true
     versionRange="${forgeVersionRange}"
     ordering="NONE"
     side="BOTH"
-[[dependencies.${libID}]]
+[[dependencies.${modID}]]
     modId="minecraft"
     mandatory=true
     versionRange="${mcVersionRange}"
     ordering="NONE"
-    side="BOTH"
-[[dependencies.circuitsmod]]
-    modId="forge"
-    mandatory=true
-    versionRange="${forgeVersionRange}"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.circuitsmod]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="${mcVersionRange}"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.circuitsmod]]
-    modId="${libID}"
-    mandatory=true
-    versionRange="[0.1.0-alpha,0.2.0-alpha)"
-    ordering="BEFORE"
     side="BOTH"

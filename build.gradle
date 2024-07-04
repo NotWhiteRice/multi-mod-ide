@@ -6,11 +6,11 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-version = libVersion
-group = libGroupID
+version = modVersion
+group = modGroupID
 
 base {
-    archivesName = libID
+    archivesName = modID
 }
 
 // Mojang ships Java 21 to end users in 1.20.5+, so your mod should target Java 21.
@@ -82,11 +82,11 @@ minecraft {
 
         client {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', libID
+            property 'forge.enabledGameTestNamespaces', modID
         }
 
         server {
-            property 'forge.enabledGameTestNamespaces', libID
+            property 'forge.enabledGameTestNamespaces', modID
             args '--nogui'
         }
 
@@ -94,7 +94,7 @@ minecraft {
         // By default, the server will crash when no gametests are provided.
         // The gametest system is also enabled by default for other run configs under the /test command.
         gameTestServer {
-            property 'forge.enabledGameTestNamespaces', libID
+            property 'forge.enabledGameTestNamespaces', modID
         }
 
         data {
@@ -103,7 +103,7 @@ minecraft {
             property 'mod.doRegisterDataGen', 'true'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', libID, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', modID, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
 }
@@ -158,8 +158,8 @@ tasks.named('processResources', ProcessResources).configure {
             mcVersion: mcVersion, mcVersionRange: mcVersionRange,
             forgeVersion: forgeVersion, forgeVersionRange: forgeVersionRange,
             loaderVersionRange: loaderVersionRange,
-            libID: libID, libName: libName, license: license, libVersion: libVersion,
-            authors: authors, libDesc: libDesc,
+            modID: modID, modName: modName, license: license, modVersion: modVersion,
+            authors: authors, modDesc: modDesc,
     ]
     inputs.properties replaceProperties
 
@@ -172,7 +172,7 @@ tasks.named('processResources', ProcessResources).configure {
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
-                'Specification-Title'     : libID,
+                'Specification-Title'     : modID,
                 'Specification-Vendor'    : authors,
                 'Specification-Version'   : '1', // We are version 1 of ourselves
                 'Implementation-Title'    : project.name,

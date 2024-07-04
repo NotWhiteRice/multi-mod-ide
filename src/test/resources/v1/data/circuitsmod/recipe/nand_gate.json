@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "circuitsmod:and_gate"
+    },
+    {
+      "item": "circuitsmod:not_gate"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "circuitsmod:nand_gate"
+  }
+}

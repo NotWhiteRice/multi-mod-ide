@@ -1,0 +1,22 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "block/smooth_stone",
+    "circuit": "circuitsmod:block/circonn_w",
+    "side": "circuitsmod:block/cirpane_side",
+    "bottom": "block/smooth_stone"
+  },
+  "elements": [
+    { "from": [ 0, 0, 6 ],
+      "to": [ 6, 2, 10 ],
+      "faces": {
+        "down": { "uv": [ 0, 6, 6, 10 ], "texture": "#bottom", "cullface": "down" },
+        "up": { "uv": [ 6, 4, 12, 8 ], "texture": "#circuit" },
+        "north": { "uv": [ 10, 14, 16, 16 ], "texture": "#side" },
+        "west": { "uv": [ 12, 8, 16, 10 ], "texture": "#circuit", "cullface": "west" },
+        "south": { "uv": [ 0, 14, 6, 16 ], "texture": "#side" },
+        "east": { "uv": [ 6, 14, 10, 16 ], "texture": "#side" }
+      }
+    }
+  ]
+}

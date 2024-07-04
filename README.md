@@ -16,11 +16,10 @@
 - [ ] Implement contexts for forge registries
   - [X] BlockContext
     - [X] Usable for block creation
-      - [X] Constructable from block properties and classes 
-      - [ ] Constructable from suppliers
+      - [X] Constructable from block properties, classes, and suppliers
       - [X] Capable of making itemless blocks
       - [ ] Simplifies blocks with block entities
-        - [ ] w/ a gui 
+        - [ ] w/ a gui
     - [X] Simplifies creation of blockstates and block/item models
     - [ ] Simplifies addition of block tags
     - [ ] Simplifies addition of item tags
@@ -28,8 +27,7 @@
     - [ ] Can be added to any vanilla creative tab or CreativeModeTabContext
   - [X] ItemContext
     - [ ] Usable for item creation
-      - [X] Constructable from item properties and classes
-      - [ ] Constructable from suppliers
+      - [X] Constructable from item properties, classes, and suppliers
     - [X] Simplifies creation of item models
     - [ ] Simplifies addition of item tags
     - [ ] Can be added to any vanilla creative tab or CreativeModeTabContext
@@ -62,6 +60,10 @@
       - [ ] Mineral Infuser
       - [ ] Rock Crusher
 ## Mod Changelog 
+- Endless Skies v1.2.0.0-alpha
+  - Moved everything to src/test, including the old mod folder and an attempt at remaking the api, so the framework can be more secure
+  - Removed Circuits from the mods.toml
+  - Changed the gradle.properties, build.gradle, and mods.toml to use mod___ instead of lib___ when referring to Endless Skies
 - Endless Skies v1.1.0.0-alpha
   - Implemented ModContext, BlockContext, ItemContext, and CreativeModeTabContext
   - Implemented ModRegistry and functions to create blocks, items, and creative mode tabs from the ModContext returned by ModRegistry.registerMod(modID)
@@ -81,7 +83,7 @@
   - The progress arrow in the Mineral Infuser menu now has the proper animation
   - Fixed the display name for the Mineral Infuser using the wrong modID
   - Added unimplemented ModRegistry and ModContext classes
-  - Added lang/en_us.json
+  - Added en_us.json
   - Added a default model to the Mineral Infuser
 - Endless Skies v1.0.0.0-alpha
   - Did a history reset and reverted the version number to v1.0.0.0-alpha
