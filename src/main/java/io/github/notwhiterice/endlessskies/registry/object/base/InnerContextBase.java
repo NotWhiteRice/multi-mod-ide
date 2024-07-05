@@ -18,7 +18,7 @@ public class InnerContextBase<T extends InnerContextBase<T>> {
         this.parent = parent;
     }
 
-    //Getters and setters for private members
+    //Getter functions
     public String getModID() { return modID; }
     public String getName() { return name; }
     public String getParent() { return parent; }

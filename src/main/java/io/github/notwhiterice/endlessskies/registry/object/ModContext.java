@@ -1,5 +1,7 @@
 package io.github.notwhiterice.endlessskies.registry.object;
 
+import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
+import io.github.notwhiterice.endlessskies.item.factory.ItemFactory;
 import io.github.notwhiterice.endlessskies.registry.object.base.ContextBase;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
@@ -47,6 +49,9 @@ public class ModContext extends ContextBase<ModContext> {
         MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, modID);
     }
 
+    //Getter functions
+    public String getModID() { return getName(); }
+
     /* Special getter functions
     * 1-increases in "depth"
     * 2-increases in "type strength"
@@ -60,6 +65,8 @@ public class ModContext extends ContextBase<ModContext> {
     //Custom functions
     //registerBlock()
     //registerItem()
+    public ItemContext registerItem(String name, ItemFactory factory) { return new ItemContext(this, name, factory); }
+
     //registerCreativeTab()
 
     public void finalizeRegisters(IEventBus bus) {

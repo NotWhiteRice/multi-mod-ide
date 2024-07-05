@@ -13,8 +13,8 @@
   - build: For alpha and beta versions of the mod
 
 ## TODO
-- [ ] Reimplement things from v1-v2
-  - [ ] ModLogger
+- [X] Reimplement things from v1-v2
+  - [X] ModLogger
 - [ ] Reimplement things from v3
   - [X] ContextBase
   - [X] InnerContextBase
@@ -25,11 +25,11 @@
     - [ ] registerCreativeTab
     - [ ] generateModSpecificTab
   - [ ] BlockContext
-    - [ ] ItemLikeContext
+    - [X] ItemLikeContext
     - [ ] BlockStateProviderTag
-  - [ ] ItemContext
-    - [ ] ItemLikeContext
-    - [ ] ItemStateProviderTag
+  - [X] ItemContext
+    - [X] ItemLikeContext
+    - [ ] ItemModelProviderTag
   - [ ] CreativeModeTabContext
     - [ ] CreativeTabEntryFactory (renamed CreativeModeTabContext.TabEntry in its own file)
     - [ ] ModEvents (stays in its own class)
@@ -45,7 +45,11 @@
     - [X] constructUniqueID(original, keySet)
 - [ ] Remove DualRegistryException and instead construct a unique id for duplicates 
 - [ ] Implement test item and test block with custom classes
-## Mod Changelog 
+## Mod Changelog
+- Endless Skies v1.2.2.0-alpha
+  - Implemented ItemLikeContext and ItemContext
+  - Implemented ModContext.registerItem
+  - Implemented a default constructor for ItemFactory
 - Endless Skies v1.2.1.0-alpha
   - Implemented BlockFactory and ItemFactory
   - Implemented StringHelper and a function to create unique ids

@@ -8,7 +8,8 @@ public class ItemFactory {
     private Item.Properties iProp;
     private Class<? extends Item> iClass;
     private Supplier<? extends Item> iSupplier;
-    
+
+    public ItemFactory() { iProp = new Item.Properties(); }
     public ItemFactory(Item.Properties prop) { iProp = prop; }
     public ItemFactory(Class<? extends Item> classObj) { iClass = classObj; }
     public ItemFactory(Supplier<? extends Item> supplier) { iSupplier = supplier; }

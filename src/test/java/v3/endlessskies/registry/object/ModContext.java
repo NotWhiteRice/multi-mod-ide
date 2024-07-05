@@ -28,16 +28,6 @@ public class ModContext extends ContextBase<ModContext> {
     public io.github.deprecated.v3.endlessskies.registry.object.BlockContext registerBlock(String name, Class<? extends Block> bClass) throws DualRegistryException, IllegalAccessException {
         return new io.github.deprecated.v3.endlessskies.registry.object.BlockContext(this, name, bClass, true);
     }
-    public io.github.deprecated.v3.endlessskies.registry.object.ItemContext registerItem(String name, Item.Properties prop) throws DualRegistryException, IllegalAccessException {
-        return new io.github.deprecated.v3.endlessskies.registry.object.ItemContext(this, name, prop);
-    }
-    public io.github.deprecated.v3.endlessskies.registry.object.ItemContext registerItem(String name, Supplier<? extends Item> supplier) throws DualRegistryException, IllegalAccessException {
-        return new io.github.deprecated.v3.endlessskies.registry.object.ItemContext(this, name, supplier);
-    }
-    public io.github.deprecated.v3.endlessskies.registry.object.ItemContext registerItem(String name, Class<? extends Item> bClass) throws DualRegistryException, IllegalAccessException {
-        return new io.github.deprecated.v3.endlessskies.registry.object.ItemContext(this, name, bClass);
-    }
-
     public io.github.deprecated.v3.endlessskies.registry.object.CreativeModeTabContext generateCreativeModeTab(String name) throws DualRegistryException, IllegalAccessException {
         return new io.github.deprecated.v3.endlessskies.registry.object.CreativeModeTabContext(this, name);
     }
