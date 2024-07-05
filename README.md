@@ -32,7 +32,7 @@
     - [ ] ModItemModelProvider
     - [ ] ModLootTableProvider (renamed)
     - [ ] ModBlockLootSubProvider
-- [ ] Implement some new classes to v4
+- [X] Implement some new classes to reimplement v3
   - [X] BlockFactory
   - [X] ItemFactory
   - [X] StringHelper
