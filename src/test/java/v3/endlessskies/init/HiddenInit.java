@@ -1,7 +1,7 @@
 package io.github.deprecated.v3.endlessskies.init;
 
 import io.github.deprecated.v3.endlessskies.block.TestBlock;
-import io.github.deprecated.v3.endlessskies.core.exception.DualRegistryException;
+import io.github.notwhiterice.endlessskies.core.exception.DualRegistryException;
 import io.github.deprecated.v3.endlessskies.datagen.tag.BlockStateProviderTag;
 import io.github.deprecated.v3.endlessskies.datagen.tag.ItemModelProviderTag;
 import io.github.deprecated.v3.endlessskies.item.TestItem;

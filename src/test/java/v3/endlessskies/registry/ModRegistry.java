@@ -1,8 +1,7 @@
 package io.github.deprecated.v3.endlessskies.registry;
 
 import io.github.deprecated.v3.endlessskies.event.DataGenEvents;
-import io.github.deprecated.v3.endlessskies.core.exception.DualRegistryException;
-import io.github.notwhiterice.endlessskies.registry.object.*;
+import io.github.notwhiterice.endlessskies.core.exception.DualRegistryException;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.ArrayList;

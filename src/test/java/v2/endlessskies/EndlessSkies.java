@@ -1,8 +1,7 @@
 package io.github.deprecated.v2.endlessskies;
 
 import com.mojang.logging.LogUtils;
-import io.github.deprecated.v3.endlessskies.core.exception.DualRegistryException;
-import io.github.notwhiterice.endlessskies.init.*;
+import io.github.notwhiterice.endlessskies.core.exception.DualRegistryException;
 import io.github.notwhiterice.endlessskies.registries.object.ModContext;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;

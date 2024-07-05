@@ -13,53 +13,33 @@
   - build: For alpha and beta versions of the mod
 
 ## TODO
-- [ ] Implement contexts for forge registries
-  - [X] BlockContext
-    - [X] Usable for block creation
-      - [X] Constructable from block properties, classes, and suppliers
-      - [X] Capable of making itemless blocks
-      - [ ] Simplifies blocks with block entities
-        - [ ] w/ a gui
-    - [X] Simplifies creation of blockstates and block/item models
-    - [ ] Simplifies addition of block tags
-    - [ ] Simplifies addition of item tags
-    - [ ] Simplifies creation of loot tables
-    - [ ] Can be added to any vanilla creative tab or CreativeModeTabContext
-  - [X] ItemContext
-    - [ ] Usable for item creation
-      - [X] Constructable from item properties, classes, and suppliers
-    - [X] Simplifies creation of item models
-    - [ ] Simplifies addition of item tags
-    - [ ] Can be added to any vanilla creative tab or CreativeModeTabContext
-  - [X] CreativeModeTabContext
-    - [X] Usable for tab registration
-      - [X] Constructable from strings
-      - [ ] Constructable from builder
-    - [X] Supports mod-specific tabs
-    - [X] Facilitates adding custom items/blocks to a vanilla creative tab
-  - [ ] MenuTypeContext
-    - [ ] ScreenContext (might end up as a part of MenuTypeContext)
-  - [ ] BlockEntityContext
-- [ ] Integrate data generators with ModContext
-- [ ] Implement data gen tags in the associated context
-  - [X] BlockStateProviderTag
-    - [ ] Implement "smart" data generation
-  - [ ] BlockTagsProviderTag
-  - [X] ItemModelProviderTag
-    - [ ] Implement "smart" data generation
-  - [ ] ItemTagsProviderTag
-  - [ ] LootTableProviderTag
-- [ ] Implement classes facilitating the easy generation of recipe jsons
-  - [ ] Crafting recipes
-  - [ ] Smelting recipes
-  - [ ] Blasting recipes
-  - [ ] Modded recipe types
-    - [ ] Mineral Infuser
-    - [ ] Rock Crusher
-    - [ ] Implement classes making it simple to hardcode new recipes
-      - [ ] Mineral Infuser
-      - [ ] Rock Crusher
+- [ ] Reimplement things from v3
+  - [ ] ContextBase
+  - [ ] InnerContextBase
+  - [ ] ModContext
+    - [ ] ModRegistry (incorporated to other classes and removed)
+  - [ ] BlockContext
+    - [ ] ItemLikeContext
+    - [ ] BlockStateProviderTag
+  - [ ] ItemContext
+    - [ ] ItemLikeContext
+    - [ ] ItemStateProviderTag
+  - [ ] CreativeModeTabContext
+    - [ ] CreativeTabEntryFactory (renamed CreativeModeTabContext.TabEntry in its own file)
+    - [ ] ModEvents (stays in its own class)
+  - [ ] DataGenEvents
+    - [ ] ModBlockStateProvider
+    - [ ] ModItemModelProvider
+    - [ ] ModLootTableProvider (renamed)
+    - [ ] ModBlockLootSubProvider
+- [ ] Implement some new classes to v4
+  - [X] BlockFactory
+  - [X] ItemFactory
+  - [X] StringHelper
+    - [X] constructUniqueID(original, keySet)
+- [ ] Remove DualRegistryException and instead construct a unique id for duplicates 
 ## Mod Changelog 
+- Endless Skies v1.2.1.0-alpha (in development)
 - Endless Skies v1.2.0.0-alpha
   - Moved everything to src/test, including the old mod folder and an attempt at remaking the api, so the framework can be more secure
   - Removed Circuits from the mods.toml

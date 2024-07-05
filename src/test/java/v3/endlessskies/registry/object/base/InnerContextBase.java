@@ -2,7 +2,7 @@ package io.github.deprecated.v3.endlessskies.registry.object.base;
 
 import io.github.deprecated.v3.endlessskies.registry.ModRegistry;
 import io.github.deprecated.v3.endlessskies.registry.object.ModContext;
-import io.github.deprecated.v3.endlessskies.core.exception.DualRegistryException;
+import io.github.notwhiterice.endlessskies.core.exception.DualRegistryException;
 
 import java.util.HashMap;
 import java.util.List;

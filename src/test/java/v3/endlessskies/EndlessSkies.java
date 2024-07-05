@@ -1,6 +1,6 @@
 package io.github.deprecated.v3.endlessskies;
 
-import io.github.deprecated.v3.endlessskies.core.exception.DualRegistryException;
+import io.github.notwhiterice.endlessskies.core.exception.DualRegistryException;
 import io.github.deprecated.v3.endlessskies.init.CreativeModeTabInit;
 import io.github.deprecated.v3.endlessskies.init.HiddenInit;
 import io.github.deprecated.v3.endlessskies.registry.ModRegistry;

@@ -3,7 +3,7 @@ package io.github.deprecated.v2.endlessskies.init;
 import io.github.deprecated.v2.endlessskies.EndlessSkies;
 import io.github.deprecated.v2.endlessskies.block.MineralInfuserBlock;
 import io.github.deprecated.v2.endlessskies.block.RockCrusherBlock;
-import io.github.deprecated.v3.endlessskies.core.exception.DualRegistryException;
+import io.github.notwhiterice.endlessskies.core.exception.DualRegistryException;
 import io.github.deprecated.v3.endlessskies.datagen.tag.BlockStateProviderTag;
 import io.github.deprecated.v3.endlessskies.registry.object.BlockContext;
 import net.minecraft.world.item.CreativeModeTabs;
