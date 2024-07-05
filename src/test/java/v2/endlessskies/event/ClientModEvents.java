@@ -2,8 +2,8 @@ package io.github.deprecated.v2.endlessskies.event;
 
 import io.github.deprecated.v2.endlessskies.EndlessSkies;
 import io.github.deprecated.v2.endlessskies.init.MenuTypeInit;
-import io.github.deprecated.v2.endlessskies.screen.MineralInfuserScreen;
-import io.github.deprecated.v2.endlessskies.screen.RockCrusherScreen;
+import io.github.notwhiterice.endlessskies.inventory.screen.MineralInfuserScreen;
+import io.github.notwhiterice.endlessskies.inventory.screen.RockCrusherScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

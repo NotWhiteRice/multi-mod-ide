@@ -1,5 +1,6 @@
 package io.github.notwhiterice.endlessskies.item.factory;
 
+import io.github.notwhiterice.endlessskies.datagen.tag.ItemModelProviderTag;
 import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import net.minecraft.world.item.Item;
@@ -14,8 +15,11 @@ public class ItemContext extends ItemLikeContext<ItemContext> {
     //Public static variables
     public static final ItemContext dummy = new ItemContext(ModContext.dummy, null, null);
 
+    //Private variables
+    private ItemModelProviderTag modelDataTag = ItemModelProviderTag.ITEM_WITHOUT_MODEL;
+
     //Public variables
-    public RegistryObject<Item> rObject;
+    //public RegistryObject<Item> rObject;
 
     //Constructor
     public ItemContext(ModContext context, String name, ItemFactory factory) {
@@ -27,8 +31,12 @@ public class ItemContext extends ItemLikeContext<ItemContext> {
     }
 
     //Getter functions
-    public String getItemID() { return getModID() + ":" + getName(); }
-    public Item getItem() { return rObject.get(); }
+    public Item getItem() { return (Item) rObject.get(); }
+    public ItemModelProviderTag getModelDataTag() { return modelDataTag; }
+    public ItemContext setModelDataTag(ItemModelProviderTag tag) {
+        modelDataTag = tag;
+        return this;
+    }
 
     /* Special getter functions
      * 1-increases in "depth"
@@ -37,11 +45,9 @@ public class ItemContext extends ItemLikeContext<ItemContext> {
      */
     public static boolean isModKnown(String modID) { return instances.containsKey(modID); }
     public static boolean doesContextExist(String modID, String name) { return isModKnown(modID) ? instances.get(modID).containsKey(name) : false; }
-    public static ItemContext getItemContext(String modID, String name) { return isModKnown(modID) ? instances.get(modID).get(name) : null; }
-    public static Collection<String> listModItems(String modID) { return isModKnown(modID) ? instances.get(modID).values().stream().map(ItemContext::getItemID).toList() : Collections.emptyList(); }
+    public static ItemContext getContext(String modID, String name) { return isModKnown(modID) ? instances.get(modID).get(name) : null; }
+    public static Collection<String> listModItems(String modID) { return isModKnown(modID) ? instances.get(modID).values().stream().map(ItemContext::getID).toList() : Collections.emptyList(); }
     public static Collection<ItemContext> getModItems(String modID) { return isModKnown(modID) ? instances.get(modID).values() : Collections.emptyList(); }
-    public static Collection<String> listAllItems() { return instances.values().stream().flatMap(modColl -> modColl.values().stream()).map(ItemContext::getItemID).toList(); }
+    public static Collection<String> listAllItems() { return instances.values().stream().flatMap(modColl -> modColl.values().stream()).map(ItemContext::getID).toList(); }
     public static Collection<ItemContext> getAllItems() { return instances.values().stream().flatMap(modColl -> modColl.values().stream()).toList(); }
-
-
 }

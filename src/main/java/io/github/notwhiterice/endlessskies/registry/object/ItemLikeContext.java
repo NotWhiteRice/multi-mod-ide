@@ -1,5 +1,6 @@
 package io.github.notwhiterice.endlessskies.registry.object;
 
+import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
 import io.github.notwhiterice.endlessskies.registry.object.base.InnerContextBase;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
@@ -14,11 +15,11 @@ public abstract class ItemLikeContext<T extends ItemLikeContext<T>> extends Inne
     public ItemLike getItemLike() { return rObject.get(); }
 
     public T setCreativeTab(ResourceKey<CreativeModeTab> tabKey) {
-        //CreativeModeTabContext.submitEntry(tabKey, this);
+        CreativeModeTabContext.submitEntry(tabKey, this);
         return (T) this;
     }
-    public T setCreativeTab(/* CreativeModeTabContext tab */) {
-        //tab.addEntry(this);
+    public T setCreativeTab(CreativeModeTabContext tab) {
+        tab.addEntry(this);
         return (T) this;
     }
 }

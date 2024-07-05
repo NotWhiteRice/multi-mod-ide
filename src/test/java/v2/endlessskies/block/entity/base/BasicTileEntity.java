@@ -1,4 +1,4 @@
-package io.github.deprecated.v2.endlessskies.block.entity.base;
+package v2.endlessskies.block.entity.base;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

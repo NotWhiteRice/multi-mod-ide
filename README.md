@@ -13,39 +13,17 @@
   - build: For alpha and beta versions of the mod
 
 ## TODO
-- [X] Reimplement things from v1-v2
-  - [X] ModLogger
-- [ ] Reimplement things from v3
-  - [X] ContextBase
-  - [X] InnerContextBase
-  - [X] ModContext
-    - [ ] ModRegistry (incorporated to other classes and removed)
-    - [ ] registerBlock
-    - [ ] registerItem
-    - [ ] registerCreativeTab
-    - [ ] generateModSpecificTab
-  - [ ] BlockContext
-    - [X] ItemLikeContext
-    - [ ] BlockStateProviderTag
-  - [X] ItemContext
-    - [X] ItemLikeContext
-    - [ ] ItemModelProviderTag
-  - [ ] CreativeModeTabContext
-    - [ ] CreativeTabEntryFactory (renamed CreativeModeTabContext.TabEntry in its own file)
-    - [ ] ModEvents (stays in its own class)
-  - [ ] DataGenEvents
-    - [ ] ModBlockStateProvider
-    - [ ] ModItemModelProvider
-    - [ ] ModLootTableProvider (renamed)
-    - [ ] ModBlockLootSubProvider
-- [X] Implement some new classes to reimplement v3
-  - [X] BlockFactory
-  - [X] ItemFactory
-  - [X] StringHelper
-    - [X] constructUniqueID(original, keySet)
-- [ ] Remove DualRegistryException and instead construct a unique id for duplicates 
-- [ ] Implement test item and test block with custom classes
+- [ ] Fixing addTileEntity
 ## Mod Changelog
+- Endless Skies v1.2.3.0-alpha
+  - Implemented block state and item model data gen
+  - Implemented default textures and models for blocks and items
+  - Added a BasicBlock and BasicItem class
+  - Implemented BlockContext, TileEntityContext and MenuContext
+  - Added test block and test item with custom textures
+  - Added debug lines throughout registry and data generation
+  - Added a dysfunctional Mineral Infuser with its own gui
+  - Added a dysfunctional Rock Crusher with its own gui and animated progress bar
 - Endless Skies v1.2.2.0-alpha
   - Implemented ItemLikeContext and ItemContext
   - Implemented ModContext.registerItem

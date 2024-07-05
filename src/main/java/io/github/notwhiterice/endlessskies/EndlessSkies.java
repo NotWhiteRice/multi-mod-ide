@@ -1,7 +1,10 @@
 package io.github.notwhiterice.endlessskies;
 
-import io.github.notwhiterice.endlessskies.item.factory.ItemFactory;
+import io.github.notwhiterice.endlessskies.init.BlockInit;
+import io.github.notwhiterice.endlessskies.init.CreativeModeTabInit;
+import io.github.notwhiterice.endlessskies.init.DevInit;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -10,11 +13,19 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class EndlessSkies {
     public EndlessSkies() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModContext context = new ModContext(Reference.modID);
         //ModContext err_1 = new ModContext(Reference.modID);
 
-        context.registerItem("test", new ItemFactory());
-        context.registerItem("test", new ItemFactory());
+        //context.registerItem("dupe_test", new ItemFactory());
+        //context.registerItem("dupe_test", new ItemFactory());
+        ModContext context = new ModContext(Reference.modID);
+
+        BlockInit.registerBlocks(context);
+
+        context.generateModSpecificTab().setIcon(Items.DIAMOND);
+
+        DevInit.registerDevObjs(context);
+
+        CreativeModeTabInit.registerTabs(context);
 
         context.finalizeRegisters(bus);
     }

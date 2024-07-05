@@ -1,8 +1,9 @@
-package io.github.deprecated.v2.endlessskies.block;
+package io.github.notwhiterice.endlessskies.block;
 
 import com.mojang.serialization.MapCodec;
+import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
-import io.github.deprecated.v2.endlessskies.init.BlockEntityInit;
+import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -22,8 +23,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class MineralInfuserBlock extends BaseEntityBlock {
 
-    public MineralInfuserBlock() { super(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)); }
-    public MineralInfuserBlock(Properties prop) { super(prop); }
+    public MineralInfuserBlock() { super(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)); }
+    protected MineralInfuserBlock(Properties prop) { this(); }
 
     @Override
     public RenderShape getRenderShape(BlockState state) { return RenderShape.MODEL; }
@@ -45,6 +46,7 @@ public class MineralInfuserBlock extends BaseEntityBlock {
         super.onRemove(state, level, pos, newState, wasPistoned);
     }
 
+
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if(!level.isClientSide()) {
@@ -65,8 +67,8 @@ public class MineralInfuserBlock extends BaseEntityBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> bEntityType) {
         if(level.isClientSide) return null;
 
-        return createTickerHelper(bEntityType, BlockEntityInit.tileEntityMineralInfuser.get(),
-                (pLevel, pos, pState, bEntity) -> bEntity.tick(pLevel, pos, pState));
+        return createTickerHelper(bEntityType, TileEntityContext.getContext(Reference.modID, "mineral_infuser").getEntityType(),
+                (pLevel, pos, pState, bEntity) -> ((MineralInfuserBlockEntity) bEntity).tick(pLevel, pos, pState));
     }
 
     @Override

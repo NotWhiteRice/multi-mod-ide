@@ -5,7 +5,7 @@ import io.github.notwhiterice.endlessskies.util.StringHelper;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InnerContextBase<T extends InnerContextBase<T>> {
+public abstract class InnerContextBase<T extends InnerContextBase<T>> {
     //Private members
     private String modID;
     private String name;
@@ -24,6 +24,8 @@ public class InnerContextBase<T extends InnerContextBase<T>> {
     public String getParent() { return parent; }
 
     //Custom functions
+    public String getID() { return modID + ":" + name; }
+
     /**
      * Returns true if the context originally had a unique id
      */
