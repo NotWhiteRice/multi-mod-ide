@@ -29,6 +29,7 @@ public class MenuContext<T extends AbstractContainerMenu> extends InnerContextBa
 
     //Public variables
     public RegistryObject<MenuType<T>> rObject;
+    public IContainerFactory<T> factory;
     public MenuScreens.ScreenConstructor<T, ? extends AbstractContainerScreen<T>> screen;
 
     //Constructor
@@ -37,12 +38,16 @@ public class MenuContext<T extends AbstractContainerMenu> extends InnerContextBa
         if(context.equals(ModContext.dummy) || name == null || factory == null || screen == null) return;
         if(registerInstance(instances)) context.logger.info("MenuContext", "<init>(context, name, factory, screen)", "Registering menu context for menu: '" + context.getModID() + ":" + getName() + "'");
         else context.logger.info("MenuContext", "<init>(context, name, factory, screen)", "Registered duplicate menu context for menu: '" + context.getModID() + ":" + name + "' as '" + context.getModID() + ":" + getName() + "'");
-        rObject = context.MENUS.register(getName(), () -> IForgeMenuType.create(factory));
+        this.factory = factory;
         this.screen = screen;
     }
 
     //Getter functions
     public MenuType<T> getMenuType() { return rObject.get(); }
+    public RegistryObject<MenuType<T>> getRegistryObject() {
+        if(rObject == null) rObject = ModContext.getContext(getModID()).MENUS.register(getName(), () -> IForgeMenuType.create(factory));
+        return rObject;
+    }
 
     /* Special getter functions
      * 1-increases in "depth"

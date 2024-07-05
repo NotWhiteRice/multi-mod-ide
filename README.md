@@ -13,8 +13,10 @@
   - build: For alpha and beta versions of the mod
 
 ## TODO
-- [ ] Fixing addTileEntity
+
 ## Mod Changelog
+- Endless Skies v1.2.3.1-alpha
+  - Fixed issues with registering custom tile entities and menus
 - Endless Skies v1.2.3.0-alpha
   - Implemented block state and item model data gen
   - Implemented default textures and models for blocks and items

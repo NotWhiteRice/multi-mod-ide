@@ -1,11 +1,16 @@
 package io.github.notwhiterice.endlessskies.creativetab.factory;
 
+import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
 import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContext;
 import net.minecraft.world.level.ItemLike;
 
 public class TabEntryFactory<T> {
     private final T entry;
-    public TabEntryFactory(T entry) { this.entry=entry; }
+    public TabEntryFactory(T entry) {
+        this.entry=entry;
+        if(entry instanceof BlockContext) if(!((BlockContext) entry).hasItem())
+            throw new IllegalStateException("Attempted to make a tab entry for a block without an item");
+    }
     public ItemLike getEntry() {
         if(entry instanceof ItemLike) return (ItemLike) entry;
         if(entry instanceof ItemLikeContext) return ((ItemLikeContext<?>) entry).getItemLike();
