@@ -19,16 +19,16 @@ public class EndlessSkies {
 
     public EndlessSkies() throws IllegalAccessException, DualRegistryException, NoSuchMethodException, InvocationTargetException {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModContext context = ModRegistry.registerMod(modID);
+        //ModContext context = ModRegistry.registerMod(modID);
 
-        BlockInit.registerBlocks(context);
+        //BlockInit.registerBlocks(context);
 
-        context.generateModSpecificTab().setIcon(Items.DIAMOND);
+        //context.generateModSpecificTab().setIcon(Items.DIAMOND);
 
-        HiddenInit.registerHidden(context);
+        //HiddenInit.registerHidden(context);
 
-        CreativeModeTabInit.registerTabs(context);
+        //CreativeModeTabInit.registerTabs(context);
 
-        context.finalizeRegisters(bus);
+        //context.finalizeRegisters(bus);
     }
 }

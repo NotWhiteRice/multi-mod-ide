@@ -13,11 +13,17 @@
   - build: For alpha and beta versions of the mod
 
 ## TODO
+- [ ] Reimplement things from v1-v2
+  - [ ] ModLogger
 - [ ] Reimplement things from v3
-  - [ ] ContextBase
-  - [ ] InnerContextBase
-  - [ ] ModContext
+  - [X] ContextBase
+  - [X] InnerContextBase
+  - [X] ModContext
     - [ ] ModRegistry (incorporated to other classes and removed)
+    - [ ] registerBlock
+    - [ ] registerItem
+    - [ ] registerCreativeTab
+    - [ ] generateModSpecificTab
   - [ ] BlockContext
     - [ ] ItemLikeContext
     - [ ] BlockStateProviderTag
@@ -38,8 +44,13 @@
   - [X] StringHelper
     - [X] constructUniqueID(original, keySet)
 - [ ] Remove DualRegistryException and instead construct a unique id for duplicates 
+- [ ] Implement test item and test block with custom classes
 ## Mod Changelog 
-- Endless Skies v1.2.1.0-alpha (in development)
+- Endless Skies v1.2.1.0-alpha
+  - Implemented BlockFactory and ItemFactory
+  - Implemented StringHelper and a function to create unique ids
+  - Implemented ContextBase, InnerContextBase, and ModLogger
+  - Partially implemented ModContext
 - Endless Skies v1.2.0.0-alpha
   - Moved everything to src/test, including the old mod folder and an attempt at remaking the api, so the framework can be more secure
   - Removed Circuits from the mods.toml
