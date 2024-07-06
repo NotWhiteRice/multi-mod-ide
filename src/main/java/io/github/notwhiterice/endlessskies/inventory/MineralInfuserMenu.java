@@ -92,7 +92,7 @@ public class MineralInfuserMenu extends AbstractContainerMenu {
     }
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, bEntity.getBlockPos()), player, BlockContext.getContext(Reference.modID, "mineral_infuser").getBlock());
+        return stillValid(ContainerLevelAccess.create(level, bEntity.getBlockPos()), player, BlockContext.getContext(Reference.modID, "mineral_infuser").get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

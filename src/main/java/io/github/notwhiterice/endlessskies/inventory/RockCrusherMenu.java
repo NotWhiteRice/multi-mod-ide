@@ -91,7 +91,7 @@ public class RockCrusherMenu extends AbstractContainerMenu {
     }
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, bEntity.getBlockPos()), player, BlockContext.getContext(Reference.modID, "rock_crusher").getBlock());
+        return stillValid(ContainerLevelAccess.create(level, bEntity.getBlockPos()), player, BlockContext.getContext(Reference.modID, "rock_crusher").get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

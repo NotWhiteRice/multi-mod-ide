@@ -1,6 +1,7 @@
 package io.github.notwhiterice.endlessskies;
 
 import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
+import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
 import io.github.notwhiterice.endlessskies.init.BlockInit;
 import io.github.notwhiterice.endlessskies.init.CreativeModeTabInit;
 import io.github.notwhiterice.endlessskies.init.DevInit;
@@ -30,6 +31,9 @@ public class EndlessSkies {
 
         DevInit.registerDevObjs(context);
 
+        for(BlockContext block : BlockContext.getAllBlocks()) {
+            block.getRegistryObject();
+        }
         for(ItemContext item : ItemContext.getAllItems()) {
             item.getRegistryObject();
         }

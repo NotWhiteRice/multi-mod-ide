@@ -9,8 +9,6 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class ItemFactory {
-    public static Item.Properties defProp = new Item.Properties();
-
     private ModContext parentMod;
     private ItemContext context;
 

@@ -6,6 +6,7 @@ import io.github.notwhiterice.endlessskies.datagen.tag.ItemModelProviderTag;
 import io.github.notwhiterice.endlessskies.inventory.factory.MenuContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import io.github.notwhiterice.endlessskies.registry.object.base.InnerContextBase;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.RegistryObject;
@@ -45,7 +46,7 @@ public class TileEntityContext extends InnerContextBase<TileEntityContext> {
     public BlockEntityType<? extends BlockEntity> getEntityType() { return rObject.get(); }
     public RegistryObject<BlockEntityType<?>> getRegistryObject() {
         if(rObject == null) rObject = ModContext.getContext(getModID()).TILE_ENTITIES.register(getName(),
-                () -> BlockEntityType.Builder.of(factory, parentBlock.getBlock()).build(null));
+                () -> BlockEntityType.Builder.of(factory, parentBlock.get()).build(null));
         return rObject;
     }
 

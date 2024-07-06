@@ -11,20 +11,22 @@ import io.github.notwhiterice.endlessskies.inventory.RockCrusherMenu;
 import io.github.notwhiterice.endlessskies.inventory.screen.MineralInfuserScreen;
 import io.github.notwhiterice.endlessskies.inventory.screen.RockCrusherScreen;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
-import net.minecraft.world.item.CreativeModeTabs;
 
 public class BlockInit {
     public static BlockContext blockMineralInfuser;
     public static BlockContext blockRockCrusher;
 
     public static void registerBlocks(ModContext context) {
-        blockMineralInfuser = context.registerBlock("mineral_infuser", new BlockFactory(MineralInfuserBlock.class))
-                .addTileEntity(MineralInfuserBlockEntity::new)
-                .addMenu(MineralInfuserMenu::new, MineralInfuserScreen::new)
-                .setCreativeTab(CreativeModeTabs.FUNCTIONAL_BLOCKS);
-        blockRockCrusher = context.registerBlock("rock_crusher", new BlockFactory(RockCrusherBlock.class))
-                .addTileEntity(RockCrusherBlockEntity::new)
-                .addMenu(RockCrusherMenu::new, RockCrusherScreen::new)
-                .setCreativeTab(CreativeModeTabs.FUNCTIONAL_BLOCKS);
+        BlockFactory factory = BlockFactory.init(context);
+        blockMineralInfuser = factory.block("mineral_infuser")
+                .setParent(MineralInfuserBlock.class)
+                .setContainer(MineralInfuserBlockEntity::new)
+                .setMenu(MineralInfuserMenu::new, MineralInfuserScreen::new)
+                .setName("Mineral Infuser").close();
+        blockRockCrusher = factory.block("rock_crusher")
+                .setParent(RockCrusherBlock.class)
+                .setContainer(RockCrusherBlockEntity::new)
+                .setMenu(RockCrusherMenu::new, RockCrusherScreen::new)
+                .setName("Rock Crusher").close();
     }
 }

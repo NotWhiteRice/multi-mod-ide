@@ -16,12 +16,12 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         for(BlockContext context : BlockContext.getAllBlocks()) {
-            switch(context.getLootDataTag()) {
+            switch(context.getDropFactory()) {
                 case DROP_SELF:
-                    this.dropSelf(context.getBlock());
+                    this.dropSelf(context.get());
                     break;
-                case NEEDS_SILK_TOUCH:
-                    this.dropWhenSilkTouch(context.getBlock());
+                case SILK_TOUCH:
+                    this.dropWhenSilkTouch(context.get());
                     break;
             }
         }
@@ -29,6 +29,6 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return BlockContext.getAllBlocks().stream().map(BlockContext::getBlock).toList();
+        return BlockContext.getAllBlocks().stream().map(BlockContext::get).toList();
     }
 }

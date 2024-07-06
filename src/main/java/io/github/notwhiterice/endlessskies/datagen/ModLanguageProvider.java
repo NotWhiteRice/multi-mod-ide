@@ -24,7 +24,7 @@ public class ModLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         for(Map.Entry<String, String> translation : translations.get(locale).get(modID).entrySet()) {
             if(ItemContext.doesContextExist(modID, translation.getKey())) add(ItemContext.getContext(modID, translation.getKey()).get(), translation.getValue());
-            if(BlockContext.doesContextExist(modID, translation.getKey())) add(BlockContext.getContext(modID, translation.getKey()).getBlock(), translation.getValue());
+            if(BlockContext.doesContextExist(modID, translation.getKey())) add(BlockContext.getContext(modID, translation.getKey()).get(), translation.getValue());
         }
     }
 }

@@ -18,6 +18,9 @@
   - [ ] <>Factory is the class used to create contexts
   - [ ] <>Context, except ModContext, is the class used to store data and create registryobjects
 ## Mod Changelog
+- Endless Skies v1.4.0.0-alpha
+  - Reworked blocks to the new system
+  - Transitioned all of the blocks and items to the new system
 - Endless Skies v1.3.0.0-alpha
   - Reworked items entirely, now they are created using a reworked ItemFactory object
   - Implemented a ClosedContextException class

@@ -1,97 +1,108 @@
 package io.github.notwhiterice.endlessskies.block.factory;
 
 import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
-import io.github.notwhiterice.endlessskies.datagen.tag.BlockStateProviderTag;
-import io.github.notwhiterice.endlessskies.datagen.tag.LootTableProviderTag;
-import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContext;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import io.github.notwhiterice.endlessskies.block.factory.data.BlockStateFactory;
+import io.github.notwhiterice.endlessskies.block.factory.data.LootTableFactory;
+import io.github.notwhiterice.endlessskies.datagen.ModLanguageProvider;
 import io.github.notwhiterice.endlessskies.inventory.factory.MenuContext;
+import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContextv2;
+import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.network.IContainerFactory;
+import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Supplier;
 
-public class BlockContext extends ItemLikeContext<BlockContext> {
-    //Private static variables
-    private static final Map<String, Map<String, BlockContext>> instances = new HashMap<>();
+public class BlockContext extends ItemLikeContextv2<BlockContext, Block> {
+    private static final Map<String, List<BlockContext>> instances = new HashMap<>();
 
-    //Public static variables
-    public static final BlockContext dummy = new BlockContext(ModContext.dummy, null, null, false);
+    public static final Block.Properties defProp = BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_WOOL);
 
-    //Private variables
-    private BlockStateProviderTag blockStateDataTag = BlockStateProviderTag.BLOCK_WITHOUT_MODEL;
-    private LootTableProviderTag lootTableDataTag = LootTableProviderTag.DROP_SELF;
-    private boolean existsWithItem;
+    private Class<? extends Block> bClass;
+    private Block.Properties bProp;
+    private boolean makeItem = true;
+    private BlockStateFactory stateFactory = BlockStateFactory.BLOCK_WITHOUT_MODEL;
+    private LootTableFactory dropFactory = LootTableFactory.DROP_SELF;
+    private Supplier<? extends Block> forcedSupplier;
 
-    //Public variables
-    public TileEntityContext entityContext;
-    //public RegistryObject<Block> rObject;
+    public TileEntityContext container;
+    public MenuContext<?> menu;
 
-    //Constructor
-    public BlockContext(ModContext context, String name, BlockFactory factory, boolean doItem) {
-        super(context.getName(), name, "ItemContext");
-        if(context.equals(ModContext.dummy) || name == null || factory == null) return;
-        if(registerInstance(instances)) context.logger.info("BlockContext", "<init>(context, name, factory, doItem)", "Registering block context for block: '" + context.getModID() + ":" + getName() + "'");
-        else context.logger.info("BlockContext", "<init>(context, name, factory, doItem)", "Registered duplicate block context for block: '" + context.getModID() + ":" + name + "' as '" + context.getModID() + ":" + getName() + "'");
-        rObject = context.BLOCKS.register(getName(), factory.generate());
-        existsWithItem = doItem;
-        if(doItem) context.ITEMS.register(getName(), () -> new BlockItem((Block) rObject.get(), new Item.Properties()));
+    BlockContext(ModContext context, String name) { super(context, name, "BlockContext", instances); }
+
+    protected void setStackSize(int size, String src) { super.setStackSize(size, src); }
+    protected void setClass(Class<? extends Block> block, String src) { onEdit(src); bClass = block; }
+    public boolean hasItem() { return makeItem; }
+    public boolean hasContainer() { return container != null; }
+    public boolean hasMenu() { return menu != null; }
+    protected void toggleItem(String src) { onEdit(src); makeItem = !makeItem; }
+    protected void setContainer(BlockEntityType.BlockEntitySupplier<? extends BlockEntity> factory, String src) {
+        onEdit(src);
+        if(hasContainer()) throw new IllegalStateException("Attempted to add a second container to a block");
+        container = new TileEntityContext(ModContext.getContext(getModID()), getName(), factory, this);
     }
-
-    //Getter functions
-    public boolean hasItem() { return existsWithItem; }
-    public Block getBlock() { return (Block) rObject.get(); }
-    public MenuContext<? extends AbstractContainerMenu> getMenuType() { return hasMenu() ? entityContext.menuContext : null; }
-    public BlockStateProviderTag getStateDataTag() { return blockStateDataTag; }
-    public LootTableProviderTag getLootDataTag() { return lootTableDataTag; }
-    public BlockContext setStateDataTag(BlockStateProviderTag tag) {
-        blockStateDataTag = tag;
-        return this;
-    }
-    public BlockContext setLootDataTag(LootTableProviderTag tag) {
-        lootTableDataTag = tag;
-        return this;
-    }
-
-
-    /* Special getter functions
-     * 1-increases in "depth"
-     * 2-increases in "type strength"
-     * 3-increases in "plurality"
-     */
-    public static boolean isModKnown(String modID) { return instances.containsKey(modID); }
-    public static boolean doesContextExist(String modID, String name) { return isModKnown(modID) ? instances.get(modID).containsKey(name) : false; }
-    public static BlockContext getContext(String modID, String name) { return isModKnown(modID) ? instances.get(modID).get(name) : null; }
-    public static Collection<String> listModBlocks(String modID) { return isModKnown(modID) ? instances.get(modID).values().stream().map(BlockContext::getID).toList() : Collections.emptyList(); }
-    public static Collection<BlockContext> getModBlocks(String modID) { return isModKnown(modID) ? instances.get(modID).values() : Collections.emptyList(); }
-    public static Collection<String> listAllBlocks() { return instances.values().stream().flatMap(modColl -> modColl.values().stream()).map(BlockContext::getID).toList(); }
-    public static Collection<BlockContext> getAllBlocks() { return instances.values().stream().flatMap(modColl -> modColl.values().stream()).toList(); }
-
-    //Custom functions
-    public boolean hasTileEntity() { return entityContext != null; }
-    public <T extends BlockEntity> BlockContext addTileEntity(BlockEntityType.BlockEntitySupplier<T> factory) {
-        if(hasTileEntity()) throw new IllegalStateException("Attempted to add a second tile entity to a block");
-        entityContext = new TileEntityContext(ModContext.getContext(getModID()), getName(), factory, this);
-        return this;
-    }
-    public boolean hasMenu() {
-        if (!hasTileEntity()) return false;
-        return entityContext.menuContext != null;
-    }
-    public <T extends AbstractContainerMenu> BlockContext addMenu(IContainerFactory<T> factory, MenuScreens.ScreenConstructor<T, ? extends AbstractContainerScreen<T>> screen) {
-        if(!hasTileEntity()) throw new IllegalStateException("Attempted to add a menu to a block with no tile entity");
+    protected <T extends AbstractContainerMenu> void setMenu(IContainerFactory<T> factory, MenuScreens.ScreenConstructor<T, ? extends AbstractContainerScreen<T>> screen, String src) {
+        onEdit(src);
         if(hasMenu()) throw new IllegalStateException("Attempted to add a second menu to a block");
-        entityContext.menuContext = new MenuContext<>(ModContext.getContext(getModID()), getName(), factory, screen);
-        return this;
+        menu = new MenuContext<>(ModContext.getContext(getModID()), getName(), factory, screen);
     }
+    protected void forceSupplier(Supplier<? extends Block> supplier, String src) { onEdit(src); forcedSupplier = supplier; }
+    public BlockStateFactory getStateFactory() { return stateFactory; }
+    public LootTableFactory getDropFactory() { return dropFactory; }
+    protected void setStateFactory(BlockStateFactory factory, String src) { onEdit(src); stateFactory = factory; }
+    protected void setDropFactory(LootTableFactory factory, String src) { onEdit(src); dropFactory = factory; }
+
+    public Block get() {
+        if(rObject == null) throw new IllegalStateException(".get was called for a BlockContext before its registry object is registered");
+        return rObject.get();
+    }
+    public RegistryObject<Block> getRegistryObject() {
+        if(rObject == null) {
+            if (forcedSupplier != null) rObject = modContext.BLOCKS.register(name, forcedSupplier);
+            else {
+                if (bProp == null) bProp = defProp;
+                if (bClass != null) {
+                    rObject = modContext.BLOCKS.register(name, () -> {
+                        try {
+                            if (bProp == defProp)
+                                return bClass.newInstance();
+                            else
+                                return bClass.getDeclaredConstructor(Block.Properties.class)
+                                        .newInstance(bProp);
+                        } catch (Exception e) { throw new RuntimeException(e); }
+                    });
+                } else
+                    rObject = modContext.BLOCKS.register(name, () -> new Block(defProp));
+            }
+            if(makeItem) modContext.ITEMS.register(name, () -> new BlockItem(rObject.get(), new Item.Properties().stacksTo(stackSize)));
+        }
+        return rObject;
+    }
+
+    public void setName(String name) { applyTranslation(name, "en_us"); }
+    public void applyTranslation(String name, String locale) {
+        ModLanguageProvider.translations.computeIfAbsent(locale, v -> new HashMap<>());
+        ModLanguageProvider.translations.get(locale)
+                .computeIfAbsent(getModID(), v -> new HashMap<>());
+        ModLanguageProvider.translations.get(locale)
+                .get(getModID()).computeIfAbsent(getName(), v -> name);
+    }
+
+    public static boolean isModKnown(String modID) { return instances.containsKey(modID); }
+    public static boolean doesContextExist(String modID, String name) { return isModKnown(modID) ? (!instances.get(modID).stream().filter(v -> v.getName().equals(name)).toList().isEmpty()) : false; }
+    public static BlockContext getContext(String modID, String name) { return isModKnown(modID) ? (instances.get(modID).stream().filter(v -> v.getName().equals(name)).toList().get(0)) : null; }
+    public static Collection<String> listModBlocks(String modID) { return isModKnown(modID) ? instances.get(modID).stream().map(BlockContext::getID).toList() : Collections.emptyList(); }
+    public static Collection<BlockContext> getModBlocks(String modID) { return isModKnown(modID) ? instances.get(modID) : Collections.emptyList(); }
+    public static Collection<String> listAllBlocks() { return instances.values().stream().flatMap(modColl -> modColl.stream()).map(BlockContext::getID).toList(); }
+    public static Collection<BlockContext> getAllBlocks() { return instances.values().stream().flatMap(Collection::stream).toList(); }
 }
