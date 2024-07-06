@@ -13,8 +13,14 @@
   - build: For alpha and beta versions of the mod
 
 ## TODO
-
+- [ ] Implement more base classes for quality of life
+- [ ] Reworking contexts and factories
+  - [ ] <>Factory is the class used to create contexts
+  - [ ] <>Context, except ModContext, is the class used to store data and create registryobjects
 ## Mod Changelog
+- Endless Skies v1.3.0.0-alpha
+  - Reworked items entirely, now they are created using a reworked ItemFactory object
+  - Implemented a ClosedContextException class
 - Endless Skies v1.2.3.1-alpha
   - Fixed issues with registering custom tile entities and menus
 - Endless Skies v1.2.3.0-alpha

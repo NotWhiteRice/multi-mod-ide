@@ -6,7 +6,6 @@ import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntit
 import io.github.notwhiterice.endlessskies.block.entity.RockCrusherBlockEntity;
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
 import io.github.notwhiterice.endlessskies.block.factory.BlockFactory;
-import io.github.notwhiterice.endlessskies.datagen.tag.BlockStateProviderTag;
 import io.github.notwhiterice.endlessskies.inventory.MineralInfuserMenu;
 import io.github.notwhiterice.endlessskies.inventory.RockCrusherMenu;
 import io.github.notwhiterice.endlessskies.inventory.screen.MineralInfuserScreen;

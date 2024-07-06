@@ -1,12 +1,11 @@
 package io.github.notwhiterice.endlessskies.block.factory;
 
-import io.github.notwhiterice.endlessskies.block.MineralInfuserBlock;
 import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
 import io.github.notwhiterice.endlessskies.datagen.tag.BlockStateProviderTag;
 import io.github.notwhiterice.endlessskies.datagen.tag.LootTableProviderTag;
-import io.github.notwhiterice.endlessskies.inventory.factory.MenuContext;
 import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import io.github.notwhiterice.endlessskies.inventory.factory.MenuContext;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -16,7 +15,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.network.IContainerFactory;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Collection;
 import java.util.Collections;

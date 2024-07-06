@@ -3,6 +3,7 @@ package io.github.notwhiterice.endlessskies.creativetab.factory;
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
 import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
 import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContext;
+import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContextv2;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import io.github.notwhiterice.endlessskies.registry.object.base.InnerContextBase;
 import net.minecraft.network.chat.Component;
@@ -13,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -81,6 +81,12 @@ public class CreativeModeTabContext extends InnerContextBase<CreativeModeTabCont
         entries.add(new TabEntryFactory<>(context));
         return this;
     }
+    public CreativeModeTabContext addEntry(ItemLikeContextv2 context) {
+        if(isLocked()) throw new IllegalStateException("Attempted to add an entry to a tab that has already been generated");
+        if(isModSpecificTab()) throw new IllegalStateException("Attempted to add an entry to a mod-specific tab");
+        entries.add(new TabEntryFactory<>(context));
+        return this;
+    }
 
     public CreativeModeTabContext setIcon(ItemLike itemLike) {
         if(isLocked()) throw new IllegalStateException("Attempted to set the icon for a tab that has already been generated");
@@ -95,6 +101,12 @@ public class CreativeModeTabContext extends InnerContextBase<CreativeModeTabCont
         return this;
     }
 
+    public CreativeModeTabContext setIcon(ItemLikeContextv2 context) {
+        if(isLocked()) throw new IllegalStateException("Attempted to set the icon for a tab that has already been generated");
+        if(icon != null) throw new IllegalStateException("Attempted to set the icon for a creative tab whose icon had already been set");
+        icon = new TabEntryFactory<>(context);
+        return this;
+    }
 
     public static <T extends ItemLike> void submitEntry(ResourceKey<CreativeModeTab> tab, T entry) { customVanillaEntries.get(tab).add(new TabEntryFactory<>(entry)); }
     public static <T extends ItemLikeContext<?>> void submitEntry(ResourceKey<CreativeModeTab> tab, T entry) { customVanillaEntries.get(tab).add(new TabEntryFactory<>(entry)); }

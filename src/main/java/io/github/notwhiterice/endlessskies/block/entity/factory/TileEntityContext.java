@@ -6,7 +6,6 @@ import io.github.notwhiterice.endlessskies.datagen.tag.ItemModelProviderTag;
 import io.github.notwhiterice.endlessskies.inventory.factory.MenuContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import io.github.notwhiterice.endlessskies.registry.object.base.InnerContextBase;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.RegistryObject;

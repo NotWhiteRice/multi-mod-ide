@@ -3,7 +3,6 @@ package io.github.notwhiterice.endlessskies.inventory;
 import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
-import io.github.notwhiterice.endlessskies.init.BlockInit;
 import io.github.notwhiterice.endlessskies.inventory.factory.MenuContext;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;

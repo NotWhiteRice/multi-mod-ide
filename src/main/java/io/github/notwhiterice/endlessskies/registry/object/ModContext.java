@@ -3,8 +3,6 @@ package io.github.notwhiterice.endlessskies.registry.object;
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
 import io.github.notwhiterice.endlessskies.block.factory.BlockFactory;
 import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
-import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
-import io.github.notwhiterice.endlessskies.item.factory.ItemFactory;
 import io.github.notwhiterice.endlessskies.registry.object.base.ContextBase;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
@@ -70,7 +68,6 @@ public class ModContext extends ContextBase<ModContext> {
     public BlockContext registerBlock(String name, BlockFactory factory) { return new BlockContext(this, name, factory, true); }
     public BlockContext registerBlockWithoutItem(String name, BlockFactory factory) { return new BlockContext(this, name, factory, false); }
 
-    public ItemContext registerItem(String name, ItemFactory factory) { return new ItemContext(this, name, factory); }
     public CreativeModeTabContext registerCreativeTab(String name) { return new CreativeModeTabContext(this, name); }
     public CreativeModeTabContext generateModSpecificTab() { return new CreativeModeTabContext(this, this.getName()); }
 

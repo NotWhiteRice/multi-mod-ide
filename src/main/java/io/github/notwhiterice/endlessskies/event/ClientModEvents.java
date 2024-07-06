@@ -3,7 +3,6 @@ package io.github.notwhiterice.endlessskies.event;
 import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.inventory.factory.MenuContext;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
