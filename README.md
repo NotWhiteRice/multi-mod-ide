@@ -14,10 +14,21 @@
 
 ## TODO
 - [ ] Implement more base classes for quality of life
-- [ ] Reworking contexts and factories
-  - [ ] <>Factory is the class used to create contexts
-  - [ ] <>Context, except ModContext, is the class used to store data and create registryobjects
+- [ ] Implement "proxies" to edit a context in a context outside of a factory
+  - e.g. a BlockProxy class that functions as a Block class but has a constructor that accepts the factory to its block context
 ## Mod Changelog
+- Endless Skies v1.5.0.0-alpha
+  - Added mixingradle as a dependency
+  - Implemented functions to set the block hardness and resistance to a block context
+  - Implemented functions to set the map color of a block context
+  - Cleaned up some classes
+  - Implemented functions to add custom items and blocks to a creative tab
+  - Added limestone and polished limestone blocks
+  - Added a unimplemented creative heater and crude furnace
+  - Implemented a framework to more easily hardcode rock crusher recipes
+  - Implemented functions to set the name of a block, item, or creative tab
+  - Implemented functions to set the name of a block, item, or creative tab in a foreign language/locale
+  - Replaced the old data generator tag system with factories that aren't fully implemented yet
 - Endless Skies v1.4.0.0-alpha
   - Reworked blocks to the new system
   - Transitioned all of the blocks and items to the new system

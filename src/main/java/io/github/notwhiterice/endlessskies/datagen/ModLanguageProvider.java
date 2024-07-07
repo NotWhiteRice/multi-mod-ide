@@ -22,6 +22,13 @@ public class ModLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+        for(Map.Entry<String, String> translation : translations.get(locale).get("creativetab.").entrySet()) {
+            String temp0 = translation.getKey();
+            int temp1 = temp0.indexOf(".");
+            String temp2 = temp1 == -1 ? temp0 : temp0.substring(0, temp1);
+            boolean hasOwnership = temp2.equals(modID);
+            if(hasOwnership) add("creativetab."+translation.getKey(), translation.getValue());
+        }
         for(Map.Entry<String, String> translation : translations.get(locale).get(modID).entrySet()) {
             if(ItemContext.doesContextExist(modID, translation.getKey())) add(ItemContext.getContext(modID, translation.getKey()).get(), translation.getValue());
             if(BlockContext.doesContextExist(modID, translation.getKey())) add(BlockContext.getContext(modID, translation.getKey()).get(), translation.getValue());

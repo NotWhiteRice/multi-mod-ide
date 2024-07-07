@@ -1,7 +1,7 @@
 package io.github.notwhiterice.endlessskies.item.factory;
 
 import io.github.notwhiterice.endlessskies.item.factory.data.ItemModelFactory;
-import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContextv2;
+import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
@@ -9,7 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.*;
 import java.util.function.Supplier;
 
-public class ItemContext extends ItemLikeContextv2<ItemContext, Item> {
+public class ItemContext extends ItemLikeContext<ItemContext, Item> {
     private static final Map<String, List<ItemContext>> instances = new HashMap<>();
 
     private static Item.Properties defProp = new Item.Properties();

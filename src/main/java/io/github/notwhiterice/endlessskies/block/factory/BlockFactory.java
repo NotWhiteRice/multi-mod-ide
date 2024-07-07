@@ -2,19 +2,25 @@ package io.github.notwhiterice.endlessskies.block.factory;
 
 import io.github.notwhiterice.endlessskies.block.factory.data.BlockStateFactory;
 import io.github.notwhiterice.endlessskies.block.factory.data.LootTableFactory;
+import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.network.IContainerFactory;
 
 import java.util.function.Supplier;
 
 public class BlockFactory {
-    private ModContext parentMod;
+    private final ModContext parentMod;
     private BlockContext context;
 
     private BlockFactory(ModContext context) { this.parentMod = context; }
@@ -38,6 +44,18 @@ public class BlockFactory {
         context.toggleItem("BlockFactory.toggleItem");
         return this;
     }
+    public BlockFactory setMapColor(MapColor color) {
+        context.setMapColor(color, "BlockFactory.setMapColor");
+        return this;
+    }
+    public BlockFactory setStrength(float hardness, float resistance) {
+        context.setHardness(hardness, "BlockFactory.setStrength");
+        context.setResistance(resistance, "BlockFactory.setStrength");
+        return this;
+    }
+    public BlockFactory setHarvestLevel(String tool, int level) {
+        return this;
+    }
     public BlockFactory setStateFactory(BlockStateFactory factory) {
         context.setStateFactory(factory, "BlockFactory.setStateFactory");
         return this;
@@ -54,6 +72,16 @@ public class BlockFactory {
     }
     public BlockFactory setStackSize(int size) {
         context.setStackSize(size, "BlockFactory.setStackSize");
+        return this;
+    }
+
+    public BlockFactory setCreativeTab(ResourceKey<CreativeModeTab> tab) {
+        context.setCreativeTab(tab);
+        return this;
+    }
+
+    public BlockFactory setCreativeTab(CreativeModeTabContext tab) {
+        context.setCreativeTab(tab);
         return this;
     }
 

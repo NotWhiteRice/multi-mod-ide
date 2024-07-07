@@ -9,6 +9,7 @@ public class CreativeModeTabInit {
     public static void registerTabs(ModContext context) {
         tabDev = context.registerCreativeTab("dev_items")
                 .setIcon(DevInit.itemTest)
+                .setName("E. Skies--Dev items")
                 .addEntry(DevInit.itemTest)
                 .addEntry(DevInit.blockTest);
     }

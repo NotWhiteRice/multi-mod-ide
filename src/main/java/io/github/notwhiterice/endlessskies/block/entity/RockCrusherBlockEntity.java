@@ -3,6 +3,7 @@ package io.github.notwhiterice.endlessskies.block.entity;
 import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
 import io.github.notwhiterice.endlessskies.inventory.RockCrusherMenu;
+import io.github.notwhiterice.endlessskies.recipe.RockCrusherRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -33,8 +34,8 @@ import javax.annotation.Nullable;
 public class RockCrusherBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
 
-    private static final int INPUT_SLOT = 0;
-    private static final int OUTPUT_SLOT = 1;
+    public static final int INPUT_SLOT = 0;
+    public static final int OUTPUT_SLOT = 1;
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
@@ -144,9 +145,9 @@ public class RockCrusherBlockEntity extends BlockEntity implements MenuProvider 
     }
 
     private void craftItem() {
-        ItemStack result = new ItemStack(Blocks.GRAVEL, 1);
-        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
-        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(), itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
+        RockCrusherRecipe recipe = RockCrusherRecipe.getRecipeInContainer(itemHandler);
+        this.itemHandler.extractItem(INPUT_SLOT, recipe.inputItemStack.getCount(), false);
+        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(recipe.outputItemStack.getItem(), itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + recipe.outputItemStack.getCount()));
     }
 
     private void increaseCraftingProgress() {
@@ -154,10 +155,9 @@ public class RockCrusherBlockEntity extends BlockEntity implements MenuProvider 
     }
 
     private boolean hasRecipe() {
-        boolean isValidCraft = itemHandler.getStackInSlot(INPUT_SLOT).getItem() == Items.COBBLESTONE;
-        ItemStack result = new ItemStack(Blocks.GRAVEL);
-
-        return isValidCraft && canInsertAmountToOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
+        boolean isValidCraft = RockCrusherRecipe.hasValidRecipe(itemHandler);
+        RockCrusherRecipe recipe = RockCrusherRecipe.getRecipeInContainer(itemHandler);
+        return isValidCraft && canInsertAmountToOutputSlot(recipe.outputItemStack.getCount()) && canInsertItemIntoOutputSlot(recipe.outputItemStack.getItem());
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {

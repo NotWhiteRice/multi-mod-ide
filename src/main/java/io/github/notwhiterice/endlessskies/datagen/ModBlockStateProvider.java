@@ -2,7 +2,6 @@ package io.github.notwhiterice.endlessskies.datagen;
 
 import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
-import io.github.notwhiterice.endlessskies.datagen.tag.BlockStateProviderTag;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModLogger;
 import net.minecraft.data.PackOutput;

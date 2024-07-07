@@ -10,6 +10,7 @@ import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
 import io.github.notwhiterice.endlessskies.item.factory.ItemFactory;
 import io.github.notwhiterice.endlessskies.item.factory.data.ItemModelFactory;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import net.minecraft.world.item.CreativeModeTabs;
 
 public class DevInit {
     public static BlockContext blockTest;
@@ -22,10 +23,12 @@ public class DevInit {
                 .setParent(TestBlock.class)
                 .setStateFactory(BlockStateFactory.SIMPLE_BLOCK)
                 .setDrops(LootTableFactory.SILK_TOUCH)
+                .setCreativeTab(CreativeModeTabs.OP_BLOCKS)
                 .setName("Test Block [DEV]").close();
         itemTest = iFactory.item("test_item")
                 .setParent(TestItem.class)
                 .setModelFactory(ItemModelFactory.SIMPLE_ITEM)
+                .setCreativeTab(CreativeModeTabs.OP_BLOCKS)
                 .setName("Test Item [DEV]").close();
     }
 }

@@ -2,11 +2,8 @@ package io.github.notwhiterice.endlessskies.block.entity.factory;
 
 
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
-import io.github.notwhiterice.endlessskies.datagen.tag.ItemModelProviderTag;
-import io.github.notwhiterice.endlessskies.inventory.factory.MenuContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import io.github.notwhiterice.endlessskies.registry.object.base.InnerContextBase;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.RegistryObject;
@@ -20,17 +17,10 @@ public class TileEntityContext extends InnerContextBase<TileEntityContext> {
     //Private static variables
     private static final Map<String, Map<String, TileEntityContext>> instances = new HashMap<>();
 
-    //Public static variables
-    public static final TileEntityContext dummy = new TileEntityContext(ModContext.dummy, null, null, null);
-
-    //Private variables
-    private ItemModelProviderTag modelDataTag = ItemModelProviderTag.ITEM_WITHOUT_MODEL;
-
     //Public variables
     public RegistryObject<BlockEntityType<?>> rObject;
     public BlockEntityType.BlockEntitySupplier<?> factory;
     public BlockContext parentBlock;
-    public MenuContext<?> menuContext;
 
     //Constructor
     public TileEntityContext(ModContext context, String name, BlockEntityType.BlockEntitySupplier<?> factory, BlockContext parentBlock) {

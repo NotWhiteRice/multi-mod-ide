@@ -41,7 +41,7 @@ public class ModEvents {
 
         for(String locale : ModLanguageProvider.translations.keySet())
             for(String modID : ModLanguageProvider.translations.get(locale).keySet()) {
-                gen.addProvider(event.includeClient(), new ModLanguageProvider(pack, modID, locale));
+                if(!modID.equals("creativetab.")) gen.addProvider(event.includeClient(), new ModLanguageProvider(pack, modID, locale));
             }
 
         for(String modID : ModContext.getModList()) {

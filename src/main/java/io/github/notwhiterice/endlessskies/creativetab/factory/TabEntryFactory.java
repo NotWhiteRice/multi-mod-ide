@@ -2,7 +2,6 @@ package io.github.notwhiterice.endlessskies.creativetab.factory;
 
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
 import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContext;
-import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContextv2;
 import net.minecraft.world.level.ItemLike;
 
 public class TabEntryFactory<T> {
@@ -14,8 +13,7 @@ public class TabEntryFactory<T> {
     }
     public ItemLike getEntry() {
         if(entry instanceof ItemLike) return (ItemLike) entry;
-        if(entry instanceof ItemLikeContext) return ((ItemLikeContext<?>) entry).getItemLike();
-        if(entry instanceof ItemLikeContextv2<?,?>) return ((ItemLikeContextv2<?,?>) entry).get();
+        if(entry instanceof ItemLikeContext<?, ?>) return ((ItemLikeContext<?,?>) entry).getItemStack().getItem();
         throw new IllegalStateException("Attempted to get the entry from a faulty tab entry context");
     }
 }

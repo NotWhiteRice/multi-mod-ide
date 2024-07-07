@@ -1,9 +1,9 @@
 package io.github.notwhiterice.endlessskies.creativetab.factory;
 
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
+import io.github.notwhiterice.endlessskies.datagen.ModLanguageProvider;
 import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
 import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContext;
-import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContextv2;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import io.github.notwhiterice.endlessskies.registry.object.base.InnerContextBase;
 import net.minecraft.network.chat.Component;
@@ -81,12 +81,6 @@ public class CreativeModeTabContext extends InnerContextBase<CreativeModeTabCont
         entries.add(new TabEntryFactory<>(context));
         return this;
     }
-    public CreativeModeTabContext addEntry(ItemLikeContextv2 context) {
-        if(isLocked()) throw new IllegalStateException("Attempted to add an entry to a tab that has already been generated");
-        if(isModSpecificTab()) throw new IllegalStateException("Attempted to add an entry to a mod-specific tab");
-        entries.add(new TabEntryFactory<>(context));
-        return this;
-    }
 
     public CreativeModeTabContext setIcon(ItemLike itemLike) {
         if(isLocked()) throw new IllegalStateException("Attempted to set the icon for a tab that has already been generated");
@@ -101,17 +95,21 @@ public class CreativeModeTabContext extends InnerContextBase<CreativeModeTabCont
         return this;
     }
 
-    public CreativeModeTabContext setIcon(ItemLikeContextv2 context) {
-        if(isLocked()) throw new IllegalStateException("Attempted to set the icon for a tab that has already been generated");
-        if(icon != null) throw new IllegalStateException("Attempted to set the icon for a creative tab whose icon had already been set");
-        icon = new TabEntryFactory<>(context);
+    public CreativeModeTabContext setName(String name) { return applyTranslation(name, "en_us"); }
+    public CreativeModeTabContext applyTranslation(String name, String locale) {
+        ModLanguageProvider.translations.computeIfAbsent(locale, v -> new HashMap<>());
+        ModLanguageProvider.translations.get(locale)
+                .computeIfAbsent("creativetab.", v -> new HashMap<>());
+        ModLanguageProvider.translations.get(locale)
+                .get("creativetab.").computeIfAbsent(getID().replaceAll(":", "."), v -> name);
         return this;
     }
 
+
     public static <T extends ItemLike> void submitEntry(ResourceKey<CreativeModeTab> tab, T entry) { customVanillaEntries.get(tab).add(new TabEntryFactory<>(entry)); }
-    public static <T extends ItemLikeContext<?>> void submitEntry(ResourceKey<CreativeModeTab> tab, T entry) { customVanillaEntries.get(tab).add(new TabEntryFactory<>(entry)); }
+    public static <T extends ItemLikeContext<?, ?>> void submitEntry(ResourceKey<CreativeModeTab> tab, T entry) { customVanillaEntries.get(tab).add(new TabEntryFactory<>(entry)); }
     public static <T extends ItemLike> void submitEntry(CreativeModeTabContext tab, T entry) { tab.addEntry(entry); }
-    public static <T extends ItemLikeContext<?>> void submitEntry(CreativeModeTabContext tab, T entry) { tab.addEntry(entry); }
+    public static <T extends ItemLikeContext<?, ?>> void submitEntry(CreativeModeTabContext tab, T entry) { tab.addEntry(entry); }
 
     static {
         customVanillaEntries.put(CreativeModeTabs.BUILDING_BLOCKS, new ArrayList<>());

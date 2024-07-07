@@ -1,8 +1,12 @@
 package io.github.notwhiterice.endlessskies.item.factory;
 
+import io.github.notwhiterice.endlessskies.block.factory.BlockFactory;
+import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
 import io.github.notwhiterice.endlessskies.datagen.ModLanguageProvider;
 import io.github.notwhiterice.endlessskies.item.factory.data.ItemModelFactory;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
 import java.util.*;
@@ -44,6 +48,16 @@ public class ItemFactory {
     }
     public ItemFactory setStackSize(int size) {
         context.setStackSize(size, "ItemFactory.setStackSize");
+        return this;
+    }
+
+    public ItemFactory setCreativeTab(ResourceKey<CreativeModeTab> tab) {
+        context.setCreativeTab(tab);
+        return this;
+    }
+
+    public ItemFactory setCreativeTab(CreativeModeTabContext tab) {
+        context.setCreativeTab(tab);
         return this;
     }
 

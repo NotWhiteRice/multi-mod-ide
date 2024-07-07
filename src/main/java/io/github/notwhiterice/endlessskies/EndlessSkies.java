@@ -8,6 +8,7 @@ import io.github.notwhiterice.endlessskies.init.DevInit;
 import io.github.notwhiterice.endlessskies.init.ItemInit;
 import io.github.notwhiterice.endlessskies.inventory.factory.MenuContext;
 import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
+import io.github.notwhiterice.endlessskies.recipe.ModRecipes;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,7 +28,9 @@ public class EndlessSkies {
         BlockInit.registerBlocks(context);
         ItemInit.registerItems(context);
 
-        context.generateModSpecificTab().setIcon(Items.DIAMOND);
+        context.generateModSpecificTab()
+                .setIcon(Items.DIAMOND)
+                .setName("Endless Skies");
 
         DevInit.registerDevObjs(context);
 
@@ -39,6 +42,8 @@ public class EndlessSkies {
         }
 
         CreativeModeTabInit.registerTabs(context);
+
+        ModRecipes.registerRecipes();
 
         for(TileEntityContext tContext : TileEntityContext.getAllTileEnts())
             tContext.getRegistryObject();
