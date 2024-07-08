@@ -1,8 +1,7 @@
 # Multi-mod IDE
 
 ## Included mods
-- Endless Skies v0.1.1-alpha
-- Circuits v0.2.2-alpha
+- Endless Skies v1.6.0.0-alpha
 
 ## Versioning
 - <MAJOR>.<major>.<minor>.<patch>-<build>
