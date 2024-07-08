@@ -7,13 +7,11 @@ import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.network.IContainerFactory;
 
@@ -32,8 +30,8 @@ public class BlockFactory {
     public BlockFactory block(String name) {
         return new BlockFactory(new BlockContext(parentMod, name), parentMod);
     }
-    public BlockFactory setParent(Class<? extends Block> item) {
-        context.setClass(item, "BlockFactory.setParent");
+    public BlockFactory setParent(BlockConstructor<? extends Block> constructor) {
+        context.setParent(constructor, "BlockFactory.setParent");
         return this;
     }
     public BlockFactory forceSupplier(Supplier<? extends Block> supplier) {

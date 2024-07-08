@@ -1,6 +1,7 @@
 package io.github.notwhiterice.endlessskies.block.entity.factory;
 
 
+import io.github.notwhiterice.endlessskies.EndlessSkies;
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import io.github.notwhiterice.endlessskies.registry.object.base.InnerContextBase;
@@ -35,6 +36,7 @@ public class TileEntityContext extends InnerContextBase<TileEntityContext> {
     //Getter functions
     public BlockEntityType<? extends BlockEntity> getEntityType() { return rObject.get(); }
     public RegistryObject<BlockEntityType<?>> getRegistryObject() {
+        if(!EndlessSkies.canRegisterObject()) return null;
         if(rObject == null) rObject = ModContext.getContext(getModID()).TILE_ENTITIES.register(getName(),
                 () -> BlockEntityType.Builder.of(factory, parentBlock.get()).build(null));
         return rObject;

@@ -1,9 +1,13 @@
 package io.github.notwhiterice.endlessskies.block.entity;
 
+import com.mojang.logging.LogUtils;
 import io.github.notwhiterice.endlessskies.Reference;
+import io.github.notwhiterice.endlessskies.block.RockCrusherBlock;
+import io.github.notwhiterice.endlessskies.block.entity.factory.MenuBlockEntity;
 import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
 import io.github.notwhiterice.endlessskies.inventory.RockCrusherMenu;
 import io.github.notwhiterice.endlessskies.recipe.RockCrusherRecipe;
+import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -31,7 +35,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class RockCrusherBlockEntity extends BlockEntity implements MenuProvider {
+public class RockCrusherBlockEntity extends MenuBlockEntity<RockCrusherBlockEntity, RockCrusherBlock> {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
 
     public static final int INPUT_SLOT = 0;
@@ -39,12 +43,11 @@ public class RockCrusherBlockEntity extends BlockEntity implements MenuProvider 
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-    protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 160;
 
-    public RockCrusherBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(TileEntityContext.getContext(Reference.modID, "rock_crusher").getEntityType(), pPos, pBlockState);
+    public RockCrusherBlockEntity(BlockPos pos, BlockState state) {
+        super(pos, state);
         this.data = new ContainerData() {
             @Override
             public int get(int i) {
@@ -88,11 +91,6 @@ public class RockCrusherBlockEntity extends BlockEntity implements MenuProvider 
         lazyItemHandler.invalidate();
     }
 
-    @Override
-    public Component getDisplayName() {
-        return Component.translatable("block.endlessskies.rock_crusher");
-    }
-
     public void dropInventory() {
         SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
         for(int i = 0; i < itemHandler.getSlots(); i++) {
@@ -114,12 +112,6 @@ public class RockCrusherBlockEntity extends BlockEntity implements MenuProvider 
         super.loadAdditional(tag, lookupProvider);
         itemHandler.deserializeNBT(lookupProvider, tag.getCompound("inventory"));
         progress = tag.getInt("mineral_infuser.progress");
-    }
-
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return new RockCrusherMenu(i, inventory, this, this.data);
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
@@ -146,8 +138,8 @@ public class RockCrusherBlockEntity extends BlockEntity implements MenuProvider 
 
     private void craftItem() {
         RockCrusherRecipe recipe = RockCrusherRecipe.getRecipeInContainer(itemHandler);
-        this.itemHandler.extractItem(INPUT_SLOT, recipe.inputItemStack.getCount(), false);
-        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(recipe.outputItemStack.getItem(), itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + recipe.outputItemStack.getCount()));
+        itemHandler.extractItem(INPUT_SLOT, recipe.inputItemStack.getCount(), false);
+        itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(recipe.outputItemStack.getItem(), itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + recipe.outputItemStack.getCount()));
     }
 
     private void increaseCraftingProgress() {

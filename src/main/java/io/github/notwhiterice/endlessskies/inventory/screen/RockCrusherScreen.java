@@ -2,7 +2,9 @@ package io.github.notwhiterice.endlessskies.inventory.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.notwhiterice.endlessskies.Reference;
+import io.github.notwhiterice.endlessskies.block.entity.RockCrusherBlockEntity;
 import io.github.notwhiterice.endlessskies.inventory.RockCrusherMenu;
+import io.github.notwhiterice.endlessskies.inventory.factory.BasicScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -10,28 +12,24 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class RockCrusherScreen extends AbstractContainerScreen<RockCrusherMenu> {
-    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(Reference.modID, "textures/gui/rock_crusher.png");
-
-    public RockCrusherScreen(RockCrusherMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
-        super(pMenu, pPlayerInventory, pTitle);
+public class RockCrusherScreen extends BasicScreen<RockCrusherMenu, RockCrusherBlockEntity> {
+    public RockCrusherScreen(RockCrusherMenu menu, Inventory inv, Component title) {
+        super(menu, inv, title);
     }
 
-    @Override
-    protected void init() {
-        super.init();
-        this.inventoryLabelY = 1000000;
+    protected ResourceLocation getTexture() {
+        return ResourceLocation.fromNamespaceAndPath(Reference.modID, "textures/gui/rock_crusher.png");
     }
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, texture);
+        super.renderBg(guiGraphics, v, i, i1);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        guiGraphics.blit(texture, x, y, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(getTexture(), x, y, 0, 0, imageWidth, imageHeight);
+
+        System.out.println(menu.getProgress());
 
         renderProgressBar(guiGraphics, x, y);
     }
@@ -41,15 +39,8 @@ public class RockCrusherScreen extends AbstractContainerScreen<RockCrusherMenu> 
             int width = menu.getScaledProgress();
             int animationTick = menu.getProgress() % 3;
 
-            guiGraphics.blit(texture, x + 69, y + 35, 176, 0, width, 16);
-            guiGraphics.blit(texture, x + 69, y + 51, 176, 16+animationTick*4, width, 4);
+            guiGraphics.blit(getTexture(), x + 69, y + 35, 176, 0, width, 16);
+            guiGraphics.blit(getTexture(), x + 69, y + 51, 176, 16+animationTick*4, width, 4);
         }
-    }
-
-    @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        renderBackground(guiGraphics, mouseX, mouseY, delta);
-        super.render(guiGraphics, mouseX, mouseY, delta);
-        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 }

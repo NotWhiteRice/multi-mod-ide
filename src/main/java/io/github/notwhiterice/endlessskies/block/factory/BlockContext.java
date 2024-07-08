@@ -1,5 +1,6 @@
 package io.github.notwhiterice.endlessskies.block.factory;
 
+import io.github.notwhiterice.endlessskies.EndlessSkies;
 import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
 import io.github.notwhiterice.endlessskies.block.factory.data.BlockStateFactory;
 import io.github.notwhiterice.endlessskies.block.factory.data.LootTableFactory;
@@ -26,9 +27,7 @@ import java.util.function.Supplier;
 public class BlockContext extends ItemLikeContext<BlockContext, Block> {
     private static final Map<String, List<BlockContext>> instances = new HashMap<>();
 
-    public static final Block.Properties newBProp = BlockBehaviour.Properties.of();
-
-    private Class<? extends Block> bClass;
+    private BlockConstructor<? extends Block> constructor;
     private Block.Properties bProp;
     private float hardness = 0.0F;
     private float resistance = 0.0F;
@@ -49,7 +48,7 @@ public class BlockContext extends ItemLikeContext<BlockContext, Block> {
     protected void setResistance(float resistance, String src) { onEdit(src); this.resistance = resistance; }
     protected void setMapColor(MapColor color, String src) { onEdit(src); this.mapColor = color; }
     protected void requiresTool(String src) { onEdit(src); this.requiresTool = true; }
-    protected void setClass(Class<? extends Block> block, String src) { onEdit(src); bClass = block; }
+    protected void setParent(BlockConstructor<? extends Block> parent, String src) { onEdit(src); constructor = parent; }
     public boolean hasItem() { return makeItem; }
     public boolean hasContainer() { return container != null; }
     public boolean hasMenu() { return menu != null; }
@@ -75,25 +74,16 @@ public class BlockContext extends ItemLikeContext<BlockContext, Block> {
         return rObject.get();
     }
     public RegistryObject<Block> getRegistryObject() {
+        if(!EndlessSkies.canRegisterObject()) return null;
         if(rObject == null) {
             if(forcedSupplier != null) rObject = modContext.BLOCKS.register(name, forcedSupplier);
             else {
-                if(bProp == null) bProp = newBProp;
+                if(bProp == null) bProp = Block.Properties.of();
                 if(hardness != 0.0F || resistance != 0.0F) bProp = bProp.strength(hardness, resistance);
                 if(mapColor != MapColor.NONE) bProp = bProp.mapColor(mapColor);
                 if(requiresTool) bProp = bProp.requiresCorrectToolForDrops();
-                if(bClass != null) {
-                    rObject = modContext.BLOCKS.register(name, () -> {
-                        try {
-                            if (bProp == newBProp)
-                                return bClass.getDeclaredConstructor().newInstance();
-                            else
-                                return bClass.getDeclaredConstructor(Block.Properties.class)
-                                        .newInstance(bProp);
-                        } catch (Exception e) { throw new RuntimeException(e); }
-                    });
-                } else
-                    rObject = modContext.BLOCKS.register(name, () -> new Block(newBProp));
+                if(constructor != null) rObject = modContext.BLOCKS.register(name, () -> constructor.create(bProp));
+                else rObject = modContext.BLOCKS.register(name, () -> new Block(bProp));
             }
             if(makeItem) modContext.ITEMS.register(name, () -> new BlockItem(rObject.get(), new Item.Properties().stacksTo(stackSize)));
         }

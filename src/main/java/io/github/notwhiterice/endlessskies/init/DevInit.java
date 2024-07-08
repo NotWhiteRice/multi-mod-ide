@@ -20,7 +20,7 @@ public class DevInit {
         BlockFactory bFactory = BlockFactory.init(context);
         ItemFactory iFactory = ItemFactory.init(context);
         blockTest = bFactory.block("test_block")
-                .setParent(TestBlock.class)
+                .setParent(TestBlock::new)
                 .setStateFactory(BlockStateFactory.SIMPLE_BLOCK)
                 .setDrops(LootTableFactory.SILK_TOUCH)
                 .setCreativeTab(CreativeModeTabs.OP_BLOCKS)

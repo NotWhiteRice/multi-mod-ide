@@ -1,8 +1,12 @@
 package io.github.notwhiterice.endlessskies.block.entity;
 
 import io.github.notwhiterice.endlessskies.Reference;
+import io.github.notwhiterice.endlessskies.block.MineralInfuserBlock;
+import io.github.notwhiterice.endlessskies.block.entity.factory.MenuBlockEntity;
 import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
 import io.github.notwhiterice.endlessskies.inventory.MineralInfuserMenu;
+import io.github.notwhiterice.endlessskies.recipe.MineralInfuserRecipe;
+import io.github.notwhiterice.endlessskies.recipe.RockCrusherRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -30,21 +34,20 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class MineralInfuserBlockEntity extends BlockEntity implements MenuProvider {
+public class MineralInfuserBlockEntity extends MenuBlockEntity<MineralInfuserBlockEntity, MineralInfuserBlock> {
     private final ItemStackHandler itemHandler = new ItemStackHandler(3);
 
-    private static final int ROCK_SLOT = 0;
-    private static final int MINERAL_SLOT = 1;
-    private static final int OUTPUT_SLOT = 2;
+    public static final int ROCK_SLOT = 0;
+    public static final int MINERAL_SLOT = 1;
+    public static final int OUTPUT_SLOT = 2;
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-    protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 80;
 
-    public MineralInfuserBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(TileEntityContext.getContext(Reference.modID, "mineral_infuser").getEntityType(), pPos, pBlockState);
+    public MineralInfuserBlockEntity(BlockPos pos, BlockState state) {
+        super(pos, state);
         this.data = new ContainerData() {
             @Override
             public int get(int i) {
@@ -88,11 +91,6 @@ public class MineralInfuserBlockEntity extends BlockEntity implements MenuProvid
         lazyItemHandler.invalidate();
     }
 
-    @Override
-    public Component getDisplayName() {
-        return Component.translatable("block.endlessskies.mineral_infuser");
-    }
-
     public void dropInventory() {
         SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
         for(int i = 0; i < itemHandler.getSlots(); i++) {
@@ -114,12 +112,6 @@ public class MineralInfuserBlockEntity extends BlockEntity implements MenuProvid
         super.loadAdditional(tag, lookupProvider);
         itemHandler.deserializeNBT(lookupProvider, tag.getCompound("inventory"));
         progress = tag.getInt("mineral_infuser.progress");
-    }
-
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return new MineralInfuserMenu(i, inventory, this, this.data);
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
@@ -145,10 +137,12 @@ public class MineralInfuserBlockEntity extends BlockEntity implements MenuProvid
     }
 
     private void craftItem() {
-        ItemStack result = new ItemStack(Blocks.GILDED_BLACKSTONE, 1);
-        this.itemHandler.extractItem(ROCK_SLOT, 1, false);
-        this.itemHandler.extractItem(MINERAL_SLOT, 1, false);
-        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(), itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
+        MineralInfuserRecipe recipe = MineralInfuserRecipe.getRecipeInContainer(itemHandler);
+        itemHandler.extractItem(ROCK_SLOT, recipe.rockItemStack.getCount(), false);
+        boolean leaveBucket = itemHandler.getStackInSlot(MINERAL_SLOT).is(Items.WATER_BUCKET);
+        itemHandler.extractItem(MINERAL_SLOT, recipe.mineralItemStack.getCount(), false);
+        if(leaveBucket) itemHandler.setStackInSlot(MINERAL_SLOT, new ItemStack(Items.BUCKET, 1));
+        itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(recipe.outputItemStack.getItem(), itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + recipe.outputItemStack.getCount()));
     }
 
     private void increaseCraftingProgress() {
@@ -156,11 +150,9 @@ public class MineralInfuserBlockEntity extends BlockEntity implements MenuProvid
     }
 
     private boolean hasRecipe() {
-        boolean isValidCraft = itemHandler.getStackInSlot(ROCK_SLOT).getItem() == Items.BLACKSTONE
-                && itemHandler.getStackInSlot(MINERAL_SLOT).getItem() == Items.GOLD_INGOT;
-        ItemStack result = new ItemStack(Blocks.GILDED_BLACKSTONE);
-
-        return isValidCraft && canInsertAmountToOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
+        boolean isValidCraft = MineralInfuserRecipe.hasValidRecipe(itemHandler);
+        MineralInfuserRecipe recipe = MineralInfuserRecipe.getRecipeInContainer(itemHandler);
+        return isValidCraft && canInsertAmountToOutputSlot(recipe.outputItemStack.getCount()) && canInsertItemIntoOutputSlot(recipe.outputItemStack.getItem());
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {

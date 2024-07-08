@@ -1,5 +1,6 @@
 package io.github.notwhiterice.endlessskies.item.factory;
 
+import io.github.notwhiterice.endlessskies.EndlessSkies;
 import io.github.notwhiterice.endlessskies.item.factory.data.ItemModelFactory;
 import io.github.notwhiterice.endlessskies.registry.object.ItemLikeContext;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
@@ -33,6 +34,7 @@ public class ItemContext extends ItemLikeContext<ItemContext, Item> {
     }
 
     public RegistryObject<Item> getRegistryObject() {
+        if(!EndlessSkies.canRegisterObject()) return null;
         if(rObject == null) {
             if (forcedSupplier != null) rObject = modContext.ITEMS.register(name, forcedSupplier);
             else {

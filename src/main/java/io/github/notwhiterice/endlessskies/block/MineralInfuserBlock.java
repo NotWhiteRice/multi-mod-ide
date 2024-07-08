@@ -3,7 +3,10 @@ package io.github.notwhiterice.endlessskies.block;
 import com.mojang.serialization.MapCodec;
 import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
+import io.github.notwhiterice.endlessskies.block.entity.factory.MenuBlockEntity;
 import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
+import io.github.notwhiterice.endlessskies.block.factory.MenuEntityBlock;
+import io.github.notwhiterice.endlessskies.inventory.MineralInfuserMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -21,19 +24,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class MineralInfuserBlock extends BaseEntityBlock {
+public class MineralInfuserBlock extends MenuEntityBlock<MineralInfuserBlockEntity> {
 
-    public MineralInfuserBlock() { super(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)); }
-    protected MineralInfuserBlock(Properties prop) { this(); }
-
-    @Override
-    public RenderShape getRenderShape(BlockState state) { return RenderShape.MODEL; }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new MineralInfuserBlockEntity(pos, state);
-    }
+    public MineralInfuserBlock() { super(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)); defineContext(Reference.modID, "mineral_infuser");}
+    public MineralInfuserBlock(Properties prop) { this(); }
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean wasPistoned) {
@@ -44,31 +38,6 @@ public class MineralInfuserBlock extends BaseEntityBlock {
             }
         }
         super.onRemove(state, level, pos, newState, wasPistoned);
-    }
-
-
-    @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if(!level.isClientSide()) {
-            BlockEntity bEntity = level.getBlockEntity(pos);
-            if(bEntity instanceof MineralInfuserBlockEntity) {
-                ServerPlayer sPlayer = (ServerPlayer) player;
-                sPlayer.openMenu((MenuProvider) bEntity, buf -> buf.writeBlockPos(pos));
-            } else {
-                throw new IllegalStateException("Our Container provider is missing!");
-            }
-        }
-
-        return InteractionResult.SUCCESS;
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> bEntityType) {
-        if(level.isClientSide) return null;
-
-        return createTickerHelper(bEntityType, TileEntityContext.getContext(Reference.modID, "mineral_infuser").getEntityType(),
-                (pLevel, pos, pState, bEntity) -> ((MineralInfuserBlockEntity) bEntity).tick(pLevel, pos, pState));
     }
 
     @Override

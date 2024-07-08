@@ -69,8 +69,6 @@ public class ModContext extends ContextBase<ModContext> {
     public CreativeModeTabContext generateModSpecificTab() { return new CreativeModeTabContext(this, this.getName()); }
 
     public void finalizeRegisters(IEventBus bus) {
-        for(CreativeModeTabContext context : CreativeModeTabContext.getModTabs(getModID()))
-            context.getRegistryObject();
         BLOCKS.register(bus);
         ITEMS.register(bus);
         CREATIVE_MODE_TABS.register(bus);

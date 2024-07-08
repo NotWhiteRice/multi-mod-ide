@@ -1,14 +1,15 @@
-package io.github.notwhiterice.endlessskies.block.base;
+package io.github.notwhiterice.endlessskies.block.factory;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.BlockGetter;
+import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 
 public class BasicBlock extends Block {
+    public BlockContext context;
+
     public BasicBlock() { super(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)); }
     public BasicBlock(Properties prop) { super(prop); }
+
+    protected void defineContext(String modID, String name) { context = BlockContext.getContext(modID, name); }
 }

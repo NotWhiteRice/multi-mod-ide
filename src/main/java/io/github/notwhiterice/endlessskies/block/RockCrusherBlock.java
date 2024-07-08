@@ -2,8 +2,10 @@ package io.github.notwhiterice.endlessskies.block;
 
 import com.mojang.serialization.MapCodec;
 import io.github.notwhiterice.endlessskies.Reference;
+import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
 import io.github.notwhiterice.endlessskies.block.entity.RockCrusherBlockEntity;
 import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
+import io.github.notwhiterice.endlessskies.block.factory.MenuEntityBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -22,43 +24,21 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 
-public class RockCrusherBlock extends BaseEntityBlock {
+public class RockCrusherBlock extends MenuEntityBlock<RockCrusherBlockEntity> {
 
-    public RockCrusherBlock() { super(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)); }
+    public RockCrusherBlock() { super(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)); defineContext(Reference.modID, "rock_crusher"); }
 
     public RockCrusherBlock(Properties prop) { this(); }
 
     @Override
-    public RenderShape getRenderShape(BlockState state) { return RenderShape.MODEL; }
-
-    @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if(!level.isClientSide()) {
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean wasPistoned) {
+        if(state.getBlock() != newState.getBlock()) {
             BlockEntity bEntity = level.getBlockEntity(pos);
             if(bEntity instanceof RockCrusherBlockEntity) {
-                ServerPlayer sPlayer = (ServerPlayer) player;
-                sPlayer.openMenu((MenuProvider) bEntity, buf -> buf.writeBlockPos(pos));
-            } else {
-                throw new IllegalStateException("Our Container provider is missing!");
+                ((RockCrusherBlockEntity) bEntity).dropInventory();
             }
         }
-
-        return InteractionResult.SUCCESS;
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new RockCrusherBlockEntity(pos, state);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> bEntityType) {
-        if(level.isClientSide) return null;
-
-        return createTickerHelper(bEntityType, TileEntityContext.getContext(Reference.modID, "rock_crusher").getEntityType(),
-                (pLevel, pos, pState, bEntity) -> ((RockCrusherBlockEntity) bEntity).tick(pLevel, pos, pState));
+        super.onRemove(state, level, pos, newState, wasPistoned);
     }
 
     @Override

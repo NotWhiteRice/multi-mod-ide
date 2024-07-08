@@ -2,7 +2,8 @@ package io.github.notwhiterice.endlessskies.inventory.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.notwhiterice.endlessskies.Reference;
-import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
+import io.github.notwhiterice.endlessskies.block.entity.CreativeHeaterBlockEntity;
+import io.github.notwhiterice.endlessskies.inventory.CreativeHeaterMenu;
 import io.github.notwhiterice.endlessskies.inventory.MineralInfuserMenu;
 import io.github.notwhiterice.endlessskies.inventory.factory.BasicScreen;
 import net.minecraft.client.gui.GuiGraphics;
@@ -12,13 +13,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class MineralInfuserScreen extends BasicScreen<MineralInfuserMenu, MineralInfuserBlockEntity> {
-    public MineralInfuserScreen(MineralInfuserMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
-        super(pMenu, pPlayerInventory, pTitle);
+public class CreativeHeaterScreen extends BasicScreen<CreativeHeaterMenu, CreativeHeaterBlockEntity> {
+    public CreativeHeaterScreen(CreativeHeaterMenu menu, Inventory inv, Component title) {
+        super(menu, inv, title);
     }
 
     protected ResourceLocation getTexture() {
-        return ResourceLocation.fromNamespaceAndPath(Reference.modID, "textures/gui/mineral_infuser.png");
+        return ResourceLocation.fromNamespaceAndPath(Reference.modID, "textures/gui/creative_heater.png");
     }
 
     @Override
@@ -28,15 +29,5 @@ public class MineralInfuserScreen extends BasicScreen<MineralInfuserMenu, Minera
         int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(getTexture(), x, y, 0, 0, imageWidth, imageHeight);
-
-        renderProgressArrow(guiGraphics, x, y);
-    }
-
-    private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
-        if(menu.isCrafting()) {
-            int yOff = menu.getScaledProgress();
-
-            if(yOff != 0) guiGraphics.blit(getTexture(), x + 57, y + 14-yOff + 36, 176, 14-yOff, 14, yOff+1);
-        }
     }
 }

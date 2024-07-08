@@ -1,5 +1,6 @@
 package io.github.notwhiterice.endlessskies.inventory.factory;
 
+import io.github.notwhiterice.endlessskies.EndlessSkies;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import io.github.notwhiterice.endlessskies.registry.object.base.InnerContextBase;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -40,6 +41,7 @@ public class MenuContext<T extends AbstractContainerMenu> extends InnerContextBa
     //Getter functions
     public MenuType<T> getMenuType() { return rObject.get(); }
     public RegistryObject<MenuType<T>> getRegistryObject() {
+        if(!EndlessSkies.canRegisterObject()) return null;
         if(rObject == null) rObject = ModContext.getContext(getModID()).MENUS.register(getName(), () -> IForgeMenuType.create(factory));
         return rObject;
     }

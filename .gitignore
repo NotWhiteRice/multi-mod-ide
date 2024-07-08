@@ -9,6 +9,7 @@ run
 run-data
 src/generated
 src/main/java/com
+src/main/java/io/github/notwhiterice/endlessskies/Reference.java
 src/main/resources/Default Resource Pack
 
 # Hidden files

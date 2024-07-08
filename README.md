@@ -13,10 +13,20 @@
   - build: For alpha and beta versions of the mod
 
 ## TODO
+- [ ] Fix a bug preventing updates to the HeatStackHandler from being acknowledged by the menu
 - [ ] Implement more base classes for quality of life
 - [ ] Implement "proxies" to edit a context in a context outside of a factory
   - e.g. a BlockProxy class that functions as a Block class but has a constructor that accepts the factory to its block context
 ## Mod Changelog
+- Endless Skies v1.6.0.0-alpha
+  - Implemented a check that prevents the registry object for a context from being created before a certain point during mod initialization
+  - Implemented a framework to more easily hardcode mineral infuser recipes
+  - Added a crying obsidian recipe
+  - Implemented the crude smelter and partially implemented the creative heater
+  - Implemented a heat capability and a HeatStackHandler
+  - Added base classes for blocks with block entities and menus
+  - Added base classes for block entities, menus, and screens
+  - Transitioned existing blocks, block entities, menus, and screens to the new base classes
 - Endless Skies v1.5.0.0-alpha
   - Added mixingradle as a dependency
   - Implemented functions to set the block hardness and resistance to a block context
