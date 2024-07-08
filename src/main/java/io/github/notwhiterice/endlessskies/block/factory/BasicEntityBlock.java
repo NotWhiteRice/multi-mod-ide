@@ -1,9 +1,7 @@
 package io.github.notwhiterice.endlessskies.block.factory;
 
 import com.mojang.serialization.MapCodec;
-import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.block.entity.factory.BasicBlockEntity;
-import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.level.Level;

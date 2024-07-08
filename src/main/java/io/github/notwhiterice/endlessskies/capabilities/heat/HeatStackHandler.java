@@ -30,6 +30,7 @@
             HeatStackHandler temp = copy();
             int value = Math.min(heat, caps[slot]);
             (simulate ? temp : this).storage[slot] = value;
+            if(!simulate) onContentsChanged(slot);
             return (simulate ? temp : this);
         }
 
@@ -48,6 +49,7 @@
             HeatStackHandler temp = copy();
             int value = Math.min(storage[slot] + heat, caps[slot]);
             (simulate ? temp : this).storage[slot] = value;
+            if(!simulate) onContentsChanged(slot);
             return (simulate ? temp : this);
         }
 
@@ -61,6 +63,9 @@
             HeatStackHandler temp = copy();
             int value = Math.max(storage[slot] - heat, 0);
             (simulate ? temp : this).storage[slot] = value;
+            if(!simulate) onContentsChanged(slot);
             return (simulate ? temp : this);
         }
+
+        public void onContentsChanged(int slot) {}
     }

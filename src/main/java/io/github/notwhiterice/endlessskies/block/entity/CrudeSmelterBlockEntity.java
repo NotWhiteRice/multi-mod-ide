@@ -1,32 +1,22 @@
 package io.github.notwhiterice.endlessskies.block.entity;
 
-import io.github.notwhiterice.endlessskies.block.CreativeHeaterBlock;
 import io.github.notwhiterice.endlessskies.block.CrudeSmelterBlock;
 import io.github.notwhiterice.endlessskies.block.entity.factory.MenuBlockEntity;
 import io.github.notwhiterice.endlessskies.capabilities.ESCapabilities;
 import io.github.notwhiterice.endlessskies.capabilities.heat.HeatStackHandler;
 import io.github.notwhiterice.endlessskies.capabilities.heat.IHeatHandler;
 import io.github.notwhiterice.endlessskies.init.BlockInit;
-import io.github.notwhiterice.endlessskies.inventory.CrudeSmelterMenu;
-import io.github.notwhiterice.endlessskies.recipe.MineralInfuserRecipe;
-import io.netty.buffer.Unpooled;
-import net.minecraft.core.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AbstractFurnaceBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -55,7 +45,13 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
     
     public CrudeSmelterBlockEntity(BlockPos pos, BlockState state) {
         super(pos, state);
-        heatHandler = new HeatStackHandler(1, 1200);
+        heatHandler = new HeatStackHandler(1, 1200) {
+            @Override
+            public void onContentsChanged(int slot) {
+                super.onContentsChanged(slot);
+                setChanged();
+            }
+        };
         this.data = new ContainerData() {
             @Override
             public int get(int i) {
@@ -162,7 +158,7 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
             level.setBlock(pos, state, 3);
         }
 
-        if (updateEntity) setChanged(level, pos, state);
+        if (updateEntity) setChanged();
     }
 
     private boolean isLit() { return heatHandler.getHeatInReservoir(0) >= 900; }
@@ -212,11 +208,9 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
     }
 
     public boolean isSuperheated() {
-        for(Direction dir : Direction.values()) {
-            BlockPos sidedPos = worldPosition.relative(Direction.DOWN);
-            BlockState sidedState = level.getBlockState(sidedPos);
-            if (sidedState.is(BlockInit.blockCreativeHeater.get())) return true;
-        }
+        BlockPos sidedPos = worldPosition.relative(Direction.DOWN);
+        BlockState sidedState = level.getBlockState(sidedPos);
+        if (sidedState.is(BlockInit.blockCreativeHeater.get())) return true;
         return false;
     }
 

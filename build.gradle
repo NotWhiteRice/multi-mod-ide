@@ -118,6 +118,8 @@ repositories {
         url = "https://maven.blamejared.com/"
     }
 
+    maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
+
     flatDir {
         dirs 'libs'
     }
@@ -137,6 +139,8 @@ dependencies {
     compileOnly "mezz.jei:jei-${mcVersion}-common-api:${jeiVersion}"
     compileOnly "mezz.jei:jei-${mcVersion}-forge-api:${jeiVersion}"
     runtimeOnly "mezz.jei:jei-${mcVersion}-forge:${jeiVersion}"
+    
+    runtimeOnly "me.djtheredstoner:DevAuth-forge-latest:1.2.1"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

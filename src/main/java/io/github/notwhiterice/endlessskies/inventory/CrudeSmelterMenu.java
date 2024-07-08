@@ -1,6 +1,8 @@
 package io.github.notwhiterice.endlessskies.inventory;
 
+import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.block.entity.CrudeSmelterBlockEntity;
+import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
 import io.github.notwhiterice.endlessskies.capabilities.ESCapabilities;
 import io.github.notwhiterice.endlessskies.inventory.factory.BasicMenu;
 import net.minecraft.network.FriendlyByteBuf;
@@ -46,6 +48,8 @@ public class CrudeSmelterMenu extends BasicMenu<CrudeSmelterBlockEntity> {
     protected int getInvLeft() { return 8; }
     protected int getInvTop() { return 84; }
     protected int getHotbarTop() { return 142; }
+
+    public void updateContainer() { container = (CrudeSmelterBlockEntity) level.getBlockEntity(container.getBlockPos(), TileEntityContext.getContext(Reference.modID, "crude_smelter").getEntityType()).get(); }
 
     public int getScaledProgress() {
         int progress = data.get(0);

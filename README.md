@@ -12,11 +12,14 @@
   - build: For alpha and beta versions of the mod
 
 ## TODO
-- [ ] Fix a bug preventing updates to the HeatStackHandler from being acknowledged by the menu
 - [ ] Implement more base classes for quality of life
 - [ ] Implement "proxies" to edit a context in a context outside of a factory
   - e.g. a BlockProxy class that functions as a Block class but has a constructor that accepts the factory to its block context
 ## Mod Changelog
+- Endless Skies v1.6.1.0-alpha
+  - Fixed a bug preventing the menus from noticing changes to the HeatStackHandler
+  - Added onContentsChanged() to HeatStackHandler
+  - Added DevAuth as a dependency
 - Endless Skies v1.6.0.0-alpha
   - Implemented a check that prevents the registry object for a context from being created before a certain point during mod initialization
   - Implemented a framework to more easily hardcode mineral infuser recipes
