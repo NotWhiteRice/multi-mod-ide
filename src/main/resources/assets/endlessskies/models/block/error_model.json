@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "endlessskies:item/unimplemented_texture"
+    "all": "endlessskies:item/error_texture"
   }
 }

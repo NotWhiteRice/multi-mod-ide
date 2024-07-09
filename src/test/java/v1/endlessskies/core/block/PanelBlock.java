@@ -19,7 +19,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.EnumSet;
 
-public class PanelBlock extends io.github.deprecated.v1.endlessskies.core.block.BasicBlock {
+public class PanelBlock extends Block {
     //Static variables
     public static final DirectionProperty FACE = DirectionProperty.create("face", Direction.values());
 

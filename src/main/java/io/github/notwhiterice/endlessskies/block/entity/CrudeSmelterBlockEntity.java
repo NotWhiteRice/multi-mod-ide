@@ -5,7 +5,6 @@ import io.github.notwhiterice.endlessskies.block.entity.factory.MenuBlockEntity;
 import io.github.notwhiterice.endlessskies.capabilities.ESCapabilities;
 import io.github.notwhiterice.endlessskies.capabilities.heat.HeatStackHandler;
 import io.github.notwhiterice.endlessskies.capabilities.heat.IHeatHandler;
-import io.github.notwhiterice.endlessskies.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -77,10 +76,10 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
     }
 
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
+    public @NotNull <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
         if(cap == ForgeCapabilities.ITEM_HANDLER) return lazyItemHandler.cast();
         if(cap == ESCapabilities.HEAT_HANDLER) return lazyHeatHandler.cast();
-        return super.getCapability(cap);
+        return super.getCapability(cap, side);
     }
 
     @Override
@@ -98,11 +97,12 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag, HolderLookup.Provider lookupProvider) {
+    public void saveAdditional(CompoundTag tag, HolderLookup Provider lookupProvider) {
         tag.put("inventory", itemHandler.serializeNBT(lookupProvider));
         tag.putInt("crude_smelter.progress", progress);
         tag.putInt("crude_smelter.cook_time", maxProgress);
-        tag.putInt("crude_smelter.temperature", heatHandler.getHeatInReservoir(0));
+        tag.putInt("crude_smelter.temperature", heatHandler.getHeatInSlot(0));
+        tag.putBoolean("crude_smelter.superheated", heatHandler.isSlotCreativeHeated(0));
         super.saveAdditional(tag, lookupProvider);
     }
 
@@ -112,7 +112,8 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
         itemHandler.deserializeNBT(lookupProvider, tag.getCompound("inventory"));
         progress = tag.getInt("crude_smelter.progress");
         maxProgress = tag.getInt("crude_smelter.cook_time");
-        heatHandler.setHeatInReservoir(0, tag.getInt("crude_smelter.temperature"), false);
+        heatHandler.setHeatInSlot(0, tag.getInt("crude_smelter.temperature"), false);
+        heatHandler.setSlotCreativeHeated(0, tag.getBoolean("crude_smelter.superheated"), false);
     }
 
     public void dropInventory() {
@@ -120,18 +121,21 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
         for(int i = 0; i < itemHandler.getSlots(); i++) {
             inv.setItem(i, itemHandler.getStackInSlot(i));
         }
-        Containers.dropContents(this.level, this.worldPosition, inv);
+        assert level != null;
+        Containers.dropContents(level, this.worldPosition, inv);
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
         boolean isLit = isLit();
-        boolean updateEntity = false;
 
-        heatHandler.drain(0, 1, false);
+        heatHandler.setInputForSlot(0, true, false);
+        heatHandler.setOutputForSlot(0, false, false);
+
+        heatHandler.tick(false);
 
         ItemStack inputStack = itemHandler.getStackInSlot(INPUT_SLOT);
         boolean hasInput = !inputStack.isEmpty();
-        RecipeHolder recipeholder;
+        RecipeHolder<? extends AbstractCookingRecipe> recipeholder;
         if (hasInput) recipeholder = quickCheck.getRecipeFor(new SingleRecipeInput(inputStack), level).orElse(null);
         else recipeholder = null;
 
@@ -139,7 +143,6 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
         if (isLit() && canBurn(level.registryAccess(), recipeholder)) {
             increaseCraftingProgress();
             heatHandler.drain(0, 1, false);
-            updateEntity = true;
             if (hasProgressFinished()) {
                 resetProgress();
                 maxProgress = getTotalCookTime(level);
@@ -147,21 +150,15 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
             }
         } else resetProgress();
 
-        if(isSuperheated() && (heatHandler.getHeatInReservoir(0) != heatHandler.getReservoirCapacity(0))) {
-            heatHandler.setHeatInReservoir(0, heatHandler.getReservoirCapacity(0), false);
-            updateEntity = true;
-        }
-
         if (isLit != isLit()) {
-            updateEntity = true;
             state = state.setValue(CrudeSmelterBlock.LIT, isLit());
             level.setBlock(pos, state, 3);
         }
 
-        if (updateEntity) setChanged();
+        setChanged();
     }
 
-    private boolean isLit() { return heatHandler.getHeatInReservoir(0) >= 900; }
+    private boolean isLit() { return heatHandler.getHeatInSlot(0) >= 900; }
 
     private boolean canBurn(RegistryAccess pRegistryAccess, @Nullable RecipeHolder<? extends AbstractCookingRecipe> pRecipe) {
         if (!itemHandler.getStackInSlot(INPUT_SLOT).isEmpty() && pRecipe != null) {
@@ -208,14 +205,12 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
     }
 
     public boolean isSuperheated() {
-        BlockPos sidedPos = worldPosition.relative(Direction.DOWN);
-        BlockState sidedState = level.getBlockState(sidedPos);
-        if (sidedState.is(BlockInit.blockCreativeHeater.get())) return true;
-        return false;
+        return heatHandler.isSlotCreativeHeated(0);
     }
 
     private void increaseCraftingProgress() {
-        int step = (isSuperheated() || heatHandler.getHeatInReservoir(0) >= 1100) ? 2 : 1;
+        int step = heatHandler.getCreativeBonusForSlot(0);
+        if(!heatHandler.isSlotCreativeHeated(0) || step == 1) step = heatHandler.getHeatInSlot(0) >= 1100 ? 2 : 1;
         progress += step;
     }
 }

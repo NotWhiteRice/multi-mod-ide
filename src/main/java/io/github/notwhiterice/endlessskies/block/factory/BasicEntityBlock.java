@@ -2,8 +2,12 @@ package io.github.notwhiterice.endlessskies.block.factory;
 
 import com.mojang.serialization.MapCodec;
 import io.github.notwhiterice.endlessskies.block.entity.factory.BasicBlockEntity;
+import io.github.notwhiterice.endlessskies.capabilities.ESCapabilities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -23,6 +27,25 @@ public abstract class BasicEntityBlock<T extends BasicBlockEntity> extends Basic
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return context.container.factory.create(pos, state);
+    }
+
+    @Override
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighbor, BlockPos neighborPos, boolean movedByPiston) {
+        super.neighborChanged(state, level, pos, neighbor, neighborPos, movedByPiston);
+        BlockEntity bEntity = level.getBlockEntity(pos);
+
+        bEntity.getCapability(ESCapabilities.HEAT_HANDLER).ifPresent(heatHandler0 -> {
+            heatHandler0.clearHeatSourceForSlot(0, false);
+            for(Direction side : Direction.values()) {
+                BlockPos sidedPos = pos.relative(side);
+                BlockEntity sidedTile = level.getBlockEntity(sidedPos);
+                if (sidedTile != null) {
+                    sidedTile.getCapability(ESCapabilities.HEAT_HANDLER, side.getOpposite()).ifPresent(heatHandler1 -> {
+                        heatHandler0.acceptSourceInSlot(0, heatHandler1.getStackInSlot(0), false);
+                    });
+                }
+            }
+        });
     }
 
     @Nullable

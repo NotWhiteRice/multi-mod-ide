@@ -1,7 +1,6 @@
 package io.github.deprecated.v2.circuitsmod.datagen;
 
 
-import io.github.deprecated.v2.endlessskies.EndlessSkies;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;

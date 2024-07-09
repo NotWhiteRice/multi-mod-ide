@@ -36,6 +36,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     if(context.hasItem()) simpleBlockWithItem(context.get(), new ModelFile.UncheckedModelFile(ResourceLocation.fromNamespaceAndPath(Reference.modID, "block/unimplemented_model")));
                     else simpleBlock(context.get(), new ModelFile.UncheckedModelFile(ResourceLocation.fromNamespaceAndPath(Reference.modID, "block/unimplemented_model")));
                 }
+                case BLOCK_WITH_ERROR_MODEL -> {
+                    if(context.hasItem()) simpleBlockWithItem(context.get(), new ModelFile.UncheckedModelFile(ResourceLocation.fromNamespaceAndPath(Reference.modID, "block/error_model")));
+                    else simpleBlock(context.get(), new ModelFile.UncheckedModelFile(ResourceLocation.fromNamespaceAndPath(Reference.modID, "block/error_model")));
+                }
             }
         }
     }

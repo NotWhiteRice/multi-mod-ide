@@ -1,6 +1,5 @@
 package io.github.deprecated.v2.circuitsmod.datagen;
 
-import io.github.deprecated.v2.circuitsmod.Circuits;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;

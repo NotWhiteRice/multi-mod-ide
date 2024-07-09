@@ -1,19 +1,34 @@
 package io.github.notwhiterice.endlessskies.capabilities.heat;
 
-import org.jetbrains.annotations.NotNull;
-
 public interface IHeatHandler {
-    int getReservoirs();
+    int getSlots();
+    HeatStack getStackInSlot(int slot);
 
-    int getHeatInReservoir(int slot);
+    int getHeatInSlot(int slot);
 
-    IHeatHandler setHeatInReservoir(int slot, int heat, boolean simulate);
+    int getSlotCapacity(int slot);
+    int getSourceForSlot(int slot);
+    int getExchangeRateForSlot(int slot);
+    int getLossRateForSlot(int slot);
+    int getAmbientHeatForSlot(int slot);
+    int getCreativeBonusForSlot(int slot);
+    boolean canSlotInput(int slot);
+    boolean canSlotOutput(int slot);
+    boolean isSlotCreativeHeated(int slot);
 
-    int getReservoirCapacity(int slot);
+    HeatStack setCreativeBonusForSlot(int slot, int bonus, boolean simulate);
 
-    boolean canFill(int slot, int heat);
-    IHeatHandler fill(int slot, int heat, boolean simulate);
+    HeatStack setInputForSlot(int slot, boolean canInput, boolean simulate);
+    HeatStack setOutputForSlot(int slot, boolean canOutput, boolean simulate);
+    HeatStack setSlotCreativeHeated(int slot, boolean heated, boolean simulate);
+
+    HeatStack clearHeatSourceForSlot(int slot, boolean simulate);
+
+
+    HeatStack acceptSourceInSlot(int slot, HeatStack source, boolean simulate);
 
     boolean canDrain(int slot, int heat);
-    IHeatHandler drain(int slot, int heat, boolean simulate);
+    HeatStack drain(int slot, int heat, boolean simulate);
+
+    IHeatHandler tick(boolean simulate);
 }

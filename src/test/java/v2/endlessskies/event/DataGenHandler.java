@@ -1,7 +1,5 @@
 package io.github.deprecated.v2.endlessskies.event;
 
-import io.github.deprecated.v2.endlessskies.EndlessSkies;
-import io.github.notwhiterice.endlessskies.datagen.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -12,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.concurrent.CompletableFuture;
 
-@Mod.EventBusSubscriber(modid = EndlessSkies.modID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = io.github.deprecated.v1.endlessskies.EndlessSkies.modID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenHandler {
     @SubscribeEvent
     public static void onGatherData(GatherDataEvent event) {
@@ -27,9 +25,9 @@ public class DataGenHandler {
         //gen.addProvider(event.includeClient(), new ModBlockStateProvider(pack, fileHelper));
         //gen.addProvider(event.includeClient(), new ModItemModelProvider(pack, fileHelper));
 
-        ModBlockTagsProvider blockTagGenerator = gen.addProvider(event.includeServer(),
-                new ModBlockTagsProvider(pack, lookupProvider, fileHelper));
-        gen.addProvider(event.includeServer(), new ModItemTagsProvider(pack, lookupProvider, blockTagGenerator.contentsGetter(), fileHelper));
+        io.github.deprecated.v2.endlessskies.datagen.ModBlockTagsProvider blockTagGenerator = gen.addProvider(event.includeServer(),
+                new io.github.deprecated.v2.endlessskies.datagen.ModBlockTagsProvider(pack, lookupProvider, fileHelper));
+        gen.addProvider(event.includeServer(), new io.github.deprecated.v2.endlessskies.datagen.ModItemTagsProvider(pack, lookupProvider, blockTagGenerator.contentsGetter(), fileHelper));
 
     }
 }

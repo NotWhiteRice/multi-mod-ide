@@ -1,10 +1,7 @@
 package io.github.notwhiterice.endlessskies.init;
 
 import io.github.notwhiterice.endlessskies.block.*;
-import io.github.notwhiterice.endlessskies.block.entity.CreativeHeaterBlockEntity;
-import io.github.notwhiterice.endlessskies.block.entity.CrudeSmelterBlockEntity;
-import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
-import io.github.notwhiterice.endlessskies.block.entity.RockCrusherBlockEntity;
+import io.github.notwhiterice.endlessskies.block.entity.*;
 import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
 import io.github.notwhiterice.endlessskies.block.factory.BlockFactory;
 import io.github.notwhiterice.endlessskies.block.factory.data.BlockStateFactory;
@@ -18,8 +15,6 @@ import io.github.notwhiterice.endlessskies.inventory.screen.MineralInfuserScreen
 import io.github.notwhiterice.endlessskies.inventory.screen.RockCrusherScreen;
 import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
 public class BlockInit {
@@ -39,6 +34,7 @@ public class BlockInit {
     //Temporary blocks
     public static BlockContext blockMineralInfuser;
     public static BlockContext blockRockCrusher;
+    public static BlockContext blockPanel;
 
     public static void registerBlocks(ModContext context) {
         BlockFactory factory = BlockFactory.init(context);
@@ -59,6 +55,13 @@ public class BlockInit {
                 .setCreativeTab(CreativeModeTabs.FUNCTIONAL_BLOCKS)
                 .setStateFactory(BlockStateFactory.SKIP_DATAGEN)
                 .setName("Crude Smelter").close();
+        blockPanel = factory.block("panel")
+                .toggleItem()
+                .setParent(PanelBlock::new)
+                .setContainer(PanelBlockEntity::new)
+                .setMapColor(MapColor.COLOR_RED)
+                .setStateFactory(BlockStateFactory.BLOCK_WITH_ERROR_MODEL)
+                .close();
         blockMineralInfuser = factory.block("mineral_infuser")
                 .setParent(MineralInfuserBlock::new)
                 .setContainer(MineralInfuserBlockEntity::new)

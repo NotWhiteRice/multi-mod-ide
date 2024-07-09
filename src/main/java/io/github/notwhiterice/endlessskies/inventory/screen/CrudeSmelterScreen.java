@@ -2,9 +2,7 @@ package io.github.notwhiterice.endlessskies.inventory.screen;
 
 import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.block.entity.CrudeSmelterBlockEntity;
-import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
 import io.github.notwhiterice.endlessskies.inventory.CrudeSmelterMenu;
-import io.github.notwhiterice.endlessskies.inventory.MineralInfuserMenu;
 import io.github.notwhiterice.endlessskies.inventory.factory.BasicScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -40,15 +38,12 @@ public class CrudeSmelterScreen extends BasicScreen<CrudeSmelterMenu, CrudeSmelt
         }
     }
     private void renderHeatIndicators(GuiGraphics guiGraphics, int x, int y) {
-        if(menu.isSuperheated()) {
-            guiGraphics.blit(getTexture(), x + 57, y + 47, 190, 16, 14, 14);
-            guiGraphics.blit(getTexture(), x + 8, y + 17, 192, 30, 16, 58);
-        } else {
-            int yOff0 = menu.getScaledExcess();
-            int height = menu.getScaledHeat();
+        int yOff = menu.getScaledExcess();
+        int xOff = menu.isSuperheated() ? 16 : 0;
+        int height = menu.getScaledHeat();
+        boolean isLit = menu.isLit();
 
-            if(yOff0 != 0) guiGraphics.blit(getTexture(), x + 57, y + 13-yOff0 + 47, 176, 16 + 13-yOff0, 14, yOff0+1);
-            guiGraphics.blit(getTexture(), x + 8, y + 58-height + 17, 176, 30 + 58-height, 16, height);
-        }
+        if(isLit) guiGraphics.blit(getTexture(), x + 57, y + 13-yOff + 47,  177 + xOff, 13-yOff+16, 14, yOff+1);
+        guiGraphics.blit(getTexture(), x + 8, y + 58-height + 17, xOff+176, 30 + 58-height, 16, height);
     }
 }

@@ -1,8 +1,6 @@
 package io.github.notwhiterice.endlessskies.inventory;
 
-import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.block.entity.CrudeSmelterBlockEntity;
-import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
 import io.github.notwhiterice.endlessskies.capabilities.ESCapabilities;
 import io.github.notwhiterice.endlessskies.inventory.factory.BasicMenu;
 import net.minecraft.network.FriendlyByteBuf;
@@ -36,7 +34,7 @@ public class CrudeSmelterMenu extends BasicMenu<CrudeSmelterBlockEntity> {
     public boolean isLit() {
         AtomicInteger heat = new AtomicInteger();
         container.getCapability(ESCapabilities.HEAT_HANDLER).ifPresent(heatHandler -> {
-            heat.set(heatHandler.getHeatInReservoir(0));
+            heat.set(heatHandler.getHeatInSlot(0));
         });
         return heat.get() >= 900;
     }
@@ -49,8 +47,6 @@ public class CrudeSmelterMenu extends BasicMenu<CrudeSmelterBlockEntity> {
     protected int getInvTop() { return 84; }
     protected int getHotbarTop() { return 142; }
 
-    public void updateContainer() { container = (CrudeSmelterBlockEntity) level.getBlockEntity(container.getBlockPos(), TileEntityContext.getContext(Reference.modID, "crude_smelter").getEntityType()).get(); }
-
     public int getScaledProgress() {
         int progress = data.get(0);
         int maxProgress = data.get(1);
@@ -59,15 +55,15 @@ public class CrudeSmelterMenu extends BasicMenu<CrudeSmelterBlockEntity> {
         return (maxProgress != 0 && progress != 0) ? progress * progressIndicSize / maxProgress : 0;
     }
     public int getScaledHeat() {
-        int heat = container.heatHandler.getHeatInReservoir(0);
-        int cap = container.heatHandler.getReservoirCapacity(0);
+        int heat = container.heatHandler.getHeatInSlot(0);
+        int cap = container.heatHandler.getSlotCapacity(0);
         int heatIndicSize = 58;
 
-        return (heat != 0 && cap != 0) ? (int)Math.round((double)(heat) * (double)(heatIndicSize) / (double)(cap)) : 0;
+        return (heat != 0 && cap != 0) ? ((heat < 0 ? -1 : 1) * (int)Math.round((double)(heat) * (double)(heatIndicSize) / (double)(cap))) : 0;
     }
     public int getScaledExcess() {
-        int heat = container.heatHandler.getHeatInReservoir(0) - 900;
-        int cap = container.heatHandler.getReservoirCapacity(0) - 900;
+        int heat = container.heatHandler.getHeatInSlot(0) - 900;
+        int cap = container.heatHandler.getSlotCapacity(0) - 900;
         int heatIndicSize = 13;
 
         return (heat != 0 && cap != 0) ? (int)Math.round((double)(heat) * (double)(heatIndicSize) / (double)(cap)) : 0;

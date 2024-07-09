@@ -33,7 +33,7 @@ public class CreativeModeTabContext extends InnerContextBase<CreativeModeTabCont
         registerInstance(instances);
         if(isModSpecificTab()) {
             for(BlockContext bContext : BlockContext.getModBlocks(context.getModID()))
-                entries.add(new TabEntryFactory<>(bContext));
+                if(bContext.hasItem()) entries.add(new TabEntryFactory<>(bContext));
             for(ItemContext iContext : ItemContext.getModItems(context.getModID()))
                 entries.add(new TabEntryFactory<>(iContext));
         }

@@ -16,6 +16,13 @@
 - [ ] Implement "proxies" to edit a context in a context outside of a factory
   - e.g. a BlockProxy class that functions as a Block class but has a constructor that accepts the factory to its block context
 ## Mod Changelog
+- Endless Skies v1.7.0.0-alpha
+  - Reworked heat entirely to make it more realistic
+  - Transitioned everything to using the new heat system
+  - Made heat sources get recalculated when a blocks neighbors change
+  - Centered the flames above their respective bar in the crude smelter gui texture
+  - Added a image to copy the heat indicators for future blocks, including a bar for negative heat which will be supported by a future ColdStack class even if I never make a machine that needs be cooled instead of heated
+  - Attempted to add a panel block with a custom renderer
 - Endless Skies v1.6.1.0-alpha
   - Fixed a bug preventing the menus from noticing changes to the HeatStackHandler
   - Added onContentsChanged() to HeatStackHandler

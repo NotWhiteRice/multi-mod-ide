@@ -1,6 +1,5 @@
 package io.github.deprecated.v2.endlessskies.datagen;
 
-import io.github.deprecated.v2.endlessskies.EndlessSkies;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
