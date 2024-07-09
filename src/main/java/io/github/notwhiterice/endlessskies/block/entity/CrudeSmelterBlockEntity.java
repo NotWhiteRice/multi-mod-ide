@@ -97,7 +97,7 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag, HolderLookup Provider lookupProvider) {
+    public void saveAdditional(CompoundTag tag, HolderLookup.Provider lookupProvider) {
         tag.put("inventory", itemHandler.serializeNBT(lookupProvider));
         tag.putInt("crude_smelter.progress", progress);
         tag.putInt("crude_smelter.cook_time", maxProgress);
