@@ -1,4 +1,4 @@
-package io.github.deprecated.v2.circuitsmod.datagen;
+package v2.circuitsmod.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -12,7 +12,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 
     public ModBlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, Circuits.modID, existingFileHelper);
+        super(output, lookupProvider, "circuitsmod", existingFileHelper);
     }
 
     @Override

@@ -13,6 +13,7 @@ public class PanelBlockEntity extends BasicBlockEntity<PanelBlockEntity, PanelBl
     public PanelBlockEntity(BlockPos pos, BlockState state) {super(pos, state);}
 
     public Direction face = Direction.DOWN;
+    public Direction facing = Direction.NORTH;
 
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider lookupProvider) {

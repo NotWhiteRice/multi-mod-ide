@@ -1,4 +1,4 @@
-package io.github.deprecated.v2.circuitsmod.datagen;
+package v2.circuitsmod.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 public class ModItemTagGenerator extends ItemTagsProvider {
     public ModItemTagGenerator(PackOutput p_275343_, CompletableFuture<HolderLookup.Provider> p_275729_,
                                CompletableFuture<TagLookup<Block>> p_275322_, @Nullable ExistingFileHelper existingFileHelper) {
-        super(p_275343_, p_275729_, p_275322_, Circuits.modID, existingFileHelper);
+        super(p_275343_, p_275729_, p_275322_, "circuitsmod", existingFileHelper);
     }
 
     @Override

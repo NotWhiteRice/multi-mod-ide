@@ -1,4 +1,4 @@
-package io.github.deprecated.v2.circuitsmod.datagen;
+package v2.circuitsmod.datagen;
 
 
 import net.minecraft.core.HolderLookup;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.concurrent.CompletableFuture;
 
-@Mod.EventBusSubscriber(modid = EndlessSkies.modID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = "endlessskies", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
 
     @SubscribeEvent
@@ -21,15 +21,15 @@ public class DataGenerators {
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        //generator.addProvider(event.includeServer(), new ModRecipeProvider(pack, lookupProvider));
+        generator.addProvider(event.includeServer(), new io.github.deprecated.v2.circuitsmod.datagen.ModRecipeProvider(pack, lookupProvider));
         //generator.addProvider(event.includeServer(), ModLootTableProvider.create(pack, lookupProvider));
 
-        generator.addProvider(event.includeClient(), new ModBlockStateProvider(pack, fileHelper));
-        generator.addProvider(event.includeClient(), new ModItemModelProvider(pack, fileHelper));
+        //generator.addProvider(event.includeClient(), new ModBlockStateProvider(pack, fileHelper));
+        //generator.addProvider(event.includeClient(), new ModItemModelProvider(pack, fileHelper));
 
-        ModBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
-                new ModBlockTagGenerator(pack, lookupProvider, fileHelper));
-        generator.addProvider(event.includeServer(), new ModItemTagGenerator(pack, lookupProvider, blockTagGenerator.contentsGetter(), fileHelper));
+        io.github.deprecated.v2.circuitsmod.datagen.ModBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
+                new io.github.deprecated.v2.circuitsmod.datagen.ModBlockTagGenerator(pack, lookupProvider, fileHelper));
+        generator.addProvider(event.includeServer(), new io.github.deprecated.v2.circuitsmod.datagen.ModItemTagGenerator(pack, lookupProvider, blockTagGenerator.contentsGetter(), fileHelper));
 
     }
 
