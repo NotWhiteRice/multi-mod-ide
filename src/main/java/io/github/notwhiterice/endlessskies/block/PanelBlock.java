@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 
@@ -35,7 +36,7 @@ public class PanelBlock extends BasicEntityBlock {
                 case EAST -> Block.box(16.0-pixelHeight, 0.0, 0.0, 16.0, 16.0, 16.0);
             };
         }
-        return box(1,1,1,15,15,15);
+        return Shapes.block();
     }
 
     @Override

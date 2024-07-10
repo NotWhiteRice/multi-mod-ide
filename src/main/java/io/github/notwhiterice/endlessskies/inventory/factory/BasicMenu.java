@@ -19,7 +19,7 @@ public abstract class BasicMenu extends AbstractContainerMenu {
     protected ContainerData data;
 
     public BasicMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(((BasicBlock)entity.getBlockState().getBlock()).context.menu.get(), id);
+        super(((BasicBlock)entity.getBlockState().getBlock()).context.container.menu.get(), id);
         context = ((BasicBlock)entity.getBlockState().getBlock()).context;
 
         level = entity.getLevel();

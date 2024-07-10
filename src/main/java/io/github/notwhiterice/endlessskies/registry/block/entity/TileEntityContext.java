@@ -2,9 +2,10 @@ package io.github.notwhiterice.endlessskies.registry.block.entity;
 
 
 import io.github.notwhiterice.endlessskies.EndlessSkies;
-import io.github.notwhiterice.endlessskies.registry.ModObject;
 import io.github.notwhiterice.endlessskies.registry.ModContext;
+import io.github.notwhiterice.endlessskies.registry.ModObject;
 import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
+import io.github.notwhiterice.endlessskies.registry.inventory.MenuContext;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -17,6 +18,7 @@ public class TileEntityContext<T extends BlockEntity> extends ModObject<BlockEnt
     public static final List<TileEntityContext<?>> instances = new ArrayList<>();
 
     public BlockEntityType.BlockEntitySupplier<T> factory;
+    public MenuContext<?> menu;
     public BlockEntityRendererProvider<T> renderer;
     public BlockContext parentBlock;
 

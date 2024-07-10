@@ -1,16 +1,16 @@
 package io.github.notwhiterice.endlessskies;
 
-import io.github.notwhiterice.endlessskies.registry.block.entity.TileEntityContext;
-import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
 import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
-import io.github.notwhiterice.endlessskies.init.BlockInit;
-import io.github.notwhiterice.endlessskies.init.CreativeModeTabInit;
-import io.github.notwhiterice.endlessskies.init.DevInit;
-import io.github.notwhiterice.endlessskies.init.ItemInit;
-import io.github.notwhiterice.endlessskies.registry.inventory.MenuContext;
-import io.github.notwhiterice.endlessskies.registry.item.ItemContext;
 import io.github.notwhiterice.endlessskies.recipe.ModRecipes;
 import io.github.notwhiterice.endlessskies.registry.ModContext;
+import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
+import io.github.notwhiterice.endlessskies.registry.block.entity.TileEntityContext;
+import io.github.notwhiterice.endlessskies.registry.init.BlockInit;
+import io.github.notwhiterice.endlessskies.registry.init.CreativeModeTabInit;
+import io.github.notwhiterice.endlessskies.registry.init.DevInit;
+import io.github.notwhiterice.endlessskies.registry.init.ItemInit;
+import io.github.notwhiterice.endlessskies.registry.inventory.MenuContext;
+import io.github.notwhiterice.endlessskies.registry.item.ItemContext;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -52,7 +52,7 @@ public class EndlessSkies {
 
         ModRecipes.registerRecipes();
 
-        context.finalizeRegisters(bus);
+        context.finalize(bus);
     }
 
     public static boolean canRegisterObject() { return !lockRegisters; }

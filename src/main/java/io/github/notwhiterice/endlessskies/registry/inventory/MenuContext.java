@@ -23,8 +23,8 @@ public class MenuContext<T extends AbstractContainerMenu> extends ModObject<Menu
     public MenuContext(ModContext context, String name, IContainerFactory<T> factory, MenuScreens.ScreenConstructor<T, ? extends AbstractContainerScreen<T>> screen) {
         super(context, name);
         if(context == null || name == null || factory == null || screen == null) return;
-        if(registerInstance(instances)) context.logger.info("MenuContext", "<init>", "Registering menu '" + getID(":") + "'");
-        else context.logger.info("MenuContext", "<init>", "Registered duplicate menu for '" + getModID() + ":" + name + "' as '" + getID(":") + "'");
+        if(registerInstance(instances)) context.logger.info("MenuContext", "<init>", "Registering menu '"+getID(":")+"'");
+        else context.logger.info("MenuContext", "<init>", "Registered duplicate menu for '"+getModID()+":"+name+"' as '"+getID(":")+"'");
         this.factory = factory;
         this.screen = screen;
     }

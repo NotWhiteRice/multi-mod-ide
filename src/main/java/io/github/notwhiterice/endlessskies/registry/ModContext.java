@@ -20,7 +20,6 @@ public class ModContext {
     public static final List<ModContext> instances = new ArrayList<>();
     public String modID;
 
-
     public DeferredRegister<Block> BLOCKS;
     public DeferredRegister<Item> ITEMS;
     public DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS;
@@ -35,8 +34,8 @@ public class ModContext {
 
         this.modID = modID;
 
-        if(registerInstance()) logger.info("ModContext", "<init>(modID)", "Registering mod context for modID: '" + modID + "'");
-        else new IllegalStateException("ModContext does not support duplicate ids, found duplicate id '" + modID + "'--this won't change in the foreseeable future");
+        if(registerInstance()) logger.info("ModContext", "<init>", "Registering mod '"+modID+"'");
+        else logger.warn("ModContext", "<init>", "Registering duplicate mod for '"+modID+"' as '"+this.modID+"'");
 
         BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, modID);
         ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, modID);
@@ -65,7 +64,7 @@ public class ModContext {
     public CreativeModeTabContext registerCreativeTab(String name) { return new CreativeModeTabContext(this, name); }
     public CreativeModeTabContext generateModSpecificTab() { return new CreativeModeTabContext(this, this.modID); }
 
-    public void finalizeRegisters(IEventBus bus) {
+    public void finalize(IEventBus bus) {
         BLOCKS.register(bus);
         ITEMS.register(bus);
         CREATIVE_MODE_TABS.register(bus);

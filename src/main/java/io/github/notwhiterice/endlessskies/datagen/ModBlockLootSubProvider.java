@@ -16,7 +16,7 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         for(BlockContext context : BlockContext.instances) {
-            switch(context.getDropFactory()) {
+            switch(context.dropFactory) {
                 case DROP_SELF:
                     this.dropSelf(context.get());
                     break;

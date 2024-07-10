@@ -8,7 +8,7 @@ public class TabEntryFactory<T> {
     private final T entry;
     public TabEntryFactory(T entry) {
         this.entry=entry;
-        if(entry instanceof BlockContext) if(!((BlockContext) entry).hasItem())
+        if(entry instanceof BlockContext) if(!((BlockContext) entry).hasItem)
             throw new IllegalStateException("Attempted to make a tab entry for a block without an item");
     }
     public ItemLike getEntry() {

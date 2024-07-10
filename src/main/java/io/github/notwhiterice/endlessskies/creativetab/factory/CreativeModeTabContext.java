@@ -1,11 +1,11 @@
 package io.github.notwhiterice.endlessskies.creativetab.factory;
 
-import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
 import io.github.notwhiterice.endlessskies.datagen.ModLanguageProvider;
-import io.github.notwhiterice.endlessskies.registry.item.ItemContext;
-import io.github.notwhiterice.endlessskies.registry.ModObject;
-import io.github.notwhiterice.endlessskies.registry.item.ItemLikeContext;
 import io.github.notwhiterice.endlessskies.registry.ModContext;
+import io.github.notwhiterice.endlessskies.registry.ModObject;
+import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
+import io.github.notwhiterice.endlessskies.registry.item.ItemContext;
+import io.github.notwhiterice.endlessskies.registry.item.ItemLikeContext;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
@@ -15,7 +15,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CreativeModeTabContext extends ModObject<CreativeModeTab> {
     public static final List<CreativeModeTabContext> instances = new ArrayList<>();
@@ -31,7 +34,7 @@ public class CreativeModeTabContext extends ModObject<CreativeModeTab> {
         registerInstance(instances);
         if(isModSpecificTab()) {
             for(BlockContext bContext : BlockContext.getModBlocks(context.modID))
-                if(bContext.hasItem()) entries.add(new TabEntryFactory<>(bContext));
+                if(bContext.hasItem) entries.add(new TabEntryFactory<>(bContext));
             for(ItemContext iContext : ItemContext.getModItems(context.modID))
                 entries.add(new TabEntryFactory<>(iContext));
         }
@@ -70,7 +73,6 @@ public class CreativeModeTabContext extends ModObject<CreativeModeTab> {
         entries.add(new TabEntryFactory<>(context));
         return this;
     }
-
     public CreativeModeTabContext setIcon(ItemLike itemLike) {
         if(isRegistered()) throw new IllegalStateException("Attempted to set the icon for a tab that has already been generated");
         if(icon != null) throw new IllegalStateException("Attempted to set the icon for a creative tab whose icon had already been set");

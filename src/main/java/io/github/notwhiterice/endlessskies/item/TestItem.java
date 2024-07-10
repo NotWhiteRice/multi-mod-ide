@@ -1,18 +1,18 @@
 package io.github.notwhiterice.endlessskies.item;
 
 import io.github.notwhiterice.endlessskies.block.entity.PanelBlockEntity;
-import io.github.notwhiterice.endlessskies.init.BlockInit;
 import io.github.notwhiterice.endlessskies.item.factory.BasicItem;
+import io.github.notwhiterice.endlessskies.registry.init.BlockInit;
 import io.github.notwhiterice.endlessskies.util.DirHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class TestItem extends BasicItem {
-    public TestItem() { super(new Item.Properties()); }
+    public TestItem(Properties prop) { super(prop); }
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
@@ -33,7 +33,7 @@ public class TestItem extends BasicItem {
         if(faceX > faceY && faceX>=1-faceY) facing=Direction.EAST;
         if(faceX >= faceY && faceX<1-faceY) facing=Direction.SOUTH;
         if(faceX < faceY && faceX<=1-faceY) facing=Direction.WEST;
-        if(faceX <= 0.75 && faceX >= 0.25 && faceY <= 0.75 && faceY >= 0.25) facing = Direction.NORTH;
+        if(faceX <= 0.75 && faceX >= 0.25 && faceY <= 0.75 && faceY >= 0.25) facing = null;
 
         if(context.getLevel().setBlock(pos, BlockInit.blockPanel.get().defaultBlockState(), 2)) {
             BlockEntity entity = context.getLevel().getBlockEntity(pos);
@@ -46,5 +46,10 @@ public class TestItem extends BasicItem {
         }
 
         return super.useOn(context);
+    }
+
+    @Override
+    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
+        return super.getCraftingRemainingItem(itemStack);
     }
 }

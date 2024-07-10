@@ -1,4 +1,4 @@
-package io.github.notwhiterice.endlessskies.init;
+package io.github.notwhiterice.endlessskies.registry.init;
 
 import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
 import io.github.notwhiterice.endlessskies.registry.ModContext;

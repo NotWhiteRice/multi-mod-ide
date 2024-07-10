@@ -16,6 +16,21 @@
 - [ ] Implement "proxies" to edit a context in a context outside of a factory
   - e.g. a BlockProxy class that functions as a Block class but has a constructor that accepts the factory to its block context
 ## Mod Changelog
+- Endless Skies v1.9.0.0-alpha
+  - Making a duplicate ModContext no longer throws an exception
+  - Renamed finalizeRegisters to finalize
+  - Added functions to support almost every vanilla block and item property
+  - Reworked ItemFactory.setParent to use a constructor instead of a class
+  - Added a hammer and mortar and pestle item
+  - Added an iron, copper, gold, and netherite plate along with a stone tablet
+  - Added recipes for all of the new items
+  - Temporarily removed limestone and polished limestone blocks
+  - Moved the MenuContext to being a member of a TileEntityContext and not a BlockContext
+  - Implemented a direction-less panel, albeit for proof of concept and not a long-term addition
+  - Attempted to implement a CraftingItem base class
+  - Implemented the loot table and recipe provider
+  - Made almost all of the member variables public and removed the getter/setter functions
+  - Renamed PanelEntityRenderer to PanelBlockRenderer
 - Endless Skies v1.8.0.0-alpha
   - Reworked the ModLogger class to use System.out
   - Removed generics from a majority of classes

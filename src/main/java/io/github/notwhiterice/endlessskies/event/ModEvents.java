@@ -3,9 +3,7 @@ package io.github.notwhiterice.endlessskies.event;
 import io.github.notwhiterice.endlessskies.Reference;
 import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
 import io.github.notwhiterice.endlessskies.creativetab.factory.TabEntryFactory;
-import io.github.notwhiterice.endlessskies.datagen.ModBlockStateProvider;
-import io.github.notwhiterice.endlessskies.datagen.ModItemModelProvider;
-import io.github.notwhiterice.endlessskies.datagen.ModLanguageProvider;
+import io.github.notwhiterice.endlessskies.datagen.*;
 import io.github.notwhiterice.endlessskies.registry.ModContext;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -43,6 +41,9 @@ public class ModEvents {
             for(String modID : ModLanguageProvider.translations.get(locale).keySet()) {
                 if(!modID.equals("creativetab.")) gen.addProvider(event.includeClient(), new ModLanguageProvider(pack, modID, locale));
             }
+
+        gen.addProvider(event.includeServer(), new ModRecipeProvider(pack, lookupProvider));
+        gen.addProvider(event.includeServer(), ModLootTableProvider.create(pack, lookupProvider));
 
         for(String modID : ModContext.getModList()) {
             ModContext.getContext(modID).logger.debug("DataGenEvents", "onGatherData", "Beginning mod-specific data generation for '" + modID + "'");

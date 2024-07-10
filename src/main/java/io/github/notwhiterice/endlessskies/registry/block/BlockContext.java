@@ -1,108 +1,138 @@
 package io.github.notwhiterice.endlessskies.registry.block;
 
+
 import io.github.notwhiterice.endlessskies.EndlessSkies;
+import io.github.notwhiterice.endlessskies.registry.ModContext;
 import io.github.notwhiterice.endlessskies.registry.block.data.BlockStateFactory;
 import io.github.notwhiterice.endlessskies.registry.block.data.LootTableFactory;
-import io.github.notwhiterice.endlessskies.datagen.ModLanguageProvider;
 import io.github.notwhiterice.endlessskies.registry.block.entity.TileEntityContext;
-import io.github.notwhiterice.endlessskies.registry.inventory.MenuContext;
 import io.github.notwhiterice.endlessskies.registry.item.ItemLikeContext;
-import io.github.notwhiterice.endlessskies.registry.ModContext;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraftforge.network.IContainerFactory;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 public class BlockContext extends ItemLikeContext<Block> {
     public static final List<BlockContext> instances = new ArrayList<>();
 
-    private BlockConstructor<? extends Block> constructor;
-    private Block.Properties bProp;
-    private float hardness = 0.0F;
-    private float resistance = 0.0F;
-    private boolean requiresTool = false;
-    private MapColor mapColor = MapColor.NONE;
-    private boolean makeItem = true;
-    private BlockStateFactory stateFactory = BlockStateFactory.BLOCK_WITHOUT_MODEL;
-    private LootTableFactory dropFactory = LootTableFactory.DROP_SELF;
-    private Supplier<? extends Block> forcedSupplier;
+    public final Block.Properties defaultBlockProp = Block.Properties.of();
 
-    public TileEntityContext container;
-    public MenuContext<?> menu;
+    public BlockConstructor<?> blockConstructor = null;
+    public Block.Properties customBlockProperties = null;
+    public Item.Properties customItemProperties = null;
+    public BlockStateFactory stateFactory = BlockStateFactory.BLOCK_WITHOUT_MODEL;
+    public LootTableFactory dropFactory = LootTableFactory.DROP_SELF;
+    public Supplier<? extends Block> forcedSupplier = null;
 
-    BlockContext(ModContext context, String name) {
-        super(context, name, "BlockContext");
+    public TileEntityContext<?> container = null;
+    public boolean hasItem = true;
 
-        registerInstance(instances);
+    public Function<BlockState, MapColor> mapColor = null;
+    public boolean hasCollision = true;
+    public SoundType sound = null;
+    public ToIntFunction<BlockState> lightEmission = null;
+    public float resistance = 0.0F;
+    public float hardness = 0.0F;
+    public boolean requiresTool = false;
+    public boolean hasRandomTicks = false;
+    public float friction = 0.6F;
+    public float speedFactor = 1.0F;
+    public float jumpFactor = 1.0F;
+    public boolean canOcclude = true;
+    public boolean isAir = false;
+    public boolean isIgnitedByLava = false;
+    public boolean isLiquid = false;
+    public boolean forceSolidOff = false;
+    public boolean forceSolidOn = false;
+    public PushReaction pushReaction = null;
+    public boolean spawnTerrainParticles = true;
+    public NoteBlockInstrument instrument = null;
+    public boolean replaceable = false;
+    public BlockBehaviour.StateArgumentPredicate<EntityType<?>> isValidSpawn = null;
+    public BlockBehaviour.StatePredicate isRedstoneConductor = null;
+    public BlockBehaviour.StatePredicate isSuffocating = null;
+    public BlockBehaviour.StatePredicate isViewBlocking = null;
+    public BlockBehaviour.StatePredicate hasPostProcess = null;
+    public BlockBehaviour.StatePredicate emissiveRendering = null;
+    public boolean dynamicShape = false;
+    public BlockBehaviour.OffsetType offsetType = null;
+
+    public BlockContext(ModContext parent, String name) {
+        super(parent, name);
+
+        if(registerInstance(instances)) parent.logger.info("BlockContext", "<init>", "Registering block '"+getID(":")+"'");
+        else parent.logger.warn("BlockContext", "<init>", "Registered duplicate block for '"+getModID()+":"+name+"' as '"+getID(":")+"'");
     }
 
-    protected void setStackSize(int size, String src) { super.setStackSize(size, src); }
-    protected void setHardness(float hardness, String src) { onEdit(src); this.hardness = hardness; }
-    protected void setResistance(float resistance, String src) { onEdit(src); this.resistance = resistance; }
-    protected void setMapColor(MapColor color, String src) { onEdit(src); this.mapColor = color; }
-    protected void requiresTool(String src) { onEdit(src); this.requiresTool = true; }
-    protected void setParent(BlockConstructor<? extends Block> parent, String src) { onEdit(src); constructor = parent; }
-    public boolean hasItem() { return makeItem; }
-    public boolean hasContainer() { return container != null; }
-    public boolean hasMenu() { return menu != null; }
-    protected void toggleItem(String src) { onEdit(src); makeItem = !makeItem; }
-    protected void setContainer(BlockEntityType.BlockEntitySupplier<? extends BlockEntity> factory, String src) {
-        onEdit(src);
-        if(hasContainer()) throw new IllegalStateException("Attempted to add a second container to a block");
-        container = new TileEntityContext(ModContext.getContext(getModID()), name, factory, this);
+    private Block.Properties buildBlockProperties(Block.Properties builder) {
+        if(mapColor != null) builder.mapColor(mapColor);
+        if(!hasCollision) builder.noCollission();
+        if(sound != null) builder.sound(sound);
+        if(lightEmission != null) builder.lightLevel(lightEmission);
+        if(resistance != 0.0F) builder.explosionResistance(resistance);
+        if(hardness != 0.0F) builder.destroyTime(hardness);
+        if(requiresTool) builder.requiresCorrectToolForDrops();
+        if(hasRandomTicks) builder.randomTicks();
+        if(friction != 0.6F) builder.friction(friction);
+        if(speedFactor != 1.0F) builder.speedFactor(speedFactor);
+        if(jumpFactor != 1.0F) builder.jumpFactor(jumpFactor);
+        if(!canOcclude) builder.noOcclusion();
+        if(isAir) builder.air();
+        if(isIgnitedByLava) builder.ignitedByLava();
+        if(isLiquid) builder.liquid();
+        if(forceSolidOff) builder.forceSolidOff();
+        if(forceSolidOn) builder.forceSolidOn();
+        if(pushReaction != null) builder.pushReaction(pushReaction);
+        if(!spawnTerrainParticles) builder.noTerrainParticles();
+        if(instrument != null) builder.instrument(instrument);
+        if(replaceable) builder.replaceable();
+        if(isValidSpawn != null) builder.isValidSpawn(isValidSpawn);
+        if(isRedstoneConductor != null) builder.isRedstoneConductor(isRedstoneConductor);
+        if(isSuffocating != null) builder.isSuffocating(isSuffocating);
+        if(isViewBlocking != null) builder.isViewBlocking(isViewBlocking);
+        if(hasPostProcess != null) builder.hasPostProcess(hasPostProcess);
+        if(emissiveRendering != null) builder.emissiveRendering(emissiveRendering);
+        if(dynamicShape) builder.dynamicShape();
+        if(offsetType != null) builder.offsetType(offsetType);
+        if(requiredFeatures != null) builder.requiredFeatures(requiredFeatures);
+        return builder;
     }
-    protected <T extends BlockEntity> void setContainer(BlockEntityType.BlockEntitySupplier<T> factory, BlockEntityRendererProvider<T> renderer, String src) {
-        onEdit(src);
-        if(hasContainer()) throw new IllegalStateException("Attempted to add a second container to a block");
-        container = new TileEntityContext(ModContext.getContext(getModID()), name, factory, renderer, this);
-    }
-    protected <T extends AbstractContainerMenu> void setMenu(IContainerFactory<T> factory, MenuScreens.ScreenConstructor<T, ? extends AbstractContainerScreen<T>> screen, String src) {
-        onEdit(src);
-        if(hasMenu()) throw new IllegalStateException("Attempted to add a second menu to a block");
-        menu = new MenuContext<>(ModContext.getContext(getModID()), name, factory, screen);
-    }
-    protected void forceSupplier(Supplier<? extends Block> supplier, String src) { onEdit(src); forcedSupplier = supplier; }
-    public BlockStateFactory getStateFactory() { return stateFactory; }
-    public LootTableFactory getDropFactory() { return dropFactory; }
-    protected void setStateFactory(BlockStateFactory factory, String src) { onEdit(src); stateFactory = factory; }
-    protected void setDropFactory(LootTableFactory factory, String src) { onEdit(src); dropFactory = factory; }
 
     public RegistryObject<Block> getRegistry() {
         if(!EndlessSkies.canRegisterObject()) return null;
         if(registry == null) {
-            if(forcedSupplier != null) registry = ModContext.getContext(getModID()).BLOCKS.register(name, forcedSupplier);
+            if(forcedSupplier != null) registry = parentMod.BLOCKS.register(name, forcedSupplier);
             else {
-                if(bProp == null) bProp = Block.Properties.of();
-                if(hardness != 0.0F || resistance != 0.0F) bProp = bProp.strength(hardness, resistance);
-                if(mapColor != MapColor.NONE) bProp = bProp.mapColor(mapColor);
-                if(requiresTool) bProp = bProp.requiresCorrectToolForDrops();
-                if(constructor != null) registry = parentMod.BLOCKS.register(name, () -> constructor.create(bProp));
-                else registry = ModContext.getContext(getModID()).BLOCKS.register(name, () -> new Block(bProp));
+                if(customBlockProperties == null) customBlockProperties = defaultBlockProp;
+                customBlockProperties = buildBlockProperties(customBlockProperties);
+                if(blockConstructor != null) registry = parentMod.BLOCKS.register(name, () -> blockConstructor.create(customBlockProperties));
+                else registry = parentMod.BLOCKS.register(name, () -> new Block(customBlockProperties));
             }
-            if(makeItem) ModContext.getContext(getModID()).ITEMS.register(name, () -> new BlockItem(registry.get(), new Item.Properties().stacksTo(stackSize)));
+            if(hasItem) {
+                if(customItemProperties == null) customItemProperties = defaultItemProp;
+                customItemProperties = buildItemProperties(customItemProperties);
+                parentMod.ITEMS.register(name, () -> new BlockItem(registry.get(), customItemProperties));
+            }
         }
         return registry;
     }
 
-    public void setName(String name) { applyTranslation(name, "en_us"); }
-    public void applyTranslation(String name, String locale) {
-        ModLanguageProvider.translations.computeIfAbsent(locale, v -> new HashMap<>());
-        ModLanguageProvider.translations.get(locale)
-                .computeIfAbsent(getModID(), v -> new HashMap<>());
-        ModLanguageProvider.translations.get(locale)
-                .get(getModID()).computeIfAbsent(name, v -> name);
-    }
+    public boolean hasContainer() { return container != null; }
+    public boolean hasMenu() { if(!hasContainer()) return false; return container.menu != null; }
+
 
     public static boolean doesContextExist(String modID, String name) { return doesInstanceExist(modID, name, instances); }
     public static BlockContext getContext(String modID, String name) { return getInstance(modID, name, instances); }

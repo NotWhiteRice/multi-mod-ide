@@ -12,11 +12,13 @@ public class PanelBlockEntity extends BasicBlockEntity {
     public PanelBlockEntity(BlockPos pos, BlockState state) {super(pos, state);}
 
     public Direction face = Direction.DOWN;
-    public Direction facing = Direction.NORTH;
+    public Direction facing = null;
 
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider lookupProvider) {
         tag.putString("panel.face", face.toString());
+        if(facing == null) tag.putString("panel.facing", "null");
+        else tag.putString("panel.facing", facing.toString());
         super.saveAdditional(tag, lookupProvider);
     }
 
@@ -24,6 +26,9 @@ public class PanelBlockEntity extends BasicBlockEntity {
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider lookupProvider) {
         super.loadAdditional(tag, lookupProvider);
         face = Direction.byName(tag.getString("panel.face"));
+        String facing = tag.getString("panel.facing");
+        if(facing.equals("null")) this.facing = null;
+        else this.facing = Direction.byName(facing);
     }
 
     @Override

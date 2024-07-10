@@ -26,7 +26,7 @@ public abstract class MenuBlockEntity extends BasicBlockEntity implements MenuPr
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        Class<? extends AbstractContainerMenu> mClass = context.menu.factory.create(i, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(worldPosition)).getClass();
+        Class<? extends AbstractContainerMenu> mClass = context.container.menu.factory.create(i, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(worldPosition)).getClass();
         try {
             return mClass.getDeclaredConstructor(int.class, Inventory.class, BlockEntity.class, ContainerData.class)
                     .newInstance(i, inventory, this, this.data);
