@@ -1,6 +1,6 @@
 package io.github.notwhiterice.endlessskies.datagen;
 
-import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
+import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -15,7 +15,7 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        for(BlockContext context : BlockContext.getAllBlocks()) {
+        for(BlockContext context : BlockContext.instances) {
             switch(context.getDropFactory()) {
                 case DROP_SELF:
                     this.dropSelf(context.get());
@@ -29,6 +29,6 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return BlockContext.getAllBlocks().stream().map(BlockContext::get).toList();
+        return BlockContext.instances.stream().map(BlockContext::get).toList();
     }
 }

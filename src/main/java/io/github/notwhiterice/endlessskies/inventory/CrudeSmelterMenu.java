@@ -2,6 +2,7 @@ package io.github.notwhiterice.endlessskies.inventory;
 
 import io.github.notwhiterice.endlessskies.block.entity.CrudeSmelterBlockEntity;
 import io.github.notwhiterice.endlessskies.capabilities.ESCapabilities;
+import io.github.notwhiterice.endlessskies.capabilities.item.OutputSlot;
 import io.github.notwhiterice.endlessskies.inventory.factory.BasicMenu;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,7 +14,9 @@ import net.minecraftforge.items.SlotItemHandler;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CrudeSmelterMenu extends BasicMenu<CrudeSmelterBlockEntity> {
+public class CrudeSmelterMenu extends BasicMenu {
+    CrudeSmelterBlockEntity container;
+
     public CrudeSmelterMenu(int id, Inventory inv, FriendlyByteBuf data) {
         this(id, inv, inv.player.level().getBlockEntity(data.readBlockPos()), new SimpleContainerData(2));
     }
@@ -22,9 +25,11 @@ public class CrudeSmelterMenu extends BasicMenu<CrudeSmelterBlockEntity> {
         super(id, inv, entity, data);
         checkContainerSize(inv, 3);
 
+        container = container();
+
         container.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
             this.addSlot(new SlotItemHandler(itemHandler, 0, 56, 27));
-            this.addSlot(new SlotItemHandler(itemHandler, 1, 116, 35));
+            this.addSlot(new OutputSlot(itemHandler, 1, 116, 35));
         });
     }
 
@@ -43,6 +48,7 @@ public class CrudeSmelterMenu extends BasicMenu<CrudeSmelterBlockEntity> {
     }
 
     protected int getSlotCount() { return 2; }
+    protected int getModifiableSlots() { return 1; }
     protected int getInvLeft() { return 8; }
     protected int getInvTop() { return 84; }
     protected int getHotbarTop() { return 142; }

@@ -167,6 +167,25 @@ public class HeatStack {
         return (simulate ? temp0 : this);
     }
 
+    public String toString() {
+        return heat+","+capacity+","+heatSource+","+exchangeRate+","+lossRate+","+ambientHeat+","+creativeBonus+","+canInput+","+canOutput+","+isCreativeHeated;
+    }
+
+    public void fromString(String data) {
+        String[] parsed = data.split(",");
+        if(parsed.length != 10) throw new IllegalStateException("String has incorrect number of arguments");
+        heat = Integer.parseInt(parsed[0]);
+        capacity = Integer.parseInt(parsed[1]);
+        heatSource = Integer.parseInt(parsed[2]);
+        exchangeRate = Integer.parseInt(parsed[3]);
+        lossRate = Integer.parseInt(parsed[4]);
+        ambientHeat = Integer.parseInt(parsed[5]);
+        creativeBonus = Integer.parseInt(parsed[6]);
+        canInput = Boolean.parseBoolean(parsed[7]);
+        canOutput = Boolean.parseBoolean(parsed[8]);
+        isCreativeHeated = Boolean.parseBoolean(parsed[9]);
+    }
+
     public HeatStack copy() { return copy(true); }
     public HeatStack setHeat(int heat) { return setHeat(heat, false, true); }
     public HeatStack setCapacity(int capacity) { return setCapacity(capacity, false, true); }

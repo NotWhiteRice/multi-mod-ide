@@ -1,30 +1,16 @@
 package io.github.notwhiterice.endlessskies.block.entity;
 
-import com.mojang.logging.LogUtils;
-import io.github.notwhiterice.endlessskies.Reference;
-import io.github.notwhiterice.endlessskies.block.RockCrusherBlock;
 import io.github.notwhiterice.endlessskies.block.entity.factory.MenuBlockEntity;
-import io.github.notwhiterice.endlessskies.block.entity.factory.TileEntityContext;
-import io.github.notwhiterice.endlessskies.inventory.RockCrusherMenu;
 import io.github.notwhiterice.endlessskies.recipe.RockCrusherRecipe;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -33,9 +19,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
-
-public class RockCrusherBlockEntity extends MenuBlockEntity<RockCrusherBlockEntity, RockCrusherBlock> {
+public class RockCrusherBlockEntity extends MenuBlockEntity {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
 
     public static final int INPUT_SLOT = 0;

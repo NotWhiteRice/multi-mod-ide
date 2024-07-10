@@ -1,7 +1,7 @@
 package io.github.notwhiterice.endlessskies.init;
 
 import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import io.github.notwhiterice.endlessskies.registry.ModContext;
 
 public class CreativeModeTabInit {
     public static CreativeModeTabContext tabDev;

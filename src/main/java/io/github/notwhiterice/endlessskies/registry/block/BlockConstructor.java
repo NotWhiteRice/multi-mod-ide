@@ -1,4 +1,4 @@
-package io.github.notwhiterice.endlessskies.block.factory;
+package io.github.notwhiterice.endlessskies.registry.block;
 
 import net.minecraft.world.level.block.Block;
 

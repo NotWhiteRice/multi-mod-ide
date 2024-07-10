@@ -1,7 +1,8 @@
 package io.github.notwhiterice.endlessskies.block.entity.factory;
 
+import io.github.notwhiterice.endlessskies.block.factory.BasicBlock;
 import io.github.notwhiterice.endlessskies.block.factory.BasicEntityBlock;
-import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
+import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -13,12 +14,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class BasicBlockEntity<T extends BasicBlockEntity<T, U>,U extends BasicEntityBlock<T>> extends BlockEntity {
+public abstract class BasicBlockEntity extends BlockEntity {
     protected final BlockContext context;
 
     public BasicBlockEntity(BlockPos pos, BlockState state) {
-        super(((U) state.getBlock()).context.container.getEntityType(), pos, state);
-        context = ((U) state.getBlock()).context;
+        super(((BasicBlock) state.getBlock()).context.container.get(), pos, state);
+        context = ((BasicBlock) state.getBlock()).context;
     }
 
     @Override

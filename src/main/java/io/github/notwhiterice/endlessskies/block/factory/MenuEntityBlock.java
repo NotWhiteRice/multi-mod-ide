@@ -1,7 +1,6 @@
 package io.github.notwhiterice.endlessskies.block.factory;
 
 import com.mojang.serialization.MapCodec;
-import io.github.notwhiterice.endlessskies.block.entity.factory.BasicBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -13,7 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
-public abstract class MenuEntityBlock<T extends BasicBlockEntity<T, ? extends BasicEntityBlock<T>> & MenuProvider> extends BasicEntityBlock<T> {
+public abstract class MenuEntityBlock extends BasicEntityBlock {
     public MenuEntityBlock(Block.Properties prop) { super(prop); }
 
     @Override
@@ -32,5 +31,5 @@ public abstract class MenuEntityBlock<T extends BasicBlockEntity<T, ? extends Ba
     }
 
 
-    protected abstract MapCodec<? extends MenuEntityBlock<T>> codec();
+    protected abstract MapCodec<? extends MenuEntityBlock> codec();
 }

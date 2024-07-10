@@ -1,9 +1,8 @@
 package io.github.notwhiterice.endlessskies.init;
 
-import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
-import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
-import io.github.notwhiterice.endlessskies.item.factory.ItemFactory;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import io.github.notwhiterice.endlessskies.registry.item.ItemContext;
+import io.github.notwhiterice.endlessskies.registry.item.ItemFactory;
+import io.github.notwhiterice.endlessskies.registry.ModContext;
 import net.minecraft.world.item.CreativeModeTabs;
 
 public class ItemInit {

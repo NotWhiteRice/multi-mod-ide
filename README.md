@@ -16,6 +16,14 @@
 - [ ] Implement "proxies" to edit a context in a context outside of a factory
   - e.g. a BlockProxy class that functions as a Block class but has a constructor that accepts the factory to its block context
 ## Mod Changelog
+- Endless Skies v1.8.0.0-alpha
+  - Reworked the ModLogger class to use System.out
+  - Removed generics from a majority of classes
+  - Added functions to add a renderer to a block entity automatically
+  - Added functions to convert HeatStacks and HeatStackHandlers to/from Strings
+  - Made it impossible to insert items into the output slots for machines
+  - Got rid of the base classes for contexts
+  - Remade ModContext and added a new ModObject class
 - Endless Skies v1.7.1.0-alpha
   - Fixed the panel block not rotating properly and made it directional
 - Endless Skies v1.7.0.0-alpha

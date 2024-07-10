@@ -1,18 +1,14 @@
 package io.github.notwhiterice.endlessskies.inventory.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.notwhiterice.endlessskies.Reference;
-import io.github.notwhiterice.endlessskies.block.entity.RockCrusherBlockEntity;
 import io.github.notwhiterice.endlessskies.inventory.RockCrusherMenu;
 import io.github.notwhiterice.endlessskies.inventory.factory.BasicScreen;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class RockCrusherScreen extends BasicScreen<RockCrusherMenu, RockCrusherBlockEntity> {
+public class RockCrusherScreen extends BasicScreen<RockCrusherMenu> {
     public RockCrusherScreen(RockCrusherMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
     }
@@ -28,8 +24,6 @@ public class RockCrusherScreen extends BasicScreen<RockCrusherMenu, RockCrusherB
         int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(getTexture(), x, y, 0, 0, imageWidth, imageHeight);
-
-        System.out.println(menu.getProgress());
 
         renderProgressBar(guiGraphics, x, y);
     }

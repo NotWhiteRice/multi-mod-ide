@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEntity, CrudeSmelterBlock> {
+public class CrudeSmelterBlockEntity extends MenuBlockEntity {
     public final ItemStackHandler itemHandler = new ItemStackHandler(2);
     public final HeatStackHandler heatHandler;
 
@@ -101,8 +101,7 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
         tag.put("inventory", itemHandler.serializeNBT(lookupProvider));
         tag.putInt("crude_smelter.progress", progress);
         tag.putInt("crude_smelter.cook_time", maxProgress);
-        tag.putInt("crude_smelter.temperature", heatHandler.getHeatInSlot(0));
-        tag.putBoolean("crude_smelter.superheated", heatHandler.isSlotCreativeHeated(0));
+        tag.putString("heat_data", heatHandler.toString());
         super.saveAdditional(tag, lookupProvider);
     }
 
@@ -112,8 +111,7 @@ public class CrudeSmelterBlockEntity extends MenuBlockEntity<CrudeSmelterBlockEn
         itemHandler.deserializeNBT(lookupProvider, tag.getCompound("inventory"));
         progress = tag.getInt("crude_smelter.progress");
         maxProgress = tag.getInt("crude_smelter.cook_time");
-        heatHandler.setHeatInSlot(0, tag.getInt("crude_smelter.temperature"), false);
-        heatHandler.setSlotCreativeHeated(0, tag.getBoolean("crude_smelter.superheated"), false);
+        heatHandler.fromString(tag.getString("heat_data"));
     }
 
     public void dropInventory() {

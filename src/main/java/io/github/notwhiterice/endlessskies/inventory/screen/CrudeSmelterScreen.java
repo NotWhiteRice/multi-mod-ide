@@ -1,7 +1,6 @@
 package io.github.notwhiterice.endlessskies.inventory.screen;
 
 import io.github.notwhiterice.endlessskies.Reference;
-import io.github.notwhiterice.endlessskies.block.entity.CrudeSmelterBlockEntity;
 import io.github.notwhiterice.endlessskies.inventory.CrudeSmelterMenu;
 import io.github.notwhiterice.endlessskies.inventory.factory.BasicScreen;
 import net.minecraft.client.gui.GuiGraphics;
@@ -9,7 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class CrudeSmelterScreen extends BasicScreen<CrudeSmelterMenu, CrudeSmelterBlockEntity> {
+public class CrudeSmelterScreen extends BasicScreen<CrudeSmelterMenu> {
     public CrudeSmelterScreen(CrudeSmelterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }

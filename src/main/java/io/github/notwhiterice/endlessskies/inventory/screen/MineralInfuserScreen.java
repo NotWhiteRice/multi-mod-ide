@@ -1,18 +1,14 @@
 package io.github.notwhiterice.endlessskies.inventory.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.notwhiterice.endlessskies.Reference;
-import io.github.notwhiterice.endlessskies.block.entity.MineralInfuserBlockEntity;
 import io.github.notwhiterice.endlessskies.inventory.MineralInfuserMenu;
 import io.github.notwhiterice.endlessskies.inventory.factory.BasicScreen;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class MineralInfuserScreen extends BasicScreen<MineralInfuserMenu, MineralInfuserBlockEntity> {
+public class MineralInfuserScreen extends BasicScreen<MineralInfuserMenu> {
     public MineralInfuserScreen(MineralInfuserMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }

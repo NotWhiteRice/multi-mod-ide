@@ -5,9 +5,7 @@ import io.github.notwhiterice.endlessskies.block.entity.factory.BasicBlockEntity
 import io.github.notwhiterice.endlessskies.capabilities.ESCapabilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -18,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
-public abstract class BasicEntityBlock<T extends BasicBlockEntity> extends BasicBlock implements EntityBlock {
+public abstract class BasicEntityBlock extends BasicBlock implements EntityBlock {
     public BasicEntityBlock(Block.Properties prop) {
         super(prop);
     }
@@ -52,9 +50,16 @@ public abstract class BasicEntityBlock<T extends BasicBlockEntity> extends Basic
     @Override
     public <U extends BlockEntity> BlockEntityTicker<U> getTicker(Level level, BlockState state, BlockEntityType<U> bEntityType) {
         if(level.isClientSide || !context.hasContainer()) return null;
+        BlockEntity entity = bEntityType.create(new BlockPos(1, 1, 1), state);
 
-        return createTickerHelper(bEntityType, context.container.getEntityType(),
-                (pLevel, pos, pState, bEntity) -> ((T) bEntity).tick(pLevel, pos, pState));
+        if(entity instanceof BasicBlockEntity) {
+            entity.setRemoved();
+            return createTickerHelper(bEntityType, context.container.get(),
+                    (pLevel, pos, pState, bEntity) -> ((BasicBlockEntity) bEntity).tick(pLevel, pos, pState));
+        }
+
+        entity.setRemoved();
+        return null;
     }
 
     protected boolean triggerEvent(BlockState state, Level level, BlockPos pos, int id, int param) {

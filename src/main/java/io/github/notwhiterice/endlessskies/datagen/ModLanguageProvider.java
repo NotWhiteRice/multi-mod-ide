@@ -1,7 +1,7 @@
 package io.github.notwhiterice.endlessskies.datagen;
 
-import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
-import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
+import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
+import io.github.notwhiterice.endlessskies.registry.item.ItemContext;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 

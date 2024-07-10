@@ -1,6 +1,5 @@
 package io.github.notwhiterice.endlessskies.block.entity;
 
-import io.github.notwhiterice.endlessskies.block.PanelBlock;
 import io.github.notwhiterice.endlessskies.block.entity.factory.BasicBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -9,7 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class PanelBlockEntity extends BasicBlockEntity<PanelBlockEntity, PanelBlock> {
+public class PanelBlockEntity extends BasicBlockEntity {
     public PanelBlockEntity(BlockPos pos, BlockState state) {super(pos, state);}
 
     public Direction face = Direction.DOWN;

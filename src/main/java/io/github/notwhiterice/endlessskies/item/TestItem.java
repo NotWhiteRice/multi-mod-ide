@@ -2,7 +2,7 @@ package io.github.notwhiterice.endlessskies.item;
 
 import io.github.notwhiterice.endlessskies.block.entity.PanelBlockEntity;
 import io.github.notwhiterice.endlessskies.init.BlockInit;
-import io.github.notwhiterice.endlessskies.item.base.BasicItem;
+import io.github.notwhiterice.endlessskies.item.factory.BasicItem;
 import io.github.notwhiterice.endlessskies.util.DirHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

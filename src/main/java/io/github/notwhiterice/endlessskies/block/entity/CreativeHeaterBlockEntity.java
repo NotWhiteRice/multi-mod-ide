@@ -1,6 +1,5 @@
 package io.github.notwhiterice.endlessskies.block.entity;
 
-import io.github.notwhiterice.endlessskies.block.CreativeHeaterBlock;
 import io.github.notwhiterice.endlessskies.block.entity.factory.MenuBlockEntity;
 import io.github.notwhiterice.endlessskies.capabilities.ESCapabilities;
 import io.github.notwhiterice.endlessskies.capabilities.heat.HeatStackHandler;
@@ -17,7 +16,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 
-public class CreativeHeaterBlockEntity extends MenuBlockEntity<CreativeHeaterBlockEntity, CreativeHeaterBlock> {
+public class CreativeHeaterBlockEntity extends MenuBlockEntity {
     public final HeatStackHandler heatHandler;
     private int output = 1000;
 
@@ -48,6 +47,7 @@ public class CreativeHeaterBlockEntity extends MenuBlockEntity<CreativeHeaterBlo
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider lookupProvider) {
         tag.putInt("creative_heater.output", output);
+        tag.putString("heat_data", heatHandler.toString());
         super.saveAdditional(tag, lookupProvider);
     }
 
@@ -55,6 +55,7 @@ public class CreativeHeaterBlockEntity extends MenuBlockEntity<CreativeHeaterBlo
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider lookupProvider) {
         super.loadAdditional(tag, lookupProvider);
         output = tag.getInt("creative_heater.output");
+        heatHandler.fromString(tag.getString("heat_data"));
     }
 
     @Override

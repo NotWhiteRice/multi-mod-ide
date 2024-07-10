@@ -2,9 +2,10 @@ package io.github.notwhiterice.endlessskies.init;
 
 import io.github.notwhiterice.endlessskies.block.*;
 import io.github.notwhiterice.endlessskies.block.entity.*;
-import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
-import io.github.notwhiterice.endlessskies.block.factory.BlockFactory;
-import io.github.notwhiterice.endlessskies.block.factory.data.BlockStateFactory;
+import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
+import io.github.notwhiterice.endlessskies.registry.block.BlockFactory;
+import io.github.notwhiterice.endlessskies.registry.block.data.BlockStateFactory;
+import io.github.notwhiterice.endlessskies.block.renderer.PanelEntityRenderer;
 import io.github.notwhiterice.endlessskies.inventory.CreativeHeaterMenu;
 import io.github.notwhiterice.endlessskies.inventory.CrudeSmelterMenu;
 import io.github.notwhiterice.endlessskies.inventory.MineralInfuserMenu;
@@ -13,7 +14,7 @@ import io.github.notwhiterice.endlessskies.inventory.screen.CreativeHeaterScreen
 import io.github.notwhiterice.endlessskies.inventory.screen.CrudeSmelterScreen;
 import io.github.notwhiterice.endlessskies.inventory.screen.MineralInfuserScreen;
 import io.github.notwhiterice.endlessskies.inventory.screen.RockCrusherScreen;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import io.github.notwhiterice.endlessskies.registry.ModContext;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.material.MapColor;
 
@@ -58,7 +59,7 @@ public class BlockInit {
         blockPanel = factory.block("panel")
                 .toggleItem()
                 .setParent(PanelBlock::new)
-                .setContainer(PanelBlockEntity::new)
+                .setContainer(PanelBlockEntity::new, PanelEntityRenderer::new)
                 .setMapColor(MapColor.COLOR_RED)
                 .setStateFactory(BlockStateFactory.BLOCK_WITH_ERROR_MODEL)
                 .close();

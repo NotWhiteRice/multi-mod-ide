@@ -6,7 +6,7 @@ import io.github.notwhiterice.endlessskies.creativetab.factory.TabEntryFactory;
 import io.github.notwhiterice.endlessskies.datagen.ModBlockStateProvider;
 import io.github.notwhiterice.endlessskies.datagen.ModItemModelProvider;
 import io.github.notwhiterice.endlessskies.datagen.ModLanguageProvider;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import io.github.notwhiterice.endlessskies.registry.ModContext;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;

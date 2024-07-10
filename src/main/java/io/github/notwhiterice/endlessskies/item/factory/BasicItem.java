@@ -1,4 +1,4 @@
-package io.github.notwhiterice.endlessskies.item.base;
+package io.github.notwhiterice.endlessskies.item.factory;
 
 import net.minecraft.world.item.Item;
 

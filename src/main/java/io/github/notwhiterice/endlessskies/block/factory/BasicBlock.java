@@ -1,6 +1,6 @@
 package io.github.notwhiterice.endlessskies.block.factory;
 
-import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
+import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;

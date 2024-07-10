@@ -1,6 +1,5 @@
 package io.github.notwhiterice.endlessskies.block.entity.factory;
 
-import io.github.notwhiterice.endlessskies.block.factory.MenuEntityBlock;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -14,14 +13,14 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class MenuBlockEntity<T extends MenuBlockEntity<T, U>,U extends MenuEntityBlock<T>> extends BasicBlockEntity<T, U> implements MenuProvider {
+public abstract class MenuBlockEntity extends BasicBlockEntity implements MenuProvider {
     protected ContainerData data;
 
     public MenuBlockEntity(BlockPos pos, BlockState state) { super(pos, state); }
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block." + context.getID().replaceAll(":", "."));
+        return Component.translatable("block." + context.getID("."));
     }
 
     @Nullable

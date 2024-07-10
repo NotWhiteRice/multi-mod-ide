@@ -21,6 +21,19 @@
             return out;
         }
 
+        public String toString() {
+            String out = "";
+            for(HeatStack stack : stacks) out = stack.toString() + "/";
+            out.substring(0, out.length()-1);
+            return out;
+        }
+
+        public void fromString(String data) {
+            String[] parsed = data.split("/");
+            if(parsed.length != slots) throw new IllegalStateException("String has different amount of slots than this HeatStackHandler");
+            for(int i = 0; i < slots; i++) stacks.get(i).fromString(parsed[i]);
+        }
+
         public int getSlots() { return slots; }
         public boolean hasSlot(int slot) { return slot >= 0 && slot < slots; }
 

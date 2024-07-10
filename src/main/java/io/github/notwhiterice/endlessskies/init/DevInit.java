@@ -1,15 +1,15 @@
 package io.github.notwhiterice.endlessskies.init;
 
 import io.github.notwhiterice.endlessskies.block.TestBlock;
-import io.github.notwhiterice.endlessskies.block.factory.BlockContext;
-import io.github.notwhiterice.endlessskies.block.factory.BlockFactory;
-import io.github.notwhiterice.endlessskies.block.factory.data.BlockStateFactory;
-import io.github.notwhiterice.endlessskies.block.factory.data.LootTableFactory;
+import io.github.notwhiterice.endlessskies.registry.block.BlockContext;
+import io.github.notwhiterice.endlessskies.registry.block.BlockFactory;
+import io.github.notwhiterice.endlessskies.registry.block.data.BlockStateFactory;
+import io.github.notwhiterice.endlessskies.registry.block.data.LootTableFactory;
 import io.github.notwhiterice.endlessskies.item.TestItem;
-import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
-import io.github.notwhiterice.endlessskies.item.factory.ItemFactory;
-import io.github.notwhiterice.endlessskies.item.factory.data.ItemModelFactory;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import io.github.notwhiterice.endlessskies.registry.item.ItemContext;
+import io.github.notwhiterice.endlessskies.registry.item.ItemFactory;
+import io.github.notwhiterice.endlessskies.registry.item.data.ItemModelFactory;
+import io.github.notwhiterice.endlessskies.registry.ModContext;
 import net.minecraft.world.item.CreativeModeTabs;
 
 public class DevInit {

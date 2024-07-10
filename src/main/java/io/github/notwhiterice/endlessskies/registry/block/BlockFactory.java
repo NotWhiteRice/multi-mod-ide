@@ -1,11 +1,12 @@
-package io.github.notwhiterice.endlessskies.block.factory;
+package io.github.notwhiterice.endlessskies.registry.block;
 
-import io.github.notwhiterice.endlessskies.block.factory.data.BlockStateFactory;
-import io.github.notwhiterice.endlessskies.block.factory.data.LootTableFactory;
+import io.github.notwhiterice.endlessskies.registry.block.data.BlockStateFactory;
+import io.github.notwhiterice.endlessskies.registry.block.data.LootTableFactory;
 import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import io.github.notwhiterice.endlessskies.registry.ModContext;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.CreativeModeTab;
@@ -83,8 +84,13 @@ public class BlockFactory {
         return this;
     }
 
-    public BlockFactory setContainer(BlockEntityType.BlockEntitySupplier<? extends BlockEntity> factory) {
-        context.setContainer(factory, "BlockFactory.setContainer");
+    public BlockFactory setContainer(BlockEntityType.BlockEntitySupplier<? extends BlockEntity> entity) {
+        context.setContainer(entity, "BlockFactory.setContainer");
+        return this;
+    }
+
+    public <T extends BlockEntity>BlockFactory setContainer(BlockEntityType.BlockEntitySupplier<T> entity, BlockEntityRendererProvider<T> renderer) {
+        context.setContainer(entity, renderer, "BlockFactory.setContainer(renderer)");
         return this;
     }
 
@@ -94,7 +100,6 @@ public class BlockFactory {
     }
 
     public BlockContext close() {
-        context.close();
         BlockContext out = context;
         context = null;
         return out;

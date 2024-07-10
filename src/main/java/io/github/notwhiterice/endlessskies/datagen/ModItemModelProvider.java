@@ -1,9 +1,9 @@
 package io.github.notwhiterice.endlessskies.datagen;
 
-import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
-import io.github.notwhiterice.endlessskies.item.factory.data.ItemModelFactory;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
-import io.github.notwhiterice.endlessskies.registry.object.ModLogger;
+import io.github.notwhiterice.endlessskies.registry.item.ItemContext;
+import io.github.notwhiterice.endlessskies.registry.item.data.ItemModelFactory;
+import io.github.notwhiterice.endlessskies.registry.ModContext;
+import io.github.notwhiterice.endlessskies.logger.ModLogger;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -22,9 +22,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         ModLogger logger = ModContext.getContext(modID).logger;
         for(ItemContext context : ItemContext.getModItems(modID)) {
             ItemModelFactory factory = context.getModelFactory();
-            String name = context.getName();
+            String name = context.name;
             if(!factory.doDatagen()) continue;
-            logger.debug("ModItemModelProvider", "registerModels", "Processing the model factory for item: '" + context.getID() + "'");
+            logger.debug("ModItemModelProvider", "registerModels", "Processing the model factory for item: '" + context.getID(":") + "'");
             withExistingParent(name, ResourceLocation.parse(factory.parseParent()))
                     .texture("layer0", ResourceLocation.parse(factory.parseLayer0(context)));
         }

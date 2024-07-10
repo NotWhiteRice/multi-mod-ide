@@ -1,7 +1,7 @@
-package io.github.notwhiterice.endlessskies.item.factory.data;
+package io.github.notwhiterice.endlessskies.registry.item.data;
 
 import io.github.notwhiterice.endlessskies.Reference;
-import io.github.notwhiterice.endlessskies.item.factory.ItemContext;
+import io.github.notwhiterice.endlessskies.registry.item.ItemContext;
 
 public enum ItemModelFactory {
     SIMPLE_ITEM("minecraft:item/generated", null, true),
@@ -22,7 +22,7 @@ public enum ItemModelFactory {
     public boolean doDatagen() { return parent != null; }
     public String parseParent() { return parent; }
     public String parseLayer0(ItemContext context) {
-        if(layer0 == null) return context.getModID() + ":item/" + context.getName();
+        if(layer0 == null) return context.getModID() + ":item/" + context.name;
         if(isIndependent) return layer0;
         return context.getModID() + ":" + layer0;
     }

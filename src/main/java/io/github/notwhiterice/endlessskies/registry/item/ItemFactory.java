@@ -1,10 +1,9 @@
-package io.github.notwhiterice.endlessskies.item.factory;
+package io.github.notwhiterice.endlessskies.registry.item;
 
-import io.github.notwhiterice.endlessskies.block.factory.BlockFactory;
 import io.github.notwhiterice.endlessskies.creativetab.factory.CreativeModeTabContext;
 import io.github.notwhiterice.endlessskies.datagen.ModLanguageProvider;
-import io.github.notwhiterice.endlessskies.item.factory.data.ItemModelFactory;
-import io.github.notwhiterice.endlessskies.registry.object.ModContext;
+import io.github.notwhiterice.endlessskies.registry.item.data.ItemModelFactory;
+import io.github.notwhiterice.endlessskies.registry.ModContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -41,9 +40,9 @@ public class ItemFactory {
     public ItemFactory applyTranslation(String name, String locale) {
         ModLanguageProvider.translations.computeIfAbsent(locale, v -> new HashMap<>());
         ModLanguageProvider.translations.get(locale)
-                .computeIfAbsent(parentMod.getModID(), v -> new HashMap<>());
+                .computeIfAbsent(parentMod.modID, v -> new HashMap<>());
         ModLanguageProvider.translations.get(locale)
-                .get(parentMod.getModID()).computeIfAbsent(context.getName(), v -> name);
+                .get(parentMod.modID).computeIfAbsent(context.name, v -> name);
         return this;
     }
     public ItemFactory setStackSize(int size) {
@@ -62,7 +61,6 @@ public class ItemFactory {
     }
 
     public ItemContext close() {
-        context.close();
         ItemContext out = context;
         context = null;
         return out;

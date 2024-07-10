@@ -14,7 +14,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 
-public class PanelBlock extends BasicEntityBlock<PanelBlockEntity> {
+public class PanelBlock extends BasicEntityBlock {
 
     public PanelBlock(Properties prop) {
         super(prop);
