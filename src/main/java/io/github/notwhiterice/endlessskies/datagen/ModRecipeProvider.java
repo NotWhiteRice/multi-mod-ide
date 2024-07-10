@@ -40,15 +40,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemInit.itemHammer.get())
-                .pattern(" I ")
-                .pattern("IS ")
-                .pattern("  S")
-                .define('I', Items.IRON_INGOT)
-                .define('S', Items.STICK)
-                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
-                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
-                .save(recipeOutput, RecipeBuilder.getDefaultRecipeId(ItemInit.itemHammer.get())+"_mirrored");
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemInit.itemMortarPestle.get())
                 .pattern("sSs")
                 .pattern(" s ")
@@ -67,13 +58,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ItemInit.itemHammer.get()), has(ItemInit.itemHammer.get()))
                 .unlockedBy(getHasName(input), has(input))
                 .save(builder);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, output)
-                .pattern("IH")
-                .define('H', ItemInit.itemHammer.get())
-                .define('I', input)
-                .unlockedBy(getHasName(ItemInit.itemHammer.get()), has(ItemInit.itemHammer.get()))
-                .unlockedBy(getHasName(input), has(input))
-                .save(builder, RecipeBuilder.getDefaultRecipeId(output)+"_mirrored");
     }
 
     private <T extends AbstractCookingRecipe> void addSmelting(String modID, RecipeOutput output, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {

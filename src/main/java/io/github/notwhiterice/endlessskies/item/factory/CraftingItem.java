@@ -26,6 +26,6 @@ public class CraftingItem extends BasicItem implements IForgeItem {
     @Override
     public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
         if(itemStack.isDamageableItem()) itemStack.setDamageValue(itemStack.getDamageValue()+1);
-        return itemStack;
+        return itemStack.copy();
     }
 }

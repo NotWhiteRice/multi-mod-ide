@@ -16,6 +16,8 @@
 - [ ] Implement "proxies" to edit a context in a context outside of a factory
   - e.g. a BlockProxy class that functions as a Block class but has a constructor that accepts the factory to its block context
 ## Mod Changelog
+- Endless Skies v1.9.1.0-alpha
+  - Fixed CraftingItems not being retained on use
 - Endless Skies v1.9.0.0-alpha
   - Making a duplicate ModContext no longer throws an exception
   - Renamed finalizeRegisters to finalize
