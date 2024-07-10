@@ -1,7 +1,7 @@
 # Multi-mod IDE
 
 ## Included mods
-- Endless Skies v1.6.0.0-alpha
+- Endless Skies v1.9.1.0-alpha
 
 ## Versioning
 - <MAJOR>.<major>.<minor>.<patch>-<build>
