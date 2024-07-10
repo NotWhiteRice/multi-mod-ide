@@ -18,6 +18,7 @@
 ## Mod Changelog
 - Endless Skies v1.9.1.0-alpha
   - Fixed CraftingItems not being retained on use
+  - Minor texture changes
 - Endless Skies v1.9.0.0-alpha
   - Making a duplicate ModContext no longer throws an exception
   - Renamed finalizeRegisters to finalize
